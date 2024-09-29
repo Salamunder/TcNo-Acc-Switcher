@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Tampilkan nama akun [bukan nama teman]
 Steam_CheckVac: Periksa status VAC akun
 Steam_OverrideDefaultState: "Mengganti keadaan login default:"
 Steam_StartSilent: "Buka Steam untuk mengaktifkan task tray (Mulai Steam dengan '- silent ')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Gunakan UI Lama di Steam (-vgui)"
+Steam_CollectInfo: Kumpulkan gambar profil dan status larangan VAC dari Steam
 Button_AddNew: Tambah Baru
 Button_SaveCurrent: Simpan Saat Ini
 Button_SaveFile: Simpan Berkas
@@ -30,7 +31,8 @@ Button_OpenBackup: Buka Folder Cadangan
 Button_Back: Kembali
 Button_RestartAdmin: Mulai ulang sebagai Admin
 Button_SetPassword: Atur Kata Sandi Aplikasi
-Settings_Shortcut: ' {platform} Pintasan Desktop Switcher'
+Settings_SteamCollectInfo: Kumpulkan Gambar Profil Steam & Status VAC dari Steam
+Settings_Shortcut: '{platform} Pintasan Desktop Switcher'
 Settings_Admin: Jalankan {platform} sebagai Admin
 Settings_ImageExpiry: 'Hari sebelum gambar profil kedaluwarsa:'
 Settings_SteamAPIKey: "Kunci api Web Steam (opsional)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Menonaktifkan platform. Klik untuk mengaktifkan
 Settings_ExtraPlatformsEnabled: Platform yang terlihat. Klik untuk menonaktifkannya.
 Settings_RTL: Tampilkan teks sebagai Kanan - ke - Kiri
 Settings_CollectStats: Kumpulkan statistik
-Settings_ShareStats: Bagikan statistik dengan kesal (disarankan)
+Settings_ShareStats: Bagikan statistik secara anonim (disarankan)
 Settings_DiscordRpc: Kehadiran Kaya Perselisihan (RPC)
 Settings_DiscordRpcShare: Bagikan total sakelar
 Settings_ViewStats: Lihat statistik
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Atur latar belakang]'
 Settings_ThemeOpenFolder: '[Buka folder tema]'
 Settings_Protocol: 'Aktifkan tcno:\\ protokol (Disarankan)'
 Settings_StartCentered: Mulai program yang dipusatkan
+Settings_OfflineMode: Mode Offline (Tidak ada aktivitas jaringan)
 Settings_WindowsAccent: Gunakan Warna Aksen Windows
 Settings_HelpTranslate: "[Bantuan menerjemahkan]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Lanjutan) Setel mesin render:"
 Settings_Header_ClosingMethod: "(Lanjutan) Atur metode untuk menutup {platform}"
 Settings_Header_StartingMethod: "(Lanjutan) Atur metode untuk memulai {platform}"
 Settings_AutoStart: "Otomatis mulai {platform} pada sakelar akun"
+Settings_ShowSteamSwitcher: "Tampilkan pengalih akun Steam (JANGAN gunakan ini atau dapat merusak Pengalih Akun TcNo)"
 Settings_NoPlatforms: Saat ini tidak ada platform yang diaktifkan. Centang platform opsional di bawah ini untuk mengaktifkannya, atau hapus centang platform yang dinonaktifkan.
 Settings_MinimizeOnSwitch: Minimalkan pengalih pada pengalih akun
 Settings_ShowShortNotes: Pratinjau catatan di bawah nama pengguna
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Hentikan orang lain menggunakan switcher:"
 PreviewCss: Pratinjau CSS
 Settings_PreviewCss: Ini adalah halaman pratinjau CSS. Anda dapat melihat beberapa elemen yang muncul di program dan melihat tampilannya dengan tema Anda. Halaman ini berguna untuk mereka yang membuat tema!
 Settings_PreviewCssHeader: Halaman Pratinjau CSS
+Settings_AutoUpdatePlatforms: Daftar Platform pembaruan otomatis
+Settings_CheckForUpdates: Periksa pembaruan saat peluncuran
 Stats_Disabled: "Pengumpulan statistik dinonaktifkan."
 Stats_InDepth: Perincian statistik mendalam
 Stats_ShareEnabled: "Statistik ini dibagikan secara anonim dan akan ditambahkan ke total <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">di sini</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Pulihkan yang dipilih
 Ignored_RemoveAccounts: Hapus akun dari daftar abaikan
 Ignored_Description: Jika sebelumnya Anda "mengabaikan" akun, Anda dapat menunjukkannya lagi di sini
 Ignored_Stop: Berhenti mengabaikan yang dipilih
+Toast_UpdatesDownloading: Pembaruan sedang diunduh di latar belakang. Anda dapat terus menggunakan program tersebut.
+Toast_UpdatesDownloaded: Pembaruan telah selesai diunduh. Tutup aplikasi ini untuk memulai pembaruan.
 Toast_DataLocationCopying: (1/2) Menyalin file yang ada ke dalam folder data pengguna baru!
 Toast_DataLocationNotCopying: (1/2) Folder sudah memiliki file! Tidak akan memigrasikan data pengguna.
 Toast_DataLocationSet: (2/2) Mulai ulang pengalih akun untuk menggunakan folder baru!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Tidak dapat menemukan ID Steam yang valid.
 Toast_FailedUpdateCheck: Gagal memeriksa pembaruan
 Toast_UpdateVerifyFail: Tidak dapat memverifikasi file updater. Unduh versi terbaru dan ganti file di direktori Anda.
 Toast_StartedGame: Dimulai {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Tidak bisa mendapatkan info XML untuk {steamId}. Lihat log untuk detail lebih lanjut.
 Toast_Steam_VacCleared: Status VAC untuk akun telah dihapus
 Toast_Steam_CantDeleteVacCache: Tidak dapat menghapus 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: Tidak dapat menemukan folder data Steam\\ userdata
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Kunci api Web Steam tampaknya tidak valid. Harap atur 
 Toast_DownloadingProfileData: Mengunduh data profil
 Toast_PasswordChanged: Kata sandi berubah
 Toast_JsonFailModify: Gagal memodifikasi berkas JSON. Lihat log.
+Toast_DifferentClosingMethod: "'Metode Penutupan' berbeda dengan default. Jika permainan ditutup dan lainnya, periksa apakah mengubah opsi ini membantu. Bawaan: {defaultMethod}, Saat ini: {currentMethod}"
+Toast_NameEmpty: Nama pengguna tidak boleh kosong (dan tidak boleh hanya berisi spasi)
+Toast_NewPlatforms: "Diperbarui! Platform baru ditambahkan: {listOfNames}. Klik untuk menutup."
+Toast_FoundExeViaShortcut: "Kami menemukan jalur yang terinstal dari pintasan Menu Start. Harap verifikasi lokasinya dengan mengeklik Setelan sekarang. Klik untuk menutup."
 Modal_Crowdin_Header: Penerjemah Crowdin
 Modal_Crowdin_Info: "Berikut adalah semua orang yang membantu menerjemahkan perangkat lunak ini.<br>Pengguna dengan bahasa di samping mereka banyak membantu dalam penerjemahan (peran proofreader)."
-Modal_Info_Creator: Dibuat oleh TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Dibuat oleh TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versi
 Modal_Info_ViewGitHub: Lihat di GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Dukungan melalui Patreon
+Modal_Info_ViewKofi: Dukungan melalui Ko-Fi
 Modal_Info_BugReport: Laporan kutu/Permintaan fitur
 Modal_Info_VisitSite: Kunjungi tcno.co
 Modal_Info_Disclaimer: Penafian
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Verifikasi bahwa Anda memenuhi persyaratan minimum yang di
 Installer_VerifyAlready: "Sepertinya semuanya sudah terinstal. Verifikasi bahwa Anda memenuhi persyaratan minimum yang direkomendasikan:"
 Installer_Complete: Itu harus menjadi segalanya. Program utama, TcNo-Acc-Switcher.exe, akan dijalankan secara otomatis.
 Installer_Complete2: "Jika tidak berhasil, silakan lihat petunjuk instalasi, di sini: {link}"
-Global_FatalNext: "Terjadi kesalahan fatal! Crashlog ini akan dikirimkan secara otomatis pada peluncuran berikutnya."
 Tray_Error: Kesalahan Talam
 Tray_NoAccs: "Tidak ada akun yang ditemukan.\nCoba ganti akun terlebih dahulu, atau cari 'Tray_Users.json'"
 Tray_Switch: "Beralih ke: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Total pembaruan yang ditemukan: {x}"
 Updater_TotalSize: "Ukuran total: {size}"
 Updater_AwaitingUser: Menunggu masukan pengguna...
 Updater_UpToDate: "Anda sudah diperbarui.\n:)"
-Updater_FailedDecode: Ini kemungkinan besar karena saya (TechNobo) mendorong pembaruan, dan membuat kesalahan ketik yang merusak file pembaruan .json. Do let me know :)
+Updater_FailedDecode: Ini kemungkinan besar karena saya (TroubleChute) mendorong pembaruan, dan membuat kesalahan ketik yang merusak file pembaruan .json. Do let me know :)
 Updater_FailedDecodeTitle: Gagal mendekode daftar pembaruan
 Updater_Extracting: Mengekstrak file patch
 Updater_Applying: Menerapkan patch...
@@ -461,6 +472,7 @@ DeletingFile: "Menghapus: {file}"
 DeletingFolder: "Menghapus Folder: "
 CouldntDeleteX: "GALAT: TIDAK DAPAT MENGHAPUS: {x}"
 CouldntDeleteUndefined: "GALAT: TIDAK DAPAT MENGHAPUS BERKAS YANG TIDAK TERDEFINISI"
+CouldntModifyX: "Tidak dapat mengubah {file}. Kesalahan izin berkas, atau berkas sedang digunakan."
 Prompt_RestartAsAdmin: "<h3><bold>Program ini akan dimulai ulang sebagai Admin</bold></h3><p>Tekan \"Ya\" di UAC ketika diminta untuk admin</p>."
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Anda akan melupakan akun!</h3> <h4>Apa artinya ini?</h4> <p>- Steam tidak akan lagi memiliki akun yang terdaftar dalam Mode Gambar Besar dan tidak akan Ingat Kata Sandi.<br/> - TcNo Account Switcher juga tidak akan lagi menampilkan akun, sampai masuk lagi melalui Steam.</p> <p>Akun Anda akan tetap tidak tersentuh. Itu hanya dilupakan di komputer ini.</p><h4>Apakah Anda mengerti?</h4>

@@ -3,17 +3,20 @@
     "Escape from Tarkov": {
       "Identifiers": [ "eft", "bsg", "tarkov" ],
       "ExeLocationDefault": "C:\\Battlestate Games\\BsgLauncher\\BsgLauncher.exe",
+      "GetPathFromShortcutNamed": "Battlestate Games Launcher",
       "ExesToEnd": [ "EscapeFromTarkov.exe", "BsgLauncher.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%AppData%\\Battlestate Games\\BsgLauncher\\settings": "settings"
       },
+      "AllFilesRequired": true,
       "UniqueIdFile": "settings",
       "UniqueIdRegex": "EMAIL_REGEX"
     },
     "OBS Studio": {
       "Identifiers": [ "obs" ],
       "ExeLocationDefault": "%ProgramFiles%\\obs-studio\\bin\\64bit\\obs64.exe",
+      "GetPathFromShortcutNamed": "OBS Studio (64bit)|OBS Studio",
       "ExesToEnd": [ "obs64.exe" ],
       "PathListToClear": [],
       "LoginFiles": {
@@ -21,18 +24,21 @@
         "%AppData%\\obs-studio\\basic\\*": "basic\\",
         "%AppData%\\obs-studio\\TcNoAccSwitcher-ID.instance": "TcNoAccSwitcher-ID.instance"
       },
+      "AllFilesRequired": true,
       "UniqueIdFile": "%AppData%\\obs-studio\\TcNoAccSwitcher-ID.instance",
       "UniqueIdMethod": "CREATE_ID_FILE"
     },
     "Epic Games": {
       "Identifiers": [ "e", "epg", "epic", "epicgames" ],
-      "ExeLocationDefault": "C:\\Program Files (x86)\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\EpicGamesLauncher.exe",
+      "ExeLocationDefault": "%ProgramFiles(x86)%\\Epic Games\\Launcher\\Portal\\Binaries\\Win32\\EpicGamesLauncher.exe",
+      "GetPathFromShortcutNamed": "Epic Games Launcher",
       "ExesToEnd": [ "EpicGamesLauncher.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%LocalAppData%\\EpicGamesLauncher\\Saved\\Config\\Windows\\GameUserSettings.ini": "GameUserSettings.ini",
         "REG:HKCU\\Software\\Epic Games\\Unreal Engine\\Identifiers:AccountId": "UNIQUE_ID"
       },
+      "AllFilesRequired": true,
       "Extras": {
         "CachePaths": [
           "%LocalAppData%\\Epic Games\\Epic Online Services\\UI Helper\\Cache\\Cache",
@@ -46,15 +52,53 @@
       "UniqueIdFile": "HKCU\\Software\\Epic Games\\Unreal Engine\\Identifiers:AccountId",
       "UniqueIdMethod": "REGKEY"
     },
+    "GOG Galaxy": {
+      "Identifiers": [ "g", "gog", "gog2" ],
+      "ExeLocationDefault": "%ProgramFiles(x86)%\\GOG Galaxy\\GalaxyClient.exe",
+      "GetPathFromShortcutNamed": "GOG GALAXY",
+      "ExesToEnd": [ "GalaxyClient.exe", "GOG Galaxy Notifications Renderer.exe", "GalaxyClientService.exe", "GalaxyCommunication.exe" ],
+      "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
+      "LoginFiles": {
+        "%LocalAppData%\\GOG.com\\Galaxy\\Configuration\\config.json": "LocalAppData\\config.json",
+        "REG:HKCU\\Software\\GOG.com\\Galaxy\\settings:username": "userId",
+        "REG:HKCU\\Software\\GOG.com\\Galaxy:refreshToken": "refreshToken",
+        "REG:HKCU\\Software\\GOG.com\\Galaxy\\settings:userId": "UNIQUE_ID",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Session Storage\\*.log": "ProgramData\\Session Storage\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Cache\\index": "ProgramData\\Cache\\index",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Cache\\data_*": "ProgramData\\Cache\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Code Cache\\js\\index-dir\\the-real-index": "ProgramData\\Code Cache\\js\\index-dir\\the-real-index",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\GPUCache\\index": "ProgramData\\GPUCache\\index",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Local Storage\\leveldb": "ProgramData\\Local Storage\\leveldb\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Session Storage\\*.log": "ProgramData\\Session Storage\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Session Storage\\*.ldb": "ProgramData\\Session Storage\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Cookies": "ProgramData\\Cookies",
+        "%ProgramData%\\GOG.com\\Galaxy\\storage\\etags.db": "ProgramData\\storage\\etags.db",
+        "%ProgramData%\\GOG.com\\Galaxy\\storage\\galaxy-2.0.db*": "ProgramData\\storage\\",
+        "%ProgramData%\\GOG.com\\Galaxy\\config.json": "ProgramData\\config.json"
+      },
+      "Extras": {
+        "ProfilePicPath": "%ProgramData%\\GOG.com\\Galaxy\\webcache\\%UniqueId%\\user\\%LARGEST%.jpg",
+        "CachePaths": [
+          "%ProgramFiles(x86)%\\GOG Galaxy\\GPUCache",
+          "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\Cache",
+          "%ProgramData%\\GOG.com\\Galaxy\\webcache\\common\\GPUCache"
+        ],
+        "BackupFolders": {
+          "%LocalAppData%\\GOG.com\\Galaxy\\Configuration\\": "Configuration"
+        }
+      },
+      "UniqueIdFile": "HKCU\\Software\\GOG.com\\Galaxy\\settings:userId",
+      "UniqueIdMethod": "REGKEY"
+    },
     "Discord": {
       "Identifiers": [ "d", "discord" ],
       "ExeLocationDefault": "%LocalAppData%\\Discord\\Update.exe",
+      "GetPathFromShortcutNamed": "Discord",
       "ExeExtraArgs": "--processStart Discord.exe",
       "ExesToEnd": [ "Discord.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%AppData%\\discord\\settings.json": "settings.json",
-        "%AppData%\\discord\\Cookies": "Cookies",
         "%AppData%\\discord\\Network Persistent State": "Network Persistent State",
         "%AppData%\\discord\\Preferences": "Preferences",
         "%AppData%\\discord\\TransportSecurity": "TransportSecurity",
@@ -88,12 +132,12 @@
         "canary"
       ],
       "ExeLocationDefault": "%LocalAppData%\\DiscordCanary\\Update.exe",
+      "GetPathFromShortcutNamed": "Discord Canary",
       "ExeExtraArgs": "--processStart DiscordCanary.exe",
       "ExesToEnd": [ "DiscordCanary.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%AppData%\\discordcanary\\settings.json": "settings.json",
-        "%AppData%\\discordcanary\\Cookies": "Cookies",
         "%AppData%\\discordcanary\\Network Persistent State": "Network Persistent State",
         "%AppData%\\discordcanary\\Preferences": "Preferences",
         "%AppData%\\discordcanary\\TransportSecurity": "TransportSecurity",
@@ -127,12 +171,12 @@
         "ptb"
       ],
       "ExeLocationDefault": "%LocalAppData%\\DiscordPTB\\Update.exe",
+      "GetPathFromShortcutNamed": "Discord PTB",
       "ExeExtraArgs": "--processStart DiscordPTB.exe",
       "ExesToEnd": [ "DiscordPTB.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%AppData%\\discordptb\\settings.json": "settings.json",
-        "%AppData%\\discordptb\\Cookies": "Cookies",
         "%AppData%\\discordptb\\Network Persistent State": "Network Persistent State",
         "%AppData%\\discordptb\\Preferences": "Preferences",
         "%AppData%\\discordptb\\TransportSecurity": "TransportSecurity",
@@ -162,6 +206,7 @@
     "Riot Games": {
       "Identifiers": [ "r", "riot", "riotgames" ],
       "ExeLocationDefault": "C:\\Riot Games\\Riot Client\\RiotClientServices.exe",
+      "GetPathFromShortcutNamed": "VALORANT|League of Legends|Legends of Runeterra",
       "ExesToEnd": [
         "LeagueClient.exe",
         "LoR.exe",
@@ -173,6 +218,7 @@
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%LocalAppData%\\Riot Games\\Riot Client\\Data\\Cookies\\": "Cookies",
+        "%LocalAppData%\\Riot Games\\Riot Client\\Data\\Sessions\\": "Sessions",
         "%LocalAppData%\\Riot Games\\Riot Client\\Data": "RiotClientPrivateSettings.yaml",
         "%LocalAppData%\\Riot Games\\Riot Client\\Config": "RiotClientSettings.yaml",
         "%LocalAppData%\\Riot Games\\Riot Client\\TcNoAccSwitcher-ID.instance": "TcNoAccSwitcher-ID.instance"
@@ -190,6 +236,7 @@
     "Origin": {
       "Identifiers": [ "o", "origin" ],
       "ExeLocationDefault": "%ProgramFiles(x86)%\\Origin\\Origin.exe",
+      "GetPathFromShortcutNamed": "Origin",
       "ExesToEnd": [ "Origin.exe", "OriginWebHelperService.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -224,6 +271,7 @@
     "EA Desktop": {
       "Identifiers": [ "ea", "eadesktop" ],
       "ExeLocationDefault": "%ProgramFiles%\\Electronic Arts\\EA Desktop\\EA Desktop\\EADesktop.exe",
+      "GetPathFromShortcutNamed": "EA",
       "ExesToEnd": [ "EADesktop.exe", "EABackgroundService.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -249,6 +297,7 @@
     "GeForce Now": {
       "Identifiers": [ "gn", "geforce", "geforcenow" ],
       "ExeLocationDefault": "%LocalAppData%\\NVIDIA Corporation\\GeForceNOW\\CEF\\GeForceNOW.exe",
+      "GetPathFromShortcutNamed": "GeForce NOW",
       "ExesToEnd": [ "GeForceNOW.exe", "GeForceNOWContainer.exe", "GeForceNOWReliabilityMonitor.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -268,10 +317,12 @@
     "Ubisoft": {
       "Identifiers": [ "u", "ubi", "uplay", "ubisoft" ],
       "ExeLocationDefault": "%ProgramFiles(x86)%\\Ubisoft\\Ubisoft Game launcher\\upc.exe",
+      "GetPathFromShortcutNamed": "Ubisoft Connect",
       "ExesToEnd": [ "upc.exe", "UplayService.exe", "UplayWebCore.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "%Platform_Folder%\\logs\\launcher_log.txt": "logs\\launcher_log.txt",
+        "%LocalAppData%\\Ubisoft Game Launcher\\ConnectSecureStorage.dat": "ConnectSecureStorage.dat",
         "%LocalAppData%\\Ubisoft Game Launcher\\settings.yaml": "settings.yaml",
         "%LocalAppData%\\Ubisoft Game Launcher\\user.dat": "user.dat"
       },
@@ -295,6 +346,7 @@
     "Oculus": {
       "Identifiers": [ "oc", "oculus" ],
       "ExeLocationDefault": "%ProgramFiles%\\Oculus\\Support\\oculus-client\\OculusClient.exe",
+      "GetPathFromShortcutNamed": "Meta Quest Link",
       "ExesToEnd": [
         "OculusClient.exe",
         "OculusDash.exe",
@@ -326,6 +378,7 @@
     "Genshin Impact": {
       "Identifiers": [ "gi", "genshin", "genshinimpact" ],
       "ExeLocationDefault": "%ProgramFiles%\\Genshin Impact\\Genshin Impact Game\\GenshinImpact.exe",
+      "GetPathFromShortcutNamed": "Genshin Impact",
       "ExesToEnd": [ "GenshinImpact.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -338,6 +391,7 @@
     "Magic Arena": {
       "Identifiers": [ "mtga", "magicarena" ],
       "ExeLocationDefault": "%ProgramFiles%\\Wizards of the Coast\\MTGA\\MTGALauncher\\MTGALauncher.exe",
+      "GetPathFromShortcutNamed": "MTG Arena",
       "ExesToEnd": [ "MTGA.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -356,6 +410,7 @@
     "PS Remote Play": {
       "Identifiers": [ "psr", "psrp", "psremote" ],
       "ExeLocationDefault": "%ProgramFiles(x86)%\\Sony\\PS Remote Play\\RemotePlay.exe",
+      "GetPathFromShortcutNamed": "PS Remote Play",
       "ExesToEnd": [ "RemotePlay.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -369,6 +424,7 @@
     "Albion Online": {
       "Identifiers": [ "ao", "albion", "albiononline" ],
       "ExeLocationDefault": "%ProgramFiles(x86)%\\AlbionOnline\\launcher\\AlbionLauncher.exe",
+      "GetPathFromShortcutNamed": "AlbionOnline",
       "ExesToEnd": [ "AlbionLauncher.exe", "Albion-Online.exe" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
@@ -414,17 +470,90 @@
     "BattleNet": {
       "Identifiers": [ "b", "bnet", "battlenet", "blizzard" ],
       "ExeLocationDefault": "%ProgramFiles(x86)%\\Battle.net\\Battle.net.exe",
+      "GetPathFromShortcutNamed": "Battle.net",
       "ExesToEnd": [ "Battle.net" ],
       "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
       "LoginFiles": {
         "JSON_SELECT_FIRST,::%AppData%\\Battle.net\\Battle.net.config::$.Client.SavedAccountNames": "email.json"
       },
+      "AllFilesRequired": true,
       "ExitBeforeInteract": true,
       "UniqueIdFile": "%AppData%\\Battle.net\\Battle.net.config::$.Client.SavedAccountNames",
       "UniqueIdMethod": "JSON_SELECT_FIRST,",
       "Extras": {
         "ClosingMethod": "TaskKill"
       }
+    },
+    "Honkai StarRail": {
+      "Identifiers": [ "hsr", "starrail", "honkaistarrail" ],
+      "ExeLocationDefault": "%ProgramFiles%\\Star Rail\\Games\\StarRail.exe",
+      "GetPathFromShortcutNamed": "Honkai Star Rail",
+      "ExesToEnd": [ "StarRail.exe" ],
+      "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
+      "LoginFiles": { "REG:HKCU\\Software\\Cognosphere\\Star Rail:MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810": "UNIQUE_ID" },
+      "ExitBeforeInteract": true,
+      "AllFilesRequired": true,
+      "UniqueIdFile": "HKCU\\SOFTWARE\\Cognosphere\\Star Rail:MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810",
+      "UniqueIdMethod": "REGKEY"
+    },
+    "Arena Breakout: Infinite": {
+      "Identifiers": [ "abi", "arenabreakout" ],
+      "ExeLocationDefault": "C:\\Arena Breakout Infinite\\launcher\\arena_breakout_infinite_launcher.exe",
+      "GetPathFromShortcutNamed": "Arena Breakout Infinite",
+      "ExesToEnd": [ "arena_breakout_infinite_launcher.exe" ],
+      "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
+      "LoginFiles": {
+        "%AppData%\\arena_breakout_infinite_launcher\\last_user.dat": "last_user.dat",
+        "%AppData%\\arena_breakout_infinite_launcher\\production_gl_launcher.db": "production_gl_launcher.db",
+        "%AppData%\\arena_breakout_infinite_launcher\\psd.dat": "psd.dat",
+        "%AppData%\\arena_breakout_infinite_launcher\\30061\\service\\intl_auth.txt": "intl_auth.txt",
+        "%AppData%\\arena_breakout_infinite_launcher_Steam\\last_user.dat": "last_user.dat",
+        "%AppData%\\arena_breakout_infinite_launcher_Steam\\production_gl_launcher.db": "production_gl_launcher.db",
+        "%AppData%\\arena_breakout_infinite_launcher_Steam\\psd.dat": "psd.dat",
+        "%AppData%\\arena_breakout_infinite_launcher_Steam\\30061\\service\\intl_auth.txt": "intl_auth.txt"
+      },
+      "ExitBeforeInteract": true,
+      "UniqueIdFile": "%AppData%\\arena_breakout_infinite_launcher\\TcNoAccSwitcher-ID.instance",
+      "UniqueIdMethod": "CREATE_ID_FILE"
+    },
+    "Delta Force: Hawk Ops": {
+      "Identifiers": [ "dfho", "deltaforce", "hawkops" ],
+      "ExeLocationDefault": "C:\\Delta Force Hawk Ops\\launcher\\df_launcher_global.exe",
+      "GetPathFromShortcutNamed": "Delta Force",
+      "ExesToEnd": [ "df_launcher_global.exe" ],
+      "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
+      "LoginFiles": {
+        "%AppData%\\df_launcher_global_30029601\\last_user.dat": "last_user.dat",
+        "%AppData%\\df_launcher_global_30029601\\test_launcher.db": "test_launcher.db",
+        "%AppData%\\df_launcher_global_30029601\\psd.dat": "psd.dat",
+        "%AppData%\\df_launcher_global_30029601\\29158\\service\\intl_auth.txt": "intl_auth.txt",
+        "%AppData%\\df_launcher_global_30029601_Steam\\last_user.dat": "last_user.dat",
+        "%AppData%\\df_launcher_global_30029601_Steam\\test_launcher.db": "test_launcher.db",
+        "%AppData%\\df_launcher_global_30029601_Steam\\psd.dat": "psd.dat",
+        "%AppData%\\df_launcher_global_30029601_Steam\\29158\\service\\intl_auth.txt": "intl_auth.txt"
+      },
+      "ExitBeforeInteract": true,
+      "UniqueIdFile": "%AppData%\\df_launcher_global_30029601\\TcNoAccSwitcher-ID.instance",
+      "UniqueIdMethod": "CREATE_ID_FILE"
+    },
+    "Jagex": {
+      "Identifiers": [ "jagex", "osrs", "runescape" ],
+      "ExeLocationDefault": "%ProgramFiles(x86)%\\jagex launcher\\JagexLauncher.exe",
+      "GetPathFromShortcutNamed": "Jagex Launcher",
+      "ExesToEnd": [ "JagexLauncher.exe" ],
+      "PathListToClear": [ "SAME_AS_LOGIN_FILES" ],
+      "LoginFiles": {
+        "%LocalAppData%\\jagex launcher\\settings.json": "settings.json",
+        "%LocalAppData%\\jagex launcher\\launcher-win.production.json": "launcher-win.production.json",
+        "%LocalAppData%\\jagex launcher\\auth\\*": "auth\\",
+        "%LocalAppData%\\jagex launcher\\cefcache\\*": "cefcache\\",
+        "%LocalAppData%\\jagex launcher\\logs\\*": "logs\\",
+        "%LocalAppData%\\jagex launcher\\TcNoAccSwitcher-ID.instance": "TcNoAccSwitcher-ID.instance",
+        "%LocalAppData%\\Microsoft\\Credentials\\C5F6B4FF052E05B4F26961945E953169": "LocalAppData\\Microsoft\\Credentials\\C5F6B4FF052E05B4F26961945E953169"
+      },
+      "ExitBeforeInteract": true,
+      "UniqueIdFile": "%LocalAppData%\\jagex launcher\\TcNoAccSwitcher-ID.instance",
+      "UniqueIdMethod": "CREATE_ID_FILE"
     }
   },
   "Platform-WIP": {
@@ -456,5 +585,6 @@
         ]
       }
     }
-  }
+  },
+  "Version": "2024-09-02_00"
 }

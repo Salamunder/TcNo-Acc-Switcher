@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Arată numele contului [nu numele prietenului]
 Steam_CheckVac: Verifică statusul VAC
 Steam_OverrideDefaultState: "Suprascrie starea implicită de conectare:"
 Steam_StartSilent: "Deschideți Steam în bara de activități pe comutator (Porniți Steam cu „-silent”)"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Utilizați vechea interfață de utilizare în Steam (-vgui)"
+Steam_CollectInfo: Colectați imagini de profil și starea interzicerii VAC de la Steam
 Button_AddNew: Adăugă
 Button_SaveCurrent: Salvează Actual
 Button_SaveFile: Salvează fișierul
@@ -30,7 +31,8 @@ Button_OpenBackup: Deschideți dosarul de backup
 Button_Back: Înapoi
 Button_RestartAdmin: Repornire ca administrator
 Button_SetPassword: Setați parola aplicației
-Settings_Shortcut: ' {platform} Switcher scurtătură desktop'
+Settings_SteamCollectInfo: Colectați imaginea de profil Steam și starea VAC de la Steam
+Settings_Shortcut: '{platform} Switcher scurtătură desktop'
 Settings_Admin: Execută {platform} ca administrator
 Settings_ImageExpiry: 'Zile înainte de expirarea imaginilor de profil:'
 Settings_SteamAPIKey: "Cheie API web Steam (opțional)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Platforme dezactivate. Faceți clic pentru a le
 Settings_ExtraPlatformsEnabled: Platforme vizibile. Faceți clic pentru a le dezactiva.
 Settings_RTL: Afișați textul ca de la dreapta la stânga
 Settings_CollectStats: Colectare statistici
-Settings_ShareStats: Partajați statistici enervant (recomandat)
+Settings_ShareStats: Distribuiți statistici în mod anonim (recomandat)
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Partajați numărul total de comutatoare
 Settings_ViewStats: Vizualizare statistici
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Setați fundalul]'
 Settings_ThemeOpenFolder: '[Deschide folderul cu teme]'
 Settings_Protocol: 'Activați tcno:\\ protocol (recomandat)'
 Settings_StartCentered: Pornește programul centrat
+Settings_OfflineMode: Modul offline (fără activitate în rețea)
 Settings_WindowsAccent: Utilizează culoarea de accentuare Windows
 Settings_HelpTranslate: "[Help translate] ([Ajutor la traducere])"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Avansat) Setați motorul de randare:"
 Settings_Header_ClosingMethod: "(Avansat) Setați metoda de închidere {platform}"
 Settings_Header_StartingMethod: "(Avansat) Setați metoda pentru a porni {platform}"
 Settings_AutoStart: "Porniți automat {platform} la comutarea contului"
+Settings_ShowSteamSwitcher: "Afișați comutatorul de conturi Steam (NU utilizați acest lucru sau poate rupe comutatorul de cont TcNo)"
 Settings_NoPlatforms: În prezent, nu există platforme activate. Vă rugăm să bifați mai jos platformele opționale pentru a le activa sau debifați platformele dezactivate.
 Settings_MinimizeOnSwitch: Minimizați comutatorul la comutarea contului
 Settings_ShowShortNotes: Previzualizare notă sub numele de utilizator
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Opriți alte persoane care utilizează comutatorul
 PreviewCss: Previzualizare CSS
 Settings_PreviewCss: Aceasta este pagina de previzualizare CSS. Puteți vizualiza câteva elemente care apar în program și puteți vedea cum arată cu tema dvs. Această pagină este utilă pentru cei care creează teme!
 Settings_PreviewCssHeader: Pagina de previzualizare CSS
+Settings_AutoUpdatePlatforms: Actualizați automat lista de platforme
+Settings_CheckForUpdates: Verificați actualizările la lansare
 Stats_Disabled: "Colecția de statistici este dezactivată."
 Stats_InDepth: Defalcare în profunzime a statisticilor
 Stats_ShareEnabled: "Aceste statistici sunt distribuite anonim și se vor adăuga la totalul <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">aici</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Restabilire selectată
 Ignored_RemoveAccounts: Eliminați conturile din lista de ignorare
 Ignored_Description: Dacă ați „ignorat” anterior un cont, îl puteți afișa din nou aici
 Ignored_Stop: Oprire ignorare selectată
+Toast_UpdatesDownloading: Actualizările se descarcă în fundal. Puteți continua să utilizați programul.
+Toast_UpdatesDownloaded: Descărcarea actualizărilor s-a terminat. Închideți această aplicație pentru a începe actualizarea.
 Toast_DataLocationCopying: (1/2) Copierea fișierelor existente în noul folder de date utilizator!
 Toast_DataLocationNotCopying: (1/2) Folderul are deja fișiere! Nu va migra datele utilizatorului.
 Toast_DataLocationSet: (2/2) Reporniți comutatorul de cont pentru a utiliza noul folder!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Imposibil de găsit un ID Steam valid.
 Toast_FailedUpdateCheck: Căutarea actualizărilor a eșuat
 Toast_UpdateVerifyFail: Nu se pot verifica fișierele de actualizare. Descărcați cea mai recentă versiune și înlocuiți fișierele din directorul dvs.
 Toast_StartedGame: Început {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Nu s-au putut obține informații XML pentru {steamId}. Consultați jurnalul pentru mai multe detalii.
 Toast_Steam_VacCleared: Starea VCA pentru conturi a fost eliminată
 Toast_Steam_CantDeleteVacCache: Nu s-a putut șterge „LoginCache/Steam/VACCache/SteamVACCache.json”
 Toast_NoFindSteamUserdata: Imposibil de găsit dosarul Steam\\ userdata
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Cheia API web Steam pare să fie nevalidă. Vă rugăm
 Toast_DownloadingProfileData: Se descarcă datele de profil
 Toast_PasswordChanged: Parola a fost schimbată
 Toast_JsonFailModify: Modificarea fișierului JSON a eșuat. Consultați jurnalul.
+Toast_DifferentClosingMethod: "'Metoda de închidere' este diferită de cea implicită. Dacă jocurile se închid și mai multe verifică dacă schimbarea acestei opțiuni ajută. Implicit: {defaultMethod}, Curent: {currentMethod}"
+Toast_NameEmpty: Numele de utilizator nu poate fi gol (și nu poate conține doar spații)
+Toast_NewPlatforms: "Actualizat! Au adăugat noi platforme: {listOfNames}. Faceți clic pentru a respinge."
+Toast_FoundExeViaShortcut: "Am găsit calea instalată dintr-o comandă rapidă din meniul Start. Verificați locația făcând clic pe Setări acum. Faceți clic pentru a respinge."
 Modal_Crowdin_Header: Crowdin traducători
 Modal_Crowdin_Info: "Iată toți cei care au ajutat la traducerea acestui software.<br>Utilizatorii cu limbi lângă ei au ajutat foarte mult la traducere (rol de corector)."
-Modal_Info_Creator: Creat de TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Creat de TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versiune
 Modal_Info_ViewGitHub: Vizualizare pe GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Suport prin Patreon
+Modal_Info_ViewKofi: Suport prin Ko-Fi
 Modal_Info_BugReport: Raport de eroare/Solicitare de caracteristici
 Modal_Info_VisitSite: Vizitați tcno.co
 Modal_Info_Disclaimer: Declinarea responsabilității
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Verificați dacă îndepliniți cerințele minime recomand
 Installer_VerifyAlready: "Se pare că totul este instalat. Verificați dacă îndepliniți cerințele minime recomandate:"
 Installer_Complete: Asta ar trebui să fie totul. Programul principal, TcNo-Acc-Switcher.exe, se va rula automat.
 Installer_Complete2: "Dacă nu funcționează, consultați instrucțiunile de instalare, aici: {link}"
-Global_FatalNext: "A apărut o eroare fatală! Acest jurnal de accidente va fi trimis automat la următoarea lansare."
 Tray_Error: Eroare tavă
 Tray_NoAccs: "Nu au fost găsite conturi.\nÎncercați mai întâi să comutați conturile sau localizați „Tray_Users.json”"
 Tray_Switch: "Comutare la: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Total actualizări găsite: {x}"
 Updater_TotalSize: "Dimensiune totală: {size}"
 Updater_AwaitingUser: Se așteaptă introducerea de către utilizator...
 Updater_UpToDate: "Ești la zi.\n:)"
-Updater_FailedDecode: Acest lucru se datorează cel mai probabil faptului că eu (TechNobo) am apăsat pe o actualizare și am făcut o greșeală de scriere care a stricat fișierul de actualizare .json. Anunță-mă :)
+Updater_FailedDecode: Acest lucru se datorează cel mai probabil faptului că eu (TroubleChute) am apăsat pe o actualizare și am făcut o greșeală de scriere care a stricat fișierul de actualizare .json. Anunță-mă :)
 Updater_FailedDecodeTitle: Nu s-a reușit decodificarea listei de actualizări
 Updater_Extracting: Extragerea fișierelor patch
 Updater_Applying: Se aplică peticul...
@@ -461,6 +472,7 @@ DeletingFile: "Ștergere: {file}"
 DeletingFolder: "Ștergerea dosarului: "
 CouldntDeleteX: "EROARE: NU S-A PUTUT ȘTERGE: {x}"
 CouldntDeleteUndefined: "EROARE: NU S-A PUTUT ȘTERGE FIȘIERUL NEDEFINIT"
+CouldntModifyX: "Nu s-a putut modifica {file}. Eroare de permisiunea fișierului sau fișierul este în uz."
 Prompt_RestartAsAdmin: "<h3><bold>Acest program va reporni ca administrator</bold></h3><p>Apăsați „Da” în UAC când vi se solicită administrator.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Ești pe cale să uiți un cont!</h3> <h4>Ce înseamnă asta?</h4> <p>- Steam nu va mai avea contul listat în modul Big Picture și nu va reține parola.<br/> - TcNo Account Switcher nu va mai afișa contul până când nu se va conecta din nou prin Steam.</p> <p>Contul dvs. va rămâne neatins. Este doar uitat pe acest computer.</p><h4>Înțelegi?</h4>

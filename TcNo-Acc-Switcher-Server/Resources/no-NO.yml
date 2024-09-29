@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Vis kontonavn [ikke vennens navn]
 Steam_CheckVac: Sjekk kontoens VAC-status
 Steam_OverrideDefaultState: "Overstyr standard påloggingstilstand:"
 Steam_StartSilent: "Åpne Steam til oppgaveskuffen på bryteren (start Steam med '-silent')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Bruk gammelt brukergrensesnitt i Steam (-vgui)"
+Steam_CollectInfo: Samle profilbilder og VAC-forbudsstatus fra Steam
 Button_AddNew: Legg til ny
 Button_SaveCurrent: Lagre gjeldende
 Button_SaveFile: Lagre filen
@@ -30,7 +31,8 @@ Button_OpenBackup: Åpne Backup-mappe
 Button_Back: Tilbake
 Button_RestartAdmin: Start på nytt som administrator
 Button_SetPassword: Angi app-passord
-Settings_Shortcut: ' {platform} Switcher Desktop-snarvei'
+Settings_SteamCollectInfo: Samle Steam-profilbilde og VAC-status fra Steam
+Settings_Shortcut: '{platform} Switcher Desktop-snarvei'
 Settings_Admin: Kjør {platform} som Admin
 Settings_ImageExpiry: 'Dager før profilbildene utløper:'
 Settings_SteamAPIKey: "Steam Web API-nøkkel (valgfritt)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Deaktiverte plattformer. Klikk for å aktivere 
 Settings_ExtraPlatformsEnabled: Synlige plattformer. Klikk for å deaktivere dem.
 Settings_RTL: Vis tekst som høyre-til-venstre
 Settings_CollectStats: Samle statistikk
-Settings_ShareStats: Del statistikk irritert (anbefalt)
+Settings_ShareStats: Del statistikk anonymt (anbefalt)
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Del totalt brytere
 Settings_ViewStats: Se statistikk
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Angi bakgrunn]'
 Settings_ThemeOpenFolder: '[Åpne temamappe]'
 Settings_Protocol: 'Aktiver tcno:\\ protokoll (anbefalt)'
 Settings_StartCentered: Start programmet sentrert
+Settings_OfflineMode: Frakoblet modus (ingen nettverksaktivitet)
 Settings_WindowsAccent: Bruk Windows Accent Color
 Settings_HelpTranslate: "[Hjelp til å oversette]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Avansert) Angi gjengivelsesmotor:"
 Settings_Header_ClosingMethod: "(Avansert) Angi metode for å lukke {platform}"
 Settings_Header_StartingMethod: "(Avansert) Angi metode for å starte {platform}"
 Settings_AutoStart: "Start {platform} automatisk ved kontobytte"
+Settings_ShowSteamSwitcher: "Vis Steams kontobytter (IKKE bruk dette, ellers kan det ødelegge TcNo Account Switcher)"
 Settings_NoPlatforms: Det er for øyeblikket ingen plattformer aktivert. Merk av for valgfrie plattformer nedenfor for å aktivere dem, eller fjern merket for deaktiverte plattformer.
 Settings_MinimizeOnSwitch: Minimer bytter på kontosvitsj
 Settings_ShowShortNotes: Merk forhåndsvisning under brukernavn
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Stopp andre ved å bruke bryteren:"
 PreviewCss: Forhåndsvis CSS
 Settings_PreviewCss: Dette er forhåndsvisningssiden for CSS. Du kan se noen elementer som dukker opp i programmet og se hvordan de ser ut med temaet ditt. Denne siden er nyttig for de som lager temaer!
 Settings_PreviewCssHeader: CSS forhåndsvisningsside
+Settings_AutoUpdatePlatforms: Automatisk oppdatering av plattformlisten
+Settings_CheckForUpdates: Se etter oppdateringer ved lansering
 Stats_Disabled: "Innsamling av statistikk er deaktivert."
 Stats_InDepth: Inngående statistikkoversikt
 Stats_ShareEnabled: "Denne statistikken deles anonymt og vil legge til den totale <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">her</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Gjenopprett valgt
 Ignored_RemoveAccounts: Fjern kontoer fra ignoreringslisten
 Ignored_Description: Hvis du tidligere har "ignorert" en konto, kan du vise dem igjen her
 Ignored_Stop: Slutt å ignorere valgte
+Toast_UpdatesDownloading: Oppdateringer lastes ned i bakgrunnen. Du kan fortsette å bruke programmet.
+Toast_UpdatesDownloaded: Oppdateringer er fullført. Lukk denne appen for å starte oppdateringen.
 Toast_DataLocationCopying: (1/2) Kopierer eksisterende filer til den nye brukerdatamappen!
 Toast_DataLocationNotCopying: (1/2) Mappen har allerede filer! Vil ikke migrere brukerdata.
 Toast_DataLocationSet: (2/2) Start kontobytteren på nytt for å bruke den nye mappen!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Kan ikke finne en gyldig Steam-ID.
 Toast_FailedUpdateCheck: Kunne ikke se etter oppdateringer
 Toast_UpdateVerifyFail: Kan ikke bekrefte oppdateringsfiler. Last ned siste versjon og erstatt filer i katalogen din.
 Toast_StartedGame: Startet {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Kunne ikke hente XML-informasjon for {steamId}. Se logg for flere detaljer.
 Toast_Steam_VacCleared: VAC-status for kontoer ble slettet
 Toast_Steam_CantDeleteVacCache: Kunne ikke slette "LoginCache/Steam/VACCache/SteamVACCache.json"
 Toast_NoFindSteamUserdata: Fant ikke Steam\\userdata-mappen
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web API-nøkkel ser ut til å være ugyldig. Ven
 Toast_DownloadingProfileData: Laster ned profildata
 Toast_PasswordChanged: passord endret
 Toast_JsonFailModify: Kunne ikke endre JSON-filen. Se logg.
+Toast_DifferentClosingMethod: "'Closing Method' er forskjellig fra standardverdien. Hvis spillene lukker og sjekker om du endrer dette alternativet hjelper. Standard: {defaultMethod}, Nåværende: {currentMethod}"
+Toast_NameEmpty: Brukernavnet kan ikke være tomt (og kan ikke bare inneholde mellomrom)
+Toast_NewPlatforms: "Oppdatert! Nye plattformer lagt til: {listOfNames}. Klikk for å avvise."
+Toast_FoundExeViaShortcut: "Vi fant den installerte banen fra en snarvei på Start-menyen. Bekreft plasseringen ved å klikke på Innstillinger nå. Klikk for å avvise."
 Modal_Crowdin_Header: Crowdin-oversettere
 Modal_Crowdin_Info: "Her er alle som hjalp til med å oversette denne programvaren.<br>Brukere med språk ved siden av hjalp mye med oversettelse (korrekturleserrolle)."
-Modal_Info_Creator: Laget av TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Laget av TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versjon
 Modal_Info_ViewGitHub: Se på GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Støtte via Patreon
+Modal_Info_ViewKofi: Støtte via Ko-Fi
 Modal_Info_BugReport: Feilrapport/funksjonsforespørsel
 Modal_Info_VisitSite: Besøk tcno.co
 Modal_Info_Disclaimer: Ansvarsfraskrivelse
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Bekreft at du oppfyller minimumskravene:"
 Installer_VerifyAlready: "Det ser ut som alt er installert. Bekreft at du oppfyller minimumskravene:"
 Installer_Complete: Det burde være alt. Hovedprogrammet, TcNo-Acc-Switcher.exe, kjøres automatisk.
 Installer_Complete2: "Hvis det ikke fungerer, se installasjonsinstruksjonene her: {link}"
-Global_FatalNext: "Det oppsto en fatal feil! Denne krasjloggen sendes automatisk neste lansering."
 Tray_Error: Skuffefeil
 Tray_NoAccs: "Det ble ikke funnet noen kontoer.\nPrøv å bytte konto først, eller finn 'Tray_Users.json'"
 Tray_Switch: "Bytt til: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Totalt funnet oppdateringer: {x}"
 Updater_TotalSize: "Total størrelse: {size}"
 Updater_AwaitingUser: Venter på brukerinndata...
 Updater_UpToDate: "Du er oppdatert.\n:)"
-Updater_FailedDecode: Dette skyldes mest sannsynlig at jeg (TechNobo) pushet en oppdatering, og gjorde en skrivefeil som ødela .json-oppdateringsfilen. Gi meg beskjed :)
+Updater_FailedDecode: Dette skyldes mest sannsynlig at jeg (TroubleChute) pushet en oppdatering, og gjorde en skrivefeil som ødela .json-oppdateringsfilen. Gi meg beskjed :)
 Updater_FailedDecodeTitle: Kunne ikke dekode oppdateringslisten
 Updater_Extracting: Pakk ut patch-filer
 Updater_Applying: Bruker oppdatering...
@@ -461,6 +472,7 @@ DeletingFile: "Sletter: {file}"
 DeletingFolder: "Sletter mappe: "
 CouldntDeleteX: "FEIL: KUNNE IKKE SLETTE: {x}"
 CouldntDeleteUndefined: "FEIL: KUNNE IKKE SLETTE UDEFINERET FIL"
+CouldntModifyX: "Kunne ikke endre {file}. Filtillatelsesfeil, eller filen er i bruk."
 Prompt_RestartAsAdmin: "<h3><bold>Dette programmet vil starte på nytt som Admin</bold></h3><p>Trykk \"Yes\" i UAC når du blir bedt om admin.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Du er i ferd med å glemme en konto!</h3> <h4>Hva betyr dette?</h4> <p>- Steam vil ikke lenger ha kontoen oppført i Big Picture Mode og vil ikke huske passord.<br/> - TcNo Account Switcher vil heller ikke lenger vise kontoen før den er logget på igjen via Steam.</p> <p>Kontoen din forblir urørt. Det er bare glemt på denne datamaskinen.</p><h4>Forstår du?</h4>

@@ -10,7 +10,8 @@ Steam_Tray_AccountName: 显示帐户名称 [非好友名称]
 Steam_CheckVac: 检查帐户 VAC 状态
 Steam_OverrideDefaultState: "覆盖默认登录状态："
 Steam_StartSilent: "在切换时缩小 Steam 到任务栏托盘（以 '-silent' 参数启动 Steam）"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "在 Steam 中使用旧版 UI（-vgui）"
+Steam_CollectInfo: 从 Steam 收集个人资料图片和 VAC 禁令状态
 Button_AddNew: 新增
 Button_SaveCurrent: 保存当前
 Button_SaveFile: 保存文件
@@ -30,7 +31,8 @@ Button_OpenBackup: 打开备份文件夹
 Button_Back: 返回
 Button_RestartAdmin: 以管理员身份重新启动
 Button_SetPassword: 设置应用密码
-Settings_Shortcut: ' {platform} 切换器桌面快捷方式'
+Settings_SteamCollectInfo: 从 Steam 收集 Steam 个人资料图片和 VAC 状态
+Settings_Shortcut: '{platform} 切换器桌面快捷方式'
 Settings_Admin: 以管理员身份运行 {platform}
 Settings_ImageExpiry: '个人资料头像过期之前的天数：'
 Settings_SteamAPIKey: "Steam Web API 密钥（可选）"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: 已禁用的平台。点击以启用它们。
 Settings_ExtraPlatformsEnabled: 可见的平台。点击以禁用它们。
 Settings_RTL: 从右到左显示文本
 Settings_CollectStats: 收集统计数据
-Settings_ShareStats: 分享匿名统计信息（推荐）
+Settings_ShareStats: 匿名分享统计数据（推荐）
 Settings_DiscordRpc: Discord 丰富状态（RPC）
 Settings_DiscordRpcShare: 共享总切换数
 Settings_ViewStats: 查看统计
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[设置背景]'
 Settings_ThemeOpenFolder: '[打开主题文件夹]'
 Settings_Protocol: '启用 tcno:\\ 协议（推荐）'
 Settings_StartCentered: 启动程序时居中
+Settings_OfflineMode: 离线模式（无网络活动）
 Settings_WindowsAccent: 使用 Windows 主题色
 Settings_HelpTranslate: "[帮助翻译]"
 Settings_ViewTranslators: "[致谢]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "（高级）设置渲染引擎："
 Settings_Header_ClosingMethod: "（高级）设置关闭 {platform} 方式"
 Settings_Header_StartingMethod: "（高级）设置方法启动 {platform}"
 Settings_AutoStart: "帐户切换时自动启动 {platform}"
+Settings_ShowSteamSwitcher: "显示 Steam 的帐户切换器（请勿使用此功能，否则可能会破坏 TcNo 帐户切换器）"
 Settings_NoPlatforms: 当前未启用任何平台。请勾选下方的可选平台来启用，或者取消勾选来禁用。      
 Settings_MinimizeOnSwitch: 切换帐户时最小化切换器
 Settings_ShowShortNotes: 用户名下的备注预览
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "阻止其他人使用切换器："
 PreviewCss: 预览 CSS
 Settings_PreviewCss: 这是 CSS 预览页面。您可以查看一些在程序中弹出的元素，看看它们在您的主题上表现的样式。 这个页面对创建主题的人非常有用！
 Settings_PreviewCssHeader: CSS 预览页
+Settings_AutoUpdatePlatforms: 自动更新平台列表
+Settings_CheckForUpdates: 检查启动时的更新
 Stats_Disabled: "统计信息收集已禁用。"
 Stats_InDepth: 统计详情
 Stats_ShareEnabled: "这些统计信息是匿名共享的，并将添加到<a onclick=\"{WebsiteLink}\" class=\"fancyLink\">这里</a>的总数。"
@@ -143,6 +149,8 @@ Restore_Button_Restore: 恢复所选
 Ignored_RemoveAccounts: 从忽略列表中删除帐户
 Ignored_Description: 如果您曾经“忽略”一个帐户，可以在这里再次显示它们
 Ignored_Stop: 停止忽略所选
+Toast_UpdatesDownloading: 正在后台下载更新。您可以继续使用该程序。
+Toast_UpdatesDownloaded: 更新已完成下载。关闭此应用即可开始更新。
 Toast_DataLocationCopying: (1/2) 正在复制现有文件到新用户数据文件夹！
 Toast_DataLocationNotCopying: (1/2) 文件夹已有文件！不会迁移用户数据。
 Toast_DataLocationSet: (2/2) 重新启动帐户切换器使用新文件夹！
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: 找不到有效的 Steam ID。
 Toast_FailedUpdateCheck: 检查更新失败
 Toast_UpdateVerifyFail: 无法验证更新程序文件。请下载最新版本并替换目录中的文件。
 Toast_StartedGame: 已启动 {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: 无法获取 {steamId} 的 XML 信息。请查看日志了解详情。
 Toast_Steam_VacCleared: 已清除帐户 VAC 状态
 Toast_Steam_CantDeleteVacCache: 无法删除 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: 无法找到 Steam\\userdata 文件夹
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web API 密钥似乎无效。请设置一个新�
 Toast_DownloadingProfileData: 正在下载个人资料数据
 Toast_PasswordChanged: 密码已更改
 Toast_JsonFailModify: 修改 JSON 文件失败。请查看日志。
+Toast_DifferentClosingMethod: "“关闭方式”与默认值不同。如果游戏不能正常关闭，请尝试修改此选项。默认：{defaultMethod}，当前：{currentMethod}"
+Toast_NameEmpty: 用户名不能为空（且不能仅包含空格）
+Toast_NewPlatforms: "已更新！添加了新平台： {listOfNames}。点击关闭。"
+Toast_FoundExeViaShortcut: "我们从“开始”菜单快捷方式中找到了安装路径。请立即单击“设置”来验证其位置。单击以关闭。"
 Modal_Crowdin_Header: Crowdin 译者
 Modal_Crowdin_Info: "这是帮助翻译此软件的所有人。<br>名字旁边有语言的用户在翻译方面提供了很多帮助（审核员身份）。"
-Modal_Info_Creator: 由 TechNobo [Wesley Pyburn] 创作
+Modal_Info_Creator: 由 TroubleChute [Wesley Pyburn] 创作
 Modal_Info_Version: 版本
 Modal_Info_ViewGitHub: 在 GitHub 上查看
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: 通过 Patreon 支持
+Modal_Info_ViewKofi: 通过 Ko-Fi 支持
 Modal_Info_BugReport: 错误报告/功能请求
 Modal_Info_VisitSite: 访问 tcno.co
 Modal_Info_Disclaimer: 免责声明
@@ -362,7 +374,6 @@ Installer_VerifyMin: "确认您已满足建议的最低要求："
 Installer_VerifyAlready: "看起来一切都已安装。请确认您已满足建议的最低要求："
 Installer_Complete: 一切应该都已完成。主程序 TcNo-Acc-Switcher.exe 将自动运行。
 Installer_Complete2: "如果不起作用，请参考这里的安装说明：{link}"
-Global_FatalNext: "出现致命错误！此崩溃日志将在下次启动时自动提交。"
 Tray_Error: 托盘错误
 Tray_NoAccs: "未找到帐户。\n先尝试切换帐户，或定位到“Tray_Users.json”"
 Tray_Switch: "切换到：{account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "发现更新总数：{x}"
 Updater_TotalSize: "总大小：{size}"
 Updater_AwaitingUser: 正在等待用户输入…
 Updater_UpToDate: "您使用的已经是最新版。\n:)"
-Updater_FailedDecode: 这很可能是因为我（TechNobo）推送了一个更新，并且打错字损坏了 .json 更新文件。请向我反馈此问题 :)
+Updater_FailedDecode: 这很可能是因为我（TroubleChute）推送了一个更新，并且打错字损坏了 .json 更新文件。请向我反馈此问题 :)
 Updater_FailedDecodeTitle: 解码更新列表失败
 Updater_Extracting: 正在解压补丁文件
 Updater_Applying: 正在应用补丁…
@@ -461,6 +472,7 @@ DeletingFile: "正在删除：{file}"
 DeletingFolder: "正在删除文件夹："
 CouldntDeleteX: "错误：无法删除：{x}"
 CouldntDeleteUndefined: "错误：无法删除未定义的文件"
+CouldntModifyX: "无法修改 {file}。文件权限错误，或文件正在使用中。"
 Prompt_RestartAsAdmin: "<h3><bold>此程序将以管理员身份重新启动</bold></h3><p>当请求管理员权限时，请在 UAC 中点击“是”</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>您即将忘记一个帐户！</h3> <h4>这意味着什么？</h4> <p>- Steam 不会再将此帐户显示在大屏幕模式中，并且不会记住密码。<br/>- TcNo 帐户切换器也将不再显示此帐户，直到再次通过 Steam 登录。</p> <p>您的帐户将保持不变。只是您在这台计算机上忘记了它。</p><h4>您明白了吗？</h4><p>

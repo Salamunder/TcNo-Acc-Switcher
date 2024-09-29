@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Mostra el nom del compte [not friend name]
 Steam_CheckVac: Comprova l'estat del compte de VAC
 Steam_OverrideDefaultState: "Substitueix l'estat d'inici de sessió per defecte:"
 Steam_StartSilent: "Obriu el vapor a la safata de tasques al commutador (inicieu el vapor amb «-silenciós»)"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Utilitza la interfície d'usuari antiga a Steam (-vgui)"
+Steam_CollectInfo: Recull imatges de perfil i estat de prohibició de VAC de Steam
 Button_AddNew: Afegeix nou
 Button_SaveCurrent: Desa l'actual
 Button_SaveFile: Desa el fitxer
@@ -30,7 +31,8 @@ Button_OpenBackup: Obriu la carpeta de còpia de seguretat
 Button_Back: Enrere
 Button_RestartAdmin: Reinicia com a administrador
 Button_SetPassword: Estableix la contrasenya de l'aplicació
-Settings_Shortcut: ' {platform} Drecera d''escriptori del commutador'
+Settings_SteamCollectInfo: Recolliu la imatge de perfil i l'estat de VAC de Steam
+Settings_Shortcut: '{platform} Drecera d''escriptori del commutador'
 Settings_Admin: Executa {platform} com a administrador
 Settings_ImageExpiry: 'Dies abans que caduquin les imatges del perfil:'
 Settings_SteamAPIKey: "Clau de l'API web de Steam (opcional)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Plataformes desactivades. Feu clic per habilita
 Settings_ExtraPlatformsEnabled: Plataformes visibles. Feu clic per desactivar-les.
 Settings_RTL: Mostra el text com a de dreta a esquerra
 Settings_CollectStats: Recull estadístiques
-Settings_ShareStats: Comparteix les estadístiques amb molèsties (recomanat)
+Settings_ShareStats: Comparteix estadístiques de manera anònima (recomanat)
 Settings_DiscordRpc: Presència rica en discòrdies (RPC)
 Settings_DiscordRpcShare: Comparteix els commutadors totals
 Settings_ViewStats: Mostra les estadístiques
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Estableix fons]'
 Settings_ThemeOpenFolder: '[Obre la carpeta del tema]'
 Settings_Protocol: 'Activa el protocol TcNo: \\ (recomanat)'
 Settings_StartCentered: Inicia el programa centrat
+Settings_OfflineMode: Mode fora de línia (sense activitat de xarxa)
 Settings_WindowsAccent: Utilitza el color accentuat de Windows
 Settings_HelpTranslate: "[Ajuda a traduir]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Avançat) Estableix el motor de representació:
 Settings_Header_ClosingMethod: "(Avançat) Estableix el mètode a {platform}"
 Settings_Header_StartingMethod: "(Avançat) Estableix el mètode a {platform}"
 Settings_AutoStart: "Inicia automàticament {platform} en el canvi de compte"
+Settings_ShowSteamSwitcher: "Mostra el commutador de comptes de Steam (NO ho feu servir o podria trencar el commutador de comptes de TcNo)"
 Settings_NoPlatforms: Actualment no hi ha plataformes habilitades. Marqueu les plataformes opcionals a continuació per activar-les o desmarqueu les plataformes desactivades.
 Settings_MinimizeOnSwitch: Minimitza el commutador en el commutador de compte
 Settings_ShowShortNotes: Previsualització de la nota sota el nom d'usuari
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Deixa d'utilitzar el commutador:"
 PreviewCss: Previsualitza CSS
 Settings_PreviewCss: Aquesta és la pàgina de previsualització de CSS. Podeu veure alguns elements que apareixen al programa i veure com es veuen amb el tema. Aquesta pàgina és útil per crear temes!
 Settings_PreviewCssHeader: Pàgina de previsualització CSS
+Settings_AutoUpdatePlatforms: Actualització automàtica de la llista de plataformes
+Settings_CheckForUpdates: Comproveu si hi ha actualitzacions al llançament
 Stats_Disabled: "La recollida d'estadístiques està desactivada."
 Stats_InDepth: Desglossament estadístic en profunditat
 Stats_ShareEnabled: "Aquestes estadístiques es comparteixen de forma anònima i s'afegiran al total de <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">aquí</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Restaura la selecció
 Ignored_RemoveAccounts: Elimina els comptes de la llista d'ignorància
 Ignored_Description: Si prèviament heu "ignorat" un compte, podeu tornar-lo a mostrar aquí
 Ignored_Stop: Deixa d'ignorar la selecció
+Toast_UpdatesDownloading: Les actualitzacions es descarreguen en segon pla. Podeu continuar utilitzant el programa.
+Toast_UpdatesDownloaded: Les actualitzacions s'han acabat de baixar. Tanca aquesta aplicació per començar a actualitzar.
 Toast_DataLocationCopying: (1/2) S'està copiant els fitxers existents a la nova carpeta de dades d'usuari!
 Toast_DataLocationNotCopying: (1/2) La carpeta ja té fitxers! No migrarà les dades d'usuari.
 Toast_DataLocationSet: (2/2) Reinicieu el commutador de comptes per utilitzar la carpeta nova!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: No s'ha pogut trobar un identificador de Steam vàlid.
 Toast_FailedUpdateCheck: No s'han pogut comprovar les actualitzacions
 Toast_UpdateVerifyFail: No es poden verificar els fitxers d'actualització. Descarrega la versió més recent i reemplaça els fitxers del directori.
 Toast_StartedGame: S'ha iniciat {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: No s'ha pogut obtenir la informació XML per a {steamId}. Consulteu el registre per a més detalls.
 Toast_Steam_VacCleared: S'ha netejat l'estat del VAC per als comptes
 Toast_Steam_CantDeleteVacCache: No s'ha pogut suprimir 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: No s'ha pogut trobar la carpeta Steam\\ userdata
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Sembla que la clau de l'API web de Steam no és vàlid
 Toast_DownloadingProfileData: S'estan baixant les dades del perfil
 Toast_PasswordChanged: S'ha canviat la contrasenya
 Toast_JsonFailModify: No s'ha pogut modificar el fitxer JSON. Vegeu el registre.
+Toast_DifferentClosingMethod: "El 'Mètode de tancament' és diferent al predeterminat. Si els jocs es tanquen i més, comproveu si canviar aquesta opció ajuda. Per defecte: {defaultMethod}, Actual: {currentMethod}"
+Toast_NameEmpty: El nom d'usuari no pot estar buit (i només pot contenir espais)
+Toast_NewPlatforms: "Actualitzat! S'han afegit noves plataformes: {listOfNames}. Feu clic per ignorar."
+Toast_FoundExeViaShortcut: "Hem trobat la ruta instal·lada des d'una drecera del menú Inici. Si us plau, verifiqueu la seva ubicació fent clic a Configuració ara. Feu clic per ignorar."
 Modal_Crowdin_Header: Traductors crowdin
 Modal_Crowdin_Info: "Aquí teniu tots els que han ajudat a traduir aquest programari.<br>Els usuaris amb idiomes al costat van ajudar molt en la traducció (rol de corrector)."
-Modal_Info_Creator: Creat per TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Creat per TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versió
 Modal_Info_ViewGitHub: Visualitza a GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Suport a través de Patreon
+Modal_Info_ViewKofi: Suport mitjançant Ko-Fi
 Modal_Info_BugReport: Informe d'errors/sol·licitud de funció
 Modal_Info_VisitSite: Visita tcno.co
 Modal_Info_Disclaimer: Renuncia de responsabilitat
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Comprova que compleixes els requisits mínims recomanats:"
 Installer_VerifyAlready: "Sembla que tot està instal·lat. Comprova que compleixes els requisits mínims recomanats:"
 Installer_Complete: Això hauria de ser tot. El programa principal, TcNo-Acc-Switcher.exe, s'executarà automàticament.
 Installer_Complete2: "Si no funciona, consulteu les instruccions d'instal·lació, aquí: {link}"
-Global_FatalNext: "S'ha produït un error fatal! Aquest bloc d'error s'enviarà automàticament el proper inici."
 Tray_Error: Error de safata
 Tray_NoAccs: "No s'han trobat comptes.\nProva de canviar de compte primer, o localitza 'Tray_Users.json'"
 Tray_Switch: "Canvia a: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Actualitzacions totals trobades: {x}"
 Updater_TotalSize: "Mida total: {size}"
 Updater_AwaitingUser: S'està esperant l'entrada de l'usuari...
 Updater_UpToDate: "Estàs al dia.:\n)"
-Updater_FailedDecode: És molt probable que això es degui a que jo (TechNobo) vaig introduir una actualització i vaig fer un error tipogràfic que va trencar el fitxer d'actualització .json. No m'ho facis saber :)
+Updater_FailedDecode: És molt probable que això es degui a que jo (TroubleChute) vaig introduir una actualització i vaig fer un error tipogràfic que va trencar el fitxer d'actualització .json. No m'ho facis saber :)
 Updater_FailedDecodeTitle: No s'ha pogut descodificar la llista d'actualitzacions
 Updater_Extracting: S'estan extraient els fitxers de parxís
 Updater_Applying: S'està aplicant el pedaç...
@@ -461,6 +472,7 @@ DeletingFile: "S'està suprimint: {file}"
 DeletingFolder: "S'està suprimint la carpeta: "
 CouldntDeleteX: "ERROR: NO S'HA POGUT SUPRIMIR: {x}"
 CouldntDeleteUndefined: "S'HA PRODUÏT UN ERROR: NO S'HA POGUT SUPRIMIR EL FITXER NO DEFINIT"
+CouldntModifyX: "No s'ha pogut modificar {file}. Error de permís del fitxer o el fitxer està en ús."
 Prompt_RestartAsAdmin: "<h3><bold>Aquest programa es reiniciarà com a Admin</bold></h3><p>Premeu \"Sí\" a la UAC quan se li demani admin</p>."
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Estàs a punt d'oblidar un compte!</h3> <h4>Què vol dir això?</h4> <p>- Steam ja no tindrà el compte llistat en el mode d'imatge gran i no recordarà la contrasenya.<br/> - TcNo Account Switcher tampoc mostrarà el compte fins que no torni a iniciar la sessió a través de Steam.</p> <p>El vostre compte no es tocarà. Només s'ha oblidat en aquest ordinador.</p><h4>Ho entens?</h4>

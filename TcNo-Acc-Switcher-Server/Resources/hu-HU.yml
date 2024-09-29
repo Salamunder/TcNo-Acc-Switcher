@@ -10,7 +10,8 @@ Steam_Tray_AccountName: '[not friend name] fióknév megjelenítése'
 Steam_CheckVac: Fiók VAC állapotának ellenőrzése
 Steam_OverrideDefaultState: "Alapértelmezett bejelentkezési állapot felülbírálása:"
 Steam_StartSilent: "Nyissa ki a Gőzt a tálcára kapcsoláskor (indítsa el a Gőzt a '-silent' gombbal)"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Régi felhasználói felület használata a Steamben (-vgui)"
+Steam_CollectInfo: Gyűjtsd össze a profilképeket és a VAC-tiltás állapotát a Steamből
 Button_AddNew: Új hozzáadása
 Button_SaveCurrent: Aktuális mentése
 Button_SaveFile: Fájl mentése
@@ -30,7 +31,8 @@ Button_OpenBackup: Nyissa meg a Biztonsági mentés mappát
 Button_Back: Vissza
 Button_RestartAdmin: Újraindítás rendszergazdaként
 Button_SetPassword: Alkalmazásjelszó beállítása
-Settings_Shortcut: ' {platform} Kapcsoló Asztal parancsikon'
+Settings_SteamCollectInfo: Gyűjtsd össze a Steam profilképét és a VAC állapotát a Steamből
+Settings_Shortcut: '{platform} Kapcsoló Asztal parancsikon'
 Settings_Admin: '{platform} futtatása rendszergazdaként'
 Settings_ImageExpiry: 'A profilképek lejárta előtti napok száma:'
 Settings_SteamAPIKey: "Steam Web API kulcs (opcionális)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Letiltott platformok. Kattintson az engedélyez
 Settings_ExtraPlatformsEnabled: Látható platformok. Kattintson a letiltásukhoz.
 Settings_RTL: Szöveg megjelenítése jobbról balra haladva
 Settings_CollectStats: Statisztikák gyűjtése
-Settings_ShareStats: Bosszantó módon megoszthatja a statisztikákat (ajánlott)
+Settings_ShareStats: Statisztikák névtelen megosztása (ajánlott)
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Összes kapcsoló megosztása
 Settings_ViewStats: Statisztikák megtekintése
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Háttér beállítása]'
 Settings_ThemeOpenFolder: '[Téma mappa megnyitása]'
 Settings_Protocol: 'A TcNo: \\ protokoll engedélyezése (ajánlott)'
 Settings_StartCentered: Program indítása központilag
+Settings_OfflineMode: Offline mód (nincs hálózati tevékenység)
 Settings_WindowsAccent: A Windows kiemelőszíne
 Settings_HelpTranslate: "[Help translate]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Speciális) Renderelőmotor beállítása:"
 Settings_Header_ClosingMethod: "(Speciális) Módszer beállítása {platform}bezárására"
 Settings_Header_StartingMethod: "(Speciális) Módszer beállítása {platform}indításához"
 Settings_AutoStart: "{platform} automatikus indítása a fiókváltáskor"
+Settings_ShowSteamSwitcher: "A Steam fiókváltójának megjelenítése (NE használja ezt, különben megtörheti a TcNo fiókváltót)"
 Settings_NoPlatforms: Jelenleg nincs engedélyezve platform. Kérjük, jelölje be alább az opcionális platformokat az engedélyezésükhöz, vagy törölje a letiltott platformok jelölését.
 Settings_MinimizeOnSwitch: Kapcsoló minimalizálása a fiókkapcsolón
 Settings_ShowShortNotes: Megjegyzés előnézete USERNAME alatt
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Állítsa le a kapcsolót használó többi szemé
 PreviewCss: CSS előnézete
 Settings_PreviewCss: Ez a CSS előnézeti oldala. Megtekinthetsz néhány elemet, amely megjelenik a programban, és megnézheted, hogyan néznek ki a témáddal. Ez az oldal hasznos azok számára, akik témákat hoznak létre!
 Settings_PreviewCssHeader: CSS előnézeti oldal
+Settings_AutoUpdatePlatforms: Platformlista automatikus frissítése
+Settings_CheckForUpdates: Indításkor ellenőrizze a frissítéseket
 Stats_Disabled: "A statisztikai adatgyűjtés le van tiltva."
 Stats_InDepth: Részletes statisztikai bontás
 Stats_ShareEnabled: "Ezeket a statisztikákat névtelenül osztják meg, és hozzáadják az itt szereplő összes <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">-hoz</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Kijelöltek visszaállítása
 Ignored_RemoveAccounts: Fiókok eltávolítása a mellőzési listáról
 Ignored_Description: Ha korábban "figyelmen kívül hagyott" egy fiókot, itt ismét megjelenítheti azt
 Ignored_Stop: Kijelöltek mellőzésének leállítása
+Toast_UpdatesDownloading: A frissítések letöltése a háttérben történik. Továbbra is használhatja a programot.
+Toast_UpdatesDownloaded: A frissítések letöltése befejeződött. A frissítés megkezdéséhez zárja be ezt az alkalmazást.
 Toast_DataLocationCopying: (1/2) Meglévő fájlok másolása az új felhasználói adatok mappába!
 Toast_DataLocationNotCopying: (1/2) A mappában már vannak fájlok! Nem migrálja a felhasználói adatokat.
 Toast_DataLocationSet: (2/2) Indítsa újra a fiókváltót az új mappa használatához!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Nem található érvényes Steam azonosító.
 Toast_FailedUpdateCheck: Frissítések keresése sikertelen
 Toast_UpdateVerifyFail: Nem lehet ellenőrizni a frissítőfájlokat. Töltse le a legújabb verziót, és cserélje ki a fájlokat a könyvtárban.
 Toast_StartedGame: Elkezdődött {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Nem sikerült beszerezni a {steamId}XML-információit. További részletekért lásd a naplót.
 Toast_Steam_VacCleared: Fiókok VAC állapota törölve
 Toast_Steam_CantDeleteVacCache: A 'LoginCache/Steam/VACCache/SteamVACCache.json' nem törölhető
 Toast_NoFindSteamUserdata: Nem található a Steam\\userdata mappa
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: A Steam Web API kulcs érvénytelennek tűnik. Kérjü
 Toast_DownloadingProfileData: Profiladatok letöltése
 Toast_PasswordChanged: A jelszó megváltozott
 Toast_JsonFailModify: Nem sikerült módosítani a JSON-fájlt. Lásd a Naplót.
+Toast_DifferentClosingMethod: "A 'Closing Method' eltér az alapértelmezetttől. Ha a játékok bezárulnak, ellenőrizze, hogy segít-e ennek az opciónak a megváltoztatása. Alapértelmezett: {defaultMethod}, Aktuális: {currentMethod}"
+Toast_NameEmpty: A felhasználónév nem lehet üres (és nem tartalmazhat csak szóközt)
+Toast_NewPlatforms: "Frissítve! Új platformok hozzáadva: {listOfNames}. Kattintson az elvetéshez."
+Toast_FoundExeViaShortcut: "A telepített elérési utat a Start menü parancsikonjából találtuk meg. Kérjük, ellenőrizze a helyét a Beállítások most lehetőségre kattintva. Kattintson az elvetéshez."
 Modal_Crowdin_Header: Crowdin fordítók
 Modal_Crowdin_Info: "Itt van mindenki, aki segített lefordítani ezt a szoftvert.<br>A mellettük lévő nyelvű felhasználók sokat segítettek a fordításban (lektori szerep)."
-Modal_Info_Creator: 'Készítette: TechNobo [Wesley Pyburn]'
+Modal_Info_Creator: 'Készítette: TroubleChute [Wesley Pyburn]'
 Modal_Info_Version: Verzió
 Modal_Info_ViewGitHub: Megtekintés a GitHubon
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Támogatás a Patreonon keresztül
+Modal_Info_ViewKofi: Támogatás a Ko-Fi-n keresztül
 Modal_Info_BugReport: Hibajelentés/Funkciókérés
 Modal_Info_VisitSite: Látogasson el a tcno.co oldalra
 Modal_Info_Disclaimer: Jogi nyilatkozat
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Ellenőrizze, hogy megfelel-e az ajánlott minimumkövetel
 Installer_VerifyAlready: "Úgy tűnik, minden be van szerelve. Ellenőrizze, hogy megfelel-e az ajánlott minimumkövetelményeknek:"
 Installer_Complete: Ez legyen minden. A fő program, a TcNo-Acc-Switcher.exe, automatikusan elindul.
 Installer_Complete2: "Ha nem működik, kérjük, olvassa el a telepítési utasításokat, itt: {link}"
-Global_FatalNext: "Végzetes hiba történt! A rendszer automatikusan elküldi a hibajelentést a következő indításkor."
 Tray_Error: Tálcahiba
 Tray_NoAccs: "Nem található fiók.\nElőször próbáljon fiókot váltani, vagy keresse meg a 'Tray_Users.json' -t"
 Tray_Switch: "Váltás erre: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Talált frissítések összesen: {x}"
 Updater_TotalSize: "Teljes méret: {size}"
 Updater_AwaitingUser: Várakozás a felhasználói bevitelre...
 Updater_UpToDate: "Ön naprakész.\n:)"
-Updater_FailedDecode: Ez valószínűleg nekem (TechNobo) nyomja meg a frissítést, és hogy egy elírás, hogy megszakadt a .json frissítési fájl. Tudasd velem:)
+Updater_FailedDecode: Ez valószínűleg nekem (TroubleChute) nyomja meg a frissítést, és hogy egy elírás, hogy megszakadt a .json frissítési fájl. Tudasd velem:)
 Updater_FailedDecodeTitle: Nem sikerült dekódolni a frissítési listát
 Updater_Extracting: Foltfájlok kibontása
 Updater_Applying: Javítás alkalmazása...
@@ -461,6 +472,7 @@ DeletingFile: "Törlés: {file}"
 DeletingFolder: "Mappa törlése: "
 CouldntDeleteX: "HIBA: NEM SIKERÜLT TÖRÖLNI: {x}"
 CouldntDeleteUndefined: "HIBA: NEM SIKERÜLT TÖRÖLNI EGY DEFINIÁLATLAN FÁJLT"
+CouldntModifyX: "A {file}nem módosítható. Fájlengedély-hiba, vagy a fájl használatban van."
 Prompt_RestartAsAdmin: "<h3><bold>Ez a program rendszergazdaként indul újra.</bold></h3><p>Nyomja meg az \"Igen\" gombot az UAC-ban, amikor a rendszer rendszergazdaként kéri.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Mindjárt elfelejt egy fiókot!</h3> <h4>Mit jelent ez?</h4> <p>- A Steam többé nem rendelkezik a Big Picture módban szereplő fiókkal, és nem emlékszik meg a jelszóra.<br/> – A TcNo Account Switcher szintén nem fogja megjeleníteni a fiókot, amíg újra be nem jelentkezik a Steamen keresztül.</p> <p>Fiókja érintetlen marad. Egyszerűen feledésbe merült ezen a számítógépen.</p><h4>Érted?</h4>

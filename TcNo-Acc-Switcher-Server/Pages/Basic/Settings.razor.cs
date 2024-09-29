@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -135,7 +135,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
             _ = GeneralInvocableFuncs.ShowToast("info", Lang["Toast_BackupCopy"], renderTo: "toastarea");
 
             // Generate temporary folder:
-            var tempFolder = $"BackupTemp\\Backup_{CurrentPlatform.FullName}_{DateTime.Now:dd-MM-yyyy_hh-mm-ss}";
+            var tempFolder = $"BackupTemp\\Backup_{CurrentPlatform.SafeName}_{DateTime.Now:dd-MM-yyyy_hh-mm-ss}";
             Directory.CreateDirectory("Backups\\BackupTemp");
 
             if (!everything)

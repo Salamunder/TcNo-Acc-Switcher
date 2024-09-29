@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -160,17 +160,17 @@ namespace TcNo_Acc_Switcher_Server.Pages.General
             {
                 var accName = split[1];
 
-                if (action.StartsWith("AcceptForgetBasicAcc:"))
-                {
-                    BasicSettings.SetForgetAcc(true);
-                    _ = GeneralFuncs.ForgetAccount_Generic(accName, CurrentPlatform.SafeName, true);
-                    return Task.FromResult("refresh");
-                }
-
                 if (action.StartsWith("AcceptForgetSteamAcc:"))
                 {
                     SteamSettings.SetForgetAcc(true);
                     _ = SteamSwitcherFuncs.ForgetAccount(accName);
+                    return Task.FromResult("refresh");
+                }
+
+                if (action.StartsWith("AcceptForget"))
+                {
+                    BasicSettings.SetForgetAcc(true);
+                    _ = GeneralFuncs.ForgetAccount_Generic(accName, CurrentPlatform.SafeName, true);
                     return Task.FromResult("refresh");
                 }
             }
@@ -413,6 +413,8 @@ namespace TcNo_Acc_Switcher_Server.Pages.General
         [JSInvokable]
         public static string GiCrowdinList()
         {
+            if (AppSettings.OfflineMode) return "OFFLINE MODE";
+
             try
             {
                 var html = new HttpClient().GetStringAsync(

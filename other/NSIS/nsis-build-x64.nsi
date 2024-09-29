@@ -1,23 +1,26 @@
 ;TcNo Account Switcher
-;Wesley Pyburn (TechNobo)
-;https://github.com/TcNobo/TcNo-Acc-Switcher
+;Wesley Pyburn (TroubleChute)
+;https://github.com/TcNoco/TcNo-Acc-Switcher
 
 ;--------------------------------
 ;Include Modern UI
 
   !include "MUI2.nsh"
+  !include "nsDialogs.nsh"
 
 ;--------------------------------
 ;Variables
 
 !define APP_NAME "TcNo Account Switcher"
 !define LNK_NAME "TcNo Account Switcher.lnk"
-!define COMP_NAME "TechNobo (Wesley Pyburn)"
+!define COMP_NAME "TroubleChute (Wesley Pyburn)"
 !define WEB_SITE "https://tcno.co"
-!define VERSION "4.0.0.0"
-!define COPYRIGHT "TechNobo (Wesley Pyburn) (C) 2021"
+!define VERSION "2024.08.30.01"
+!define DISPLAY_VERSION "2024-08-30_01"
+!define COPYRIGHT "TroubleChute (Wesley Pyburn) (C) 2024"
 !define DESCRIPTION "TcNo Account Switcher"
 !define LICENSE_TXT "..\..\LICENSE"
+!define PRIVACY_TXT "..\..\PRIVACY.md"
 !define MAIN_APP_EXE "TcNo-Acc-Switcher.exe"
 !define INSTALL_TYPE "SetShellVarContext current"
 !define REG_ROOT "HKCU"
@@ -84,12 +87,59 @@ InstallDir "${INSTALL_DIR}"
   !define UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\TcNo-Acc-Switcher"
 
 ;--------------------------------
+; Custom checkboxes page
+Var CheckStats
+Var CheckStatsState
+Var CheckLaunch
+Var CheckLaunchState
+Var CheckOfflineMode
+Var CheckOfflineModeState
+!define CUSTOM_PAGE_ID 101
+Function PostInstallPageCreate
+  !insertmacro MUI_HEADER_TEXT "Other Options" "Customize behaviour before install."
+
+  nsDialogs::Create 1018
+  Pop $0
+
+  ${NSD_CreateLabel} 0 0 100% 24u "Before launching the program, would you like to send anonymous statistics to help improve the program?"
+  Pop $1
+
+  ${NSD_CreateCheckbox} 0 24u 100% 12u "Send anonymous statistics (As defined in Privacy Policy)"
+  Pop $CheckStats
+  ${NSD_SetState} $CheckStats ${BST_CHECKED}
+
+  ${NSD_CreateCheckbox} 0 36u 100% 12u "Offline Mode"
+  Pop $CheckOfflineMode
+  ${NSD_SetState} $CheckOfflineMode ${BST_UNCHECKED}
+
+  ${NSD_CreateCheckbox} 0 60u 100% 12u "Launch after install"
+  Pop $CheckLaunch
+  ${NSD_SetState} $CheckLaunch ${BST_CHECKED}
+
+
+  
+  nsDialogs::Show
+FunctionEnd
+
+Function PostInstallPageLeave
+  ${NSD_GetState} $CheckStats $CheckStatsState
+  ${NSD_GetState} $CheckOfflineMode $CheckOfflineModeState
+  
+  ${NSD_GetState} $CheckLaunch $CheckLaunchState
+FunctionEnd
+
+
+
+;--------------------------------
 ;Pages
 
   !insertmacro MUI_PAGE_WELCOME
   !insertmacro MUI_PAGE_LICENSE "${LICENSE_TXT}"
+  !insertmacro MUI_PAGE_LICENSE "${PRIVACY_TXT}"
   !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
+  Page custom PostInstallPageCreate PostInstallPageLeave function
+  
 
    ;Start Menu Folder Page Configuration
   !define MUI_STARTMENUPAGE_REGISTRY_ROOT "HKCU" 
@@ -109,7 +159,15 @@ InstallDir "${INSTALL_DIR}"
   !define MUI_FINISHPAGE_LINK "https://github.com/TcNobo/TcNo-Acc-Switcher"
   !define MUI_FINISHPAGE_LINK_LOCATION "https://github.com/TcNobo/TcNo-Acc-Switcher"
 
+Function Finish
+  ${If} $CheckLaunchState <> 0
+    ExecShell "" "$INSTDIR\${MAIN_APP_EXE}"
+  ${EndIf}
+FunctionEnd
+
+  !define MUI_PAGE_CUSTOMFUNCTION_LEAVE Finish
   !insertmacro MUI_PAGE_FINISH
+
 
 
 
@@ -123,10 +181,21 @@ InstallDir "${INSTALL_DIR}"
 
 !include "FileFunc.nsh"
 
+Section "Start Menu shortcuts" Shortcuts_StartMenu
+  CreateDirectory "$SMPROGRAMS\${SM_Folder}"
+  CreateShortcut "$SMPROGRAMS\${SM_Folder}\${LNK_NAME}" "$INSTDIR\${MAIN_APP_EXE}"
+  CreateShortcut "$SMPROGRAMS\${SM_Folder}\${UNINSTALL_LNK_NAME}" "$INSTDIR\${UNINSTALL_EXE}"
+SectionEnd
+
+Section "Desktop shortcuts" Shortcuts_Desktop
+  CreateShortCut "$DESKTOP\${LNK_NAME}" "$INSTDIR\${MAIN_APP_EXE}"
+SectionEnd
+
 Section "Main files" InstSec
   SectionIn RO
 
   SetOutPath "$INSTDIR"
+  
   DetailPrint "Extracting package..."
   SetDetailsPrint listonly
   File "${INSTALLER_7Z}"
@@ -136,11 +205,11 @@ Section "Main files" InstSec
   
   ;Store installation folder
   WriteRegStr "${REG_ROOT}" "${REG_APP_PATH}" "" $INSTDIR
-  
+
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\${UNINSTALL_EXE}"
   WriteRegStr HKLM "${UNINST_KEY}" "DisplayName" "TcNo Account Switcher"
-  WriteRegStr HKLM "${UNINST_KEY}" "DisplayVersion" "4"
+  WriteRegStr HKLM "${UNINST_KEY}" "DisplayVersion" "${DISPLAY_VERSION}"
   WriteRegStr HKLM "${UNINST_KEY}" "UninstallString" "$INSTDIR\${UNINSTALL_EXE}"
   WriteRegStr HKLM "${UNINST_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKLM "${UNINST_KEY}" "Publisher" "${COMP_NAME}"
@@ -158,17 +227,28 @@ Section "Main files" InstSec
   WriteRegStr HKCR "tcno" "URL Protocol" ""
   WriteRegStr HKCR "tcno\Shell\Open\Command\" "" `"$INSTDIR\${MAIN_APP_EXE}" "%1"`
   
-  ExecShell "" "$INSTDIR\${FIRST_RUN_EXE}"
-SectionEnd
+  CreateDirectory "$AppData\${SM_Folder}"
+  Delete "$AppData\${SM_Folder}\SendAnonymousStats.yes"
+  Delete "$AppData\${SM_Folder}\SendAnonymousStats.no"
+  ${If} $CheckStatsState <> 0
+    FileOpen $1 "$AppData\${SM_Folder}\SendAnonymousStats.yes" w
+    FileClose $1
+  ${Else}
+    FileOpen $1 "$AppData\${SM_Folder}\SendAnonymousStats.no" w
+    FileClose $1
+  ${EndIf}
 
-Section "Start Menu shortcuts" Shortcuts_StartMenu
-  CreateDirectory "$SMPROGRAMS\${SM_Folder}"
-  CreateShortcut "$SMPROGRAMS\${SM_Folder}\${LNK_NAME}" "$INSTDIR\${MAIN_APP_EXE}"
-  CreateShortcut "$SMPROGRAMS\${SM_Folder}\${UNINSTALL_LNK_NAME}" "$INSTDIR\${UNINSTALL_EXE}"
-SectionEnd
+  Delete "$AppData\${SM_Folder}\OfflineMode.yes"
+  Delete "$AppData\${SM_Folder}\OfflineMode.no"
+  ${If} $CheckOfflineModeState <> 0
+    FileOpen $1 "$AppData\${SM_Folder}\OfflineMode.yes" w
+    FileClose $1
+  ${Else}
+    FileOpen $1 "$AppData\${SM_Folder}\OfflineMode.no" w
+    FileClose $1
+  ${EndIf}
 
-Section "Desktop shortcuts" Shortcuts_Desktop
-  CreateShortCut "$DESKTOP\${LNK_NAME}" "$INSTDIR\${MAIN_APP_EXE}"
+  ExecShell "" "$INSTDIR\${FIRST_RUN_EXE}" "nostart"
 SectionEnd
 ;--------------------------------
 ;Descriptions
@@ -189,7 +269,6 @@ SectionEnd
 ;Uninstaller Section
 
 Section "Uninstall"
-
   RMDir /r "$INSTDIR"
   ;Remove start shortcuts
   RMDIR /r "$SMPROGRAMS\${SM_Folder}"

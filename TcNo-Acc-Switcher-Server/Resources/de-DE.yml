@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Accountnamen anzeigen [kein Freundesname]
 Steam_CheckVac: Kontostatus VAC prüfen
 Steam_OverrideDefaultState: "Überschreibe Standard-Login-Status:"
 Steam_StartSilent: "Öffnen Sie Steam in der Taskleiste beim Umschalten (Starten Sie Steam mit '-silent')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Alte Benutzeroberfläche in Steam verwenden (-vgui)"
+Steam_CollectInfo: Sammeln Sie Profilbilder und VAC-Bann-Status von Steam
 Button_AddNew: Hinzufügen
 Button_SaveCurrent: Aktuellen speichern
 Button_SaveFile: Datei speichern
@@ -30,8 +31,9 @@ Button_OpenBackup: Backup-Ordner anzeigen
 Button_Back: Zurück
 Button_RestartAdmin: Als Admin neu starten
 Button_SetPassword: App-Passwort festlegen
-Settings_Shortcut: ' {platform} Switcher Desktop-Verknüpfung'
-Settings_Admin: Führen Sie {platform} als Admin aus
+Settings_SteamCollectInfo: Steam-Profilbild und VAC-Status von Steam erfassen
+Settings_Shortcut: '{platform} Switcher Desktop-Verknüpfung'
+Settings_Admin: '{platform} als Admin ausführen'
 Settings_ImageExpiry: 'Tage vor Löschung der Profilbilder:'
 Settings_SteamAPIKey: "Steam-Web-API-Schlüssel (optional)"
 Settings_SteamAPIKey_Note: Durch das Festlegen eines API-Schlüssels wird der Begrenzte Indikator (gelber Rahmen) für Konten angezeigt, die stattdessen von der Community gesperrt sind.
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Deaktivierte Plattformen. Klicken Sie, um sie z
 Settings_ExtraPlatformsEnabled: Sichtbare Plattformen. Klicken Sie, um sie zu deaktivieren.
 Settings_RTL: Text von rechts nach links anzeigen
 Settings_CollectStats: Statistiken sammeln
-Settings_ShareStats: Statistiken annonym teilen (empfohlen)
+Settings_ShareStats: Statistiken anonym teilen (empfohlen)
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Gesamtswitches teilen
 Settings_ViewStats: Statistiken anzeigen
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Hintergrund einstellen]'
 Settings_ThemeOpenFolder: '[Theme-Ordner öffnen]'
 Settings_Protocol: 'tcno:\\ Protokoll Aktivieren (empfohlen)'
 Settings_StartCentered: Programm zentriert starten
+Settings_OfflineMode: Offline-Modus (keine Netzwerkaktivität)
 Settings_WindowsAccent: Verwende die Windows-Akzentfarbe
 Settings_HelpTranslate: "[Beim Übersetzen helfen]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Erweitert) Rendering-Engine einstellen:"
 Settings_Header_ClosingMethod: "(Erweitert) Methode zum Schließen von {platform} einstellen"
 Settings_Header_StartingMethod: "(Erweitert) Methode auf Start {platform} einstellen"
 Settings_AutoStart: "Automatisch {platform} auf Konto Schalter starten"
+Settings_ShowSteamSwitcher: "Zeigen Sie den Kontoumschalter von Steam an (Verwenden Sie dies NICHT, da sonst der TcNo-Kontoumschalter beschädigt werden kann)."
 Settings_NoPlatforms: Derzeit sind keine Plattformen aktiviert. Bitte wähle optionale Plattformen unten aus, um sie zu aktivieren, oder wähle deaktivierte Plattformen ab.
 Settings_MinimizeOnSwitch: Minimieren Sie den Schalter auf dem Konto-Switch
 Settings_ShowShortNotes: Notizvorschau unter Benutzername
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Stoppen Sie andere mit dem Switcher:"
 PreviewCss: Vorschau CSS
 Settings_PreviewCss: Dies ist die CSS-Vorschauseite. Sie können einige Elemente anzeigen, die im Programm auftauchen und sehen, wie sie mit Ihrem Theme aussehen. Diese Seite ist nützlich für alle, die Themes erstellen!
 Settings_PreviewCssHeader: CSS-Vorschauseite
+Settings_AutoUpdatePlatforms: Automatische Aktualisierung der Plattformliste
+Settings_CheckForUpdates: Beim Start nach Updates suchen
 Stats_Disabled: "Die Statistiksammlung ist deaktiviert."
 Stats_InDepth: Detaillierte statistische Aufschlüsselung
 Stats_ShareEnabled: "Diese Statistiken werden anonym geteilt und addieren sich hier zur Gesamtzahl <a onclick=\"{WebsiteLink}\" class=\"fancyLink\"></a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Ausgewählte wiederherstellen
 Ignored_RemoveAccounts: Konten aus der Ignorierliste entfernen
 Ignored_Description: Wenn du einen Account zuvor "ignoriert" hast, kannst du es hier erneut anzeigen
 Ignored_Stop: Ausgewählte nicht mehr ignorieren
+Toast_UpdatesDownloading: Updates werden im Hintergrund heruntergeladen. Sie können das Programm weiterhin verwenden.
+Toast_UpdatesDownloaded: Der Download der Updates ist abgeschlossen. Schließen Sie diese App, um mit der Aktualisierung zu beginnen.
 Toast_DataLocationCopying: (1/2) Vorhandene Dateien in den neuen Benutzerdatenordner kopieren!
 Toast_DataLocationNotCopying: (1/2) Ordner enthält bereits Dateien! Benutzerdaten werden nicht migriert.
 Toast_DataLocationSet: (2/2) Starten Sie den Kontoumschalter neu, um den neuen Ordner zu verwenden!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Eine gültige Steam-ID kann nicht gefunden werden.
 Toast_FailedUpdateCheck: Fehler bei der Suche nach Updates
 Toast_UpdateVerifyFail: Updater-Dateien können nicht verifiziert werden. Lade die neueste Version herunter und ersetze die Dateien in Ihrem Verzeichnis.
 Toast_StartedGame: '{program} gestartet'
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Für {steamId} konnten keine XML-Informationen abgerufen werden. Weitere Details findest du im Protokoll.
 Toast_Steam_VacCleared: VAC-Status für Accounts wurde gelöscht
 Toast_Steam_CantDeleteVacCache: '''LoginCache/Steam/VACCache/SteamVACCache.json'' konnte nicht gelöscht werden'
 Toast_NoFindSteamUserdata: Ordner Steam\\userdata konnte nicht gefunden werden
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Der Steam-Web-API-Schlüssel scheint ungültig zu sein
 Toast_DownloadingProfileData: Herunterladen von Profildaten
 Toast_PasswordChanged: Passwort geändert
 Toast_JsonFailModify: Die JSON-Datei konnte nicht geändert werden. Siehe Protokoll.
+Toast_DifferentClosingMethod: "'Closing Method' unterscheidet sich von der Standardeinstellung. Wenn Spiele geschlossen werden prüfe, ob das Ändern dieser Option hilft. Standard: {defaultMethod}, Aktuell: {currentMethod}"
+Toast_NameEmpty: Der Benutzername darf nicht leer sein (und darf nicht nur Leerzeichen enthalten)
+Toast_NewPlatforms: "Aktualisiert! Neue Plattformen hinzugefügt: {listOfNames}. Zum Schließen klicken."
+Toast_FoundExeViaShortcut: "Wir haben den Installationspfad über eine Verknüpfung im Startmenü gefunden. Bitte überprüfen Sie den Speicherort, indem Sie jetzt auf „Einstellungen“ klicken. Klicken Sie zum Schließen."
 Modal_Crowdin_Header: Crowdin-Übersetzer
 Modal_Crowdin_Info: "Hier sind alle, die geholfen haben, diese Software zu übersetzen.<br>Benutzer mit Sprachen neben ihnen haben bei der Übersetzung sehr geholfen (Rolle des Korrekturlesers)."
-Modal_Info_Creator: Erstellt von TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Erstell von TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Version
 Modal_Info_ViewGitHub: Auf GitHub anzeigen
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Unterstützung über Patreon
+Modal_Info_ViewKofi: Unterstützung über Ko-Fi
 Modal_Info_BugReport: Fehlerbericht/Feature-Anfrage
 Modal_Info_VisitSite: Öffne tcno.co
 Modal_Info_Disclaimer: Haftungsausschluss
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Stellen Sie sicher, dass Sie die empfohlenen Mindestanford
 Installer_VerifyAlready: "Es sieht so aus, als wäre alles installiert. Stellen Sie sicher, dass Sie die empfohlenen Mindestanforderungen erfüllen:"
 Installer_Complete: Das sollte alles sein. Das Hauptprogramm, TcNo-Acc-Switcher.exe, wird automatisch ausgeführt.
 Installer_Complete2: "Wenn es nicht funktioniert, lesen Sie bitte die Installationsanweisungen hier: {link}"
-Global_FatalNext: "Schwerwiegender Fehler aufgetreten! Dieser Crashlog wird beim nächsten Start automatisch übermittelt."
 Tray_Error: Tray-Fehler
 Tray_NoAccs: "Es wurden keine Konten gefunden.\nVersuchen Sie zuerst, Konten zu wechseln, oder suchen Sie nach 'Tray_Users.json'"
 Tray_Switch: "Wechseln zu: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Insgesamt gefundene Updates: {x}"
 Updater_TotalSize: "Gesamtgröße: {size}"
 Updater_AwaitingUser: Warten auf Benutzereingabe...
 Updater_UpToDate: "Du bist auf dem Laufenden.\n:)"
-Updater_FailedDecode: Dies liegt höchstwahrscheinlich daran, dass ich (TechNobo) ein Update hochgeladen habe und einen Tippfehler machte, der die .json-Aktualisierungsdatei brach. Lassen Sie es mich wissen :)
+Updater_FailedDecode: Dies liegt höchstwahrscheinlich daran, dass ich (TroubleChute) ein Update gepusht habe und dabei einen Tippfehler gemacht habe, der die .json-Updatedatei beschädigt hat. Lass es mich wissen :)
 Updater_FailedDecodeTitle: Fehler beim Entschlüsseln der Aktualisierungsliste
 Updater_Extracting: Extrahieren von Patchdateien
 Updater_Applying: Patch wird angewendet...
@@ -461,6 +472,7 @@ DeletingFile: "Löschen: {file}"
 DeletingFolder: "Ordner wird gelöscht: "
 CouldntDeleteX: "FEHLER: KONNTE NICHT LÖSCHEN: {x}"
 CouldntDeleteUndefined: "FEHLER: NICHT DEFINIERTE DATEI KONNTE NICHT GELÖSCHT WERDEN"
+CouldntModifyX: "{file}konnte nicht geändert werden. Fehler bei der Dateiberechtigung oder die Datei wird verwendet."
 Prompt_RestartAsAdmin: "<h3><bold>Dieses Programm wird als Admin neu gestartet</bold></h3><p>Drücken Sie \"Ja\" in UAC, wenn Sie zur Admin aufgefordert werden.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Du bist dabei ein Konto zu vergessen!</h3> <h4>Was bedeutet das?</h4> <p>- Steam wird das Konto nicht mehr im Big-Picture Modus auflisten und wird das Passwort nicht mehr speichern.<br/> - Auch TcNo Account Switcher wird das Konto nicht mehr anzeigen, bis es erneut über Steam angemeldet wird.</p> <p>Dein Konto bleibt bestehen. Es wird nur auf diesem Computer vergessen.</p><h4>Hast du verstanden?</h4>

@@ -1,6 +1,6 @@
 ﻿
 // TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -206,21 +206,41 @@ namespace TcNo_Acc_Switcher_Client
         private static void InitializeChromium()
         {
             Globals.DebugWriteLine(@"[Func:(Client-CEF)MainWindow.xaml.cs.InitializeChromium]");
-            var settings = new CefSettings
+            try
             {
-                CachePath = Path.Join(Globals.UserDataFolder, "CEF\\Cache"),
-                UserAgent = "TcNo-CEF 1.0",
-                UserDataPath = Path.Join(Globals.UserDataFolder, "CEF\\Data"),
-                WindowlessRenderingEnabled = true
-            };
-            settings.CefCommandLineArgs.Add("-off-screen-rendering-enabled", "0");
-            settings.CefCommandLineArgs.Add("--off-screen-frame-rate", "60");
-            settings.SetOffScreenRenderingBestPerformanceArgs();
+                var settings = new CefSettings
+                {
+                    CachePath = Path.Join(Globals.UserDataFolder, "CEF\\Cache"),
+                    UserAgent = "TcNo-CEF 1.0",
+                    WindowlessRenderingEnabled = true
+                };
+                settings.CefCommandLineArgs.Add("-off-screen-rendering-enabled", "0");
+                settings.CefCommandLineArgs.Add("--off-screen-frame-rate", "60");
+                settings.SetOffScreenRenderingBestPerformanceArgs();
 
-            Cef.Initialize(settings);
-            //CefView.DragHandler = new DragDropHandler();
-            //CefView.IsBrowserInitializedChanged += CefView_IsBrowserInitializedChanged;
-            //CefView.FrameLoadEnd += OnFrameLoadEnd;
+                Cef.Initialize(settings);
+                //CefView.DragHandler = new DragDropHandler();
+                //CefView.IsBrowserInitializedChanged += CefView_IsBrowserInitializedChanged;
+                //CefView.FrameLoadEnd += OnFrameLoadEnd;
+            } catch (Exception ex) {
+                Globals.WriteToLog(ex);
+                // Give warning, and open Updater with downloadCef.
+                var result = MessageBox.Show("CEF (Chrome Embedded Framework) failed to load. Do you want to use WebView2 instead? (Less compatibility, more performance)\nChoosing No will verify & update the TcNo Account Switcher.\n\nIf this issue persists, visit https://tcno.co/cef.\r\n", "Missing/Outdated/Broken files!", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                if (result == MessageBoxResult.Yes)
+                {
+                    AppSettings.ActiveBrowser = "WebView";
+                    AppSettings.SaveSettings();
+                    Restart();
+                }
+                else
+                {
+                    if (AppSettings.OfflineMode)
+                        _ = MessageBox.Show("You are in offline mode, this feature cannot be used.", "Offline Mode", MessageBoxButton.OK, MessageBoxImage.Error);
+                    else
+                        AppSettings.AutoStartUpdaterAsAdmin("verify");
+                    Environment.Exit(1);
+                }
+            }
         }
 
         /// <summary>
@@ -286,18 +306,21 @@ namespace TcNo_Acc_Switcher_Client
             UrlChanged(args.Uri);
         }
         /// <summary>
-        /// Rungs on URI change in the WebView.
+        /// Runs on URI change in the WebView.
         /// </summary>
         private void UrlChanged(string uri)
         {
-            Globals.WriteToLog(uri);
+            // // Unused:
+            // // This was originally for allowing users to activate keys for specific accounts
+            // // This was never fleshed out fully, and remains just coments for now.
 
-            // Currently just for testing!
-            // This is used with Steam/SteamKeys.cs for future functionality!
-            if (uri.Contains("store.steampowered.com"))
-                _ = RunCookieCheck("steampowered.com");
+            //Globals.WriteToLog(uri);
 
-            if (uri.Contains("EXIT_APP")) Environment.Exit(0);
+            //// This is used with Steam/SteamKeys.cs for future functionality!
+            //if (uri.Contains("store.steampowered.com"))
+            //    _ = RunCookieCheck("steampowered.com");
+
+            //if (uri.Contains("EXIT_APP")) Environment.Exit(0);
         }
 
         /// <summary>

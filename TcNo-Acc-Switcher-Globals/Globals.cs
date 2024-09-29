@@ -1,5 +1,5 @@
-﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// TcNo Account Switcher - A Super fast account switcher
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -27,7 +27,7 @@ namespace TcNo_Acc_Switcher_Globals
 #pragma warning disable CA2211 // Non-constant fields should not be visible - This is necessary due to it being a launch parameter.
         public static bool VerboseMode;
 #pragma warning restore CA2211 // Non-constant fields should not be visible
-        public static readonly string Version = "2023-07-05_00";
+        public static readonly string Version = "2024-08-30_01";
 
         #region INITIALISATION
 
@@ -192,6 +192,13 @@ namespace TcNo_Acc_Switcher_Globals
             return ((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds).ToString();
         }
 
+        public static int DateStringToInt(string s)
+        {
+            s = s.Replace("-", "").Replace("_", "");
+            bool success = int.TryParse(s, out var i);
+            return success ? i : 0;
+        }
+
         /// <summary>
         /// Replaces the input regex string with an 'expanded' regex, if it's an enum
         /// </summary>
@@ -252,7 +259,9 @@ namespace TcNo_Acc_Switcher_Globals
                             < 19043 => "Windows 10 20H2",
                             < 19044 => "Windows 10 21H1",
                             < 22000 => "Windows 10 21H2",
-                            >= 22000 => "Windows 11 21H2"
+                            < 22621 => "Windows 11 22H2",
+                            < 22631 => "Windows 11 23H2",
+                            >= 22631 => "Windows 11 23H2"
                         }
                     };
 

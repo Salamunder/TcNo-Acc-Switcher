@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Hesap adını göster [arkadaş adı değil]
 Steam_CheckVac: Hesap VAC durumunu kontrol et
 Steam_OverrideDefaultState: "Varsayılan oturum açma durumunu geçersiz kıl:"
 Steam_StartSilent: "Anahtar üzerindeki görev tepsisine buharı açın (Buharı '- sessiz 'ile başlatın)"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Steam'de Eski Kullanıcı Arayüzünü Kullanın (-vgui)"
+Steam_CollectInfo: Steam'den profil resimleri ve VAC yasak durumu topla
 Button_AddNew: Yeni Ekle
 Button_SaveCurrent: Mevcut Oturumu Kaydet
 Button_SaveFile: Dosyayı Kaydet
@@ -30,7 +31,8 @@ Button_OpenBackup: Yedek Klasörünü Aç
 Button_Back: Geri
 Button_RestartAdmin: Yönetici olarak yeniden başlat
 Button_SetPassword: Uygulama Parolasını Ayarla
-Settings_Shortcut: ' {platform} Anahtarlayıcı Masaüstü kısayolu'
+Settings_SteamCollectInfo: Steam Profil Resmini ve VAC Durumunu Steam'den Topla
+Settings_Shortcut: '{platform} Anahtarlayıcı Masaüstü kısayolu'
 Settings_Admin: '{platform} platformunu Yönetici olarak çalıştır'
 Settings_ImageExpiry: 'Profil resimlerinin süresi dolmadan önceki günler:'
 Settings_SteamAPIKey: "Steam Web API anahtarı (isteğe bağlı)"
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Arka planı ayarla]'
 Settings_ThemeOpenFolder: '[Tema klasörünü aç]'
 Settings_Protocol: 'Tcno''yu etkinleştir:\\ protocol (Önerilen)'
 Settings_StartCentered: Programı merkezde başlat
+Settings_OfflineMode: Çevrimdışı Mod (Ağ etkinliği yok)
 Settings_WindowsAccent: Windows Vurgu Rengini Kullan
 Settings_HelpTranslate: "[Çeviriye yardım et]"
 Settings_ViewTranslators: "[Katkıda Bulunanlar]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Gelişmiş) İşleme motorunu ayarlayın:"
 Settings_Header_ClosingMethod: "(Gelişmiş) Yöntemi kapatmak için ayarlayın {platform}"
 Settings_Header_StartingMethod: "(Gelişmiş) Başlangıç yöntemini ayarlayın {platform}"
 Settings_AutoStart: "Otomatik Olarak {platform} hesap değiştirince başlat"
+Settings_ShowSteamSwitcher: "Steam'in hesap değiştiricisini göster (Bunu KULLANMAYIN, aksi takdirde TcNo Hesap Değiştiricisi bozulabilir)"
 Settings_NoPlatforms: Şu anda etkin platform yok. Lütfen bunları etkinleştirmek için aşağıdaki isteğe bağlı platformları işaretleyin veya devre dışı bırakılmış platformların işaretini kaldırın.
 Settings_MinimizeOnSwitch: Hesap anahtarındaki anahtarlayıcıyı en aza indirin
 Settings_ShowShortNotes: Kullanıcı adı altında not önizlemesi
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Anahtarlayıcıyı kullanarak diğerlerini durduru
 PreviewCss: Önizleme CSS
 Settings_PreviewCss: Bu CSS önizleme sayfasıdır. Programda açılan bazı öğeleri görüntüleyebilir ve temanızla nasıl göründüklerini görebilirsiniz. Bu sayfa tema oluşturanlar için kullanışlıdır!
 Settings_PreviewCssHeader: CSS Önizleme Sayfası
+Settings_AutoUpdatePlatforms: Platformlar listesini otomatik güncelle
+Settings_CheckForUpdates: Lansman sırasında güncellemeleri kontrol edin
 Stats_Disabled: "İstatistik koleksiyonu devre dışı."
 Stats_InDepth: Derinlemesine istatistik dökümü
 Stats_ShareEnabled: "Bu istatistikler anonim olarak paylaşılır ve buradaki toplam <a onclick=\"{WebsiteLink}\" class=\"fancyLink\"></a>eklenir."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Seçilenleri geri yükle
 Ignored_RemoveAccounts: Hesapları yoksay listesinden kaldır
 Ignored_Description: Daha önce bir hesabı "yoksaydı ", burada tekrar gösterebilirsiniz
 Ignored_Stop: Seçilenleri görmezden gelmeyi bırak
+Toast_UpdatesDownloading: Güncellemeler arka planda indiriliyor. Programı kullanmaya devam edebilirsiniz.
+Toast_UpdatesDownloaded: Güncellemeler indirildi. Güncellemeyi başlatmak için bu uygulamayı kapatın.
 Toast_DataLocationCopying: (1/2) Mevcut dosyaların yeni kullanıcı verileri klasörüne kopyalanması!
 Toast_DataLocationNotCopying: (1/2) Klasörde zaten dosyalar var! Kullanıcı verilerini taşımaz.
 Toast_DataLocationSet: (2/2) Yeni klasörü kullanmak için hesap değiştiriciyi yeniden başlatın!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Geçerli bir Steam Kimliği bulunamıyor.
 Toast_FailedUpdateCheck: Güncellemeler denetlenemedi
 Toast_UpdateVerifyFail: Güncelleyici dosyaları doğrulanamıyor. En son sürümü indirin ve dizininizdeki dosyaları değiştirin.
 Toast_StartedGame: '{program} başlatıldı'
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: '{steamId}için XML bilgisi alınamadı. Daha fazla ayrıntı için günlüğe bakın.'
 Toast_Steam_VacCleared: Hesaplar için VAC durumu temizlendi
 Toast_Steam_CantDeleteVacCache: '''LoginCache/Steam/VACCache/SteamVACCache.json'' silinemedi'
 Toast_NoFindSteamUserdata: Steam\\userdata klasörü bulunamadı
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web API anahtarı geçersiz görünüyor. Lütfe
 Toast_DownloadingProfileData: Profil verileri indiriliyor
 Toast_PasswordChanged: Şifre değiştirildi
 Toast_JsonFailModify: JSON dosyası değiştirilemedi. Günlüğe bakın.
+Toast_DifferentClosingMethod: "'Kapanış Yöntemi' varsayılandan farklıdır. Oyunlar kapanıyorsa ve daha fazlası varsa bu seçeneği değiştirmenin yardımcı olup olmadığını kontrol edin. Varsayılan: {defaultMethod}, Mevcut: {currentMethod}"
+Toast_NameEmpty: Kullanıcı adı boş olamaz (ve yalnızca boşluk içeremez)
+Toast_NewPlatforms: "Güncellendi! Yeni platformlar eklendi: {listOfNames}. Kapatmak için tıklayın."
+Toast_FoundExeViaShortcut: "Yüklenen yolu bir Başlat Menüsü kısayolundan bulduk. Lütfen şimdi Ayarlar'a tıklayarak konumunu doğrulayın. Kapatmak için tıklayın."
 Modal_Crowdin_Header: Crowdin çevirmenleri
 Modal_Crowdin_Info: "İşte bu yazılımı çevirmeye yardım eden herkes.<br>Dilleri yanlarında olan kullanıcılar çeviride çok yardımcı oldular (düzeltici rolü)."
-Modal_Info_Creator: TechNobo [Wesley Pyburn] tarafından oluşturuldu
+Modal_Info_Creator: TroubleChute [Wesley Pyburn] tarafından oluşturuldu
 Modal_Info_Version: Versiyon
 Modal_Info_ViewGitHub: GitHub'da Görüntüle
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Patreon üzerinden destek
+Modal_Info_ViewKofi: Ko-Fi üzerinden destek
 Modal_Info_BugReport: Hata raporu/Özellik isteği
 Modal_Info_VisitSite: Tcno.co adresini ziyaret edin
 Modal_Info_Disclaimer: Sorumluluk Reddi
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Önerilen minimum gereksinimleri karşıladığınızdan e
 Installer_VerifyAlready: "Her şey kurulu gibi görünüyor. Önerilen minimum gereksinimleri karşıladığınızdan emin olun:"
 Installer_Complete: Her şey bu olmalı. Ana program, TcNo-Acc-Switcher.exe, otomatik olarak çalışacaktır.
 Installer_Complete2: "Çalışmazsa, lütfen kurulum talimatlarına bakın, burada: {link}"
-Global_FatalNext: "Önemli bir hata oluştu! Bu çökme günlüğü bir sonraki lansmanda otomatik olarak gönderilecektir."
 Tray_Error: Tepsi Hatası
 Tray_NoAccs: "Hiçbir hesap bulunamadı.\nÖnce hesap değiştirmeyi deneyin veya 'Tray_Users.json'u bulun"
 Tray_Switch: "Şuraya geç: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Bulunan toplam güncelleme: {x}"
 Updater_TotalSize: "Toplam boyut: {size}"
 Updater_AwaitingUser: Kullanıcı girişi bekleniyor...
 Updater_UpToDate: "Güncelsiniz.\n:)"
-Updater_FailedDecode: Bu büyük olasılıkla benim (TechNobo) bir güncellemeye basmamdan ve .json güncelleme dosyasını kıran bir yazım hatası yapmamdan kaynaklanıyor. Lütfen bana bildirin :)
+Updater_FailedDecode: Bu büyük olasılıkla benim (TroubleChute) bir güncellemeye basmamdan ve .json güncelleme dosyasını kıran bir yazım hatası yapmamdan kaynaklanıyor. Lütfen bana bildirin :)
 Updater_FailedDecodeTitle: Güncelleme listesi kodu çözülemedi
 Updater_Extracting: Yama dosyaları ayıklanıyor
 Updater_Applying: Yama uygulanıyor...
@@ -461,6 +472,7 @@ DeletingFile: "Silme: {file}"
 DeletingFolder: "Klasör Siliniyor: "
 CouldntDeleteX: "HATA: SİLİNEMEDİ: {x}"
 CouldntDeleteUndefined: "HATA: TANIMLANMAMIŞ DOSYA SİLİNEMEDİ"
+CouldntModifyX: "{file}değiştirilemedi. Dosya izin hatası veya dosya kullanımda."
 Prompt_RestartAsAdmin: "<h3><bold>Bu program, Yönetici</bold></h3><p>olarak yeniden başlayacaktır.</p>için istendiğinde UAC'de \"Evet\" e basın."
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Bir hesabı unutmak üzeresiniz!</h3> <h4>Bu ne anlama geliyor?</h4> <p>- Steam, artık Büyük Resim Modunda listelenen hesaba sahip olmayacak ve Parolayı Hatırlamayacaktır.<br/> - TcNo Account Switcher, Steam üzerinden tekrar oturum açılana kadar hesabı artık göstermeyecek.</p> <p>Hesabınıza dokunulmayacak. Sadece bu bilgisayarda unutuldu.</p><h4>Anlıyor musun?</h4>

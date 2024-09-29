@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CefSharp;
 using Newtonsoft.Json.Linq;
 using TcNo_Acc_Switcher_Globals;
 using TcNo_Acc_Switcher_Server.Data;
@@ -78,7 +79,7 @@ namespace TcNo_Acc_Switcher_Client
             // Crash handler
             AppDomain.CurrentDomain.UnhandledException += Globals.CurrentDomain_UnhandledException;
             // Upload crash logs if any, before starting program
-            UploadLogs();
+            MoveLogs();
 
             if (e.Args.Length != 0) // An argument was passed
             {
@@ -522,57 +523,39 @@ release = true;
         }
 
         /// <summary>
-        /// Uploads CrashLogs and log.txt if crashed.
+        /// Moves CrashLogs and log.txt if crashed.
         /// </summary>
-        public static void UploadLogs()
+        public static void MoveLogs()
         {
             if (!Directory.Exists("CrashLogs")) return;
-            if (!Directory.Exists("CrashLogs\\Submitted")) _ = Directory.CreateDirectory("CrashLogs\\Submitted");
+            // Create folder with current date if doesnt exist
+            var todayDir = $"CrashLogs\\{DateTime.Now:dd-MM-yy}";
+            if (!Directory.Exists(todayDir)) Directory.CreateDirectory(todayDir);
 
-            // Collect all logs into one string to compress
-            var postData = new Dictionary<string, string>();
-            var combinedCrashLogs = "";
-            foreach (var file in Directory.EnumerateFiles("CrashLogs", "*.txt"))
+            // Collect all logs into one folder
+            var crashFiles = Directory.EnumerateFiles("CrashLogs", "*.txt");
+            foreach (var file in crashFiles)
             {
                 try
                 {
-                    combinedCrashLogs += Globals.ReadAllText(file);
-                    File.Move(file, $"CrashLogs\\Submitted\\{Path.GetFileName(file)}");
+                    File.Move(file, Path.Join(todayDir, Path.GetFileName(file)));
                 }
                 catch (Exception e)
                 {
-                    Globals.WriteToLog(@"[Caught - UploadLogs()]" + e);
+                    Globals.WriteToLog(@"[Caught - MoveLogs()] crash" + e);
                 }
             }
 
-            // If no logs collected, return.
-            if (combinedCrashLogs == "") return;
-
-            // Else: send log file as well.
-            if (File.Exists("log.txt"))
+            if (crashFiles.Any())
             {
                 try
                 {
-                    postData.Add("logs", Compress(Globals.ReadAllText("log.txt")));
+                    File.WriteAllText(Path.Join(todayDir, "log.txt"), Globals.ReadAllText("log.txt"));
                 }
                 catch (Exception e)
                 {
-                    Globals.WriteToLog(@"[Caught - UploadLogs()]" + e);
+                    Globals.WriteToLog(@"[Caught - MoveLogs()] log" + e);
                 }
-            }
-
-            // Send report to server
-            postData.Add("crashLogs", Compress(combinedCrashLogs));
-            if (postData.Count == 0) return;
-
-            try
-            {
-                HttpContent content = new FormUrlEncodedContent(postData);
-                _ = Client.PostAsync("https://tcno.co/Projects/AccSwitcher/api/crash/index.php", content);
-            }
-            catch (Exception e)
-            {
-                File.WriteAllText($"CrashLogs\\CrashLogUploadErr-{DateTime.Now:dd-MM-yy_hh-mm-ss.fff}.txt", Globals.GetEnglishError(e));
             }
         }
 

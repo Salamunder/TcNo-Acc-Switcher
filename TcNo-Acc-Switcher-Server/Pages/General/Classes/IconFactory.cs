@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -19,6 +19,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.Versioning;
+using System.Security.Permissions;
 using ImageMagick;
 using SkiaSharp;
 using Svg.Skia;
@@ -99,6 +100,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.General.Classes
             }
         }
 
+        [SupportedOSPlatform("windows")]
         private static void ThrowForInvalidPng(IEnumerable<Bitmap> images)
         {
             Globals.DebugWriteLine(@"[Func:General\Classes\Shortcut.ThrowForInvalidPng]");

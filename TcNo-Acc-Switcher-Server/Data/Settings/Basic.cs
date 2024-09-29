@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -68,7 +68,7 @@ namespace TcNo_Acc_Switcher_Server.Data.Settings
 
                     BuildContextMenu();
 
-                    _instance._desktopShortcut = Shortcut.CheckShortcuts(CurrentPlatform.FullName);
+                    _instance._desktopShortcut = Shortcut.CheckShortcuts(CurrentPlatform.SafeName);
                     AppData.InitializedClasses.Basic = true;
 
                     _instance._currentlyModifying = false;
@@ -326,7 +326,7 @@ namespace TcNo_Acc_Switcher_Server.Data.Settings
             FolderPath = CurrentPlatform.DefaultFolderPath;
             Admin = false;
             TrayAccNumber = 3;
-            DesktopShortcut = Shortcut.CheckShortcuts(CurrentPlatform.FullName);
+            DesktopShortcut = Shortcut.CheckShortcuts(CurrentPlatform.SafeName);
 
             SaveSettings();
         }

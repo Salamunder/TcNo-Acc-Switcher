@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -172,7 +172,6 @@ namespace TcNo_Acc_Switcher_Globals
                 //To display an error notification, the main program needs to be started as that's the Windows client. This is a cross-platform compatible binary. Adding the Presentation DLL causes issues.
                 File.WriteAllText("LastError.txt",
                     "Fatal error occurred!" + Environment.NewLine +
-                    "This crashlog will be automatically submitted next launch." + Environment.NewLine +
                     Environment.NewLine + "Error: " + e.ExceptionObject);
 
                 // Reset language

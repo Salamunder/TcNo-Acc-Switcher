@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -155,7 +155,8 @@ namespace TcNo_Acc_Switcher_Server.Data
 
                     // Handle account image
                     account.ImagePath = GetImgPath(platform, str).Replace("%", "%25");
-                    var actualImagePath = Path.Join("wwwroot\\", GetImgPath(platform, str));
+                    var actualImagePath = Path.Join("wwwroot", GetImgPath(platform, str));
+
                     if (!File.Exists(actualImagePath))
                     {
                         // Make sure the directory exists
@@ -202,9 +203,10 @@ namespace TcNo_Acc_Switcher_Server.Data
         /// <returns>Image path</returns>
         private static string GetImgPath(string platform, string user)
         {
-            var imgPath = $"\\img\\profiles\\{platform.ToLowerInvariant()}\\{Globals.GetCleanFilePath(user.Replace("#", "-"))}";
+            var imgPath = $"img\\profiles\\{platform.ToLowerInvariant()}\\{Globals.GetCleanFilePath(user.Replace("#", "-"))}";
             if (File.Exists("wwwroot\\" + imgPath + ".png")) return imgPath + ".png";
-            return imgPath + ".jpg";
+            if (File.Exists("wwwroot\\" + imgPath + ".jpg")) return imgPath + ".jpg";
+            return "\\img\\BasicDefault.png";
         }
         #endregion
     }

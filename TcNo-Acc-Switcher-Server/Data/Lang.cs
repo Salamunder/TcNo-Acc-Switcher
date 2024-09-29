@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -62,7 +62,7 @@ namespace TcNo_Acc_Switcher_Server.Data
         /// <summary>
         /// Get a string
         /// </summary>
-        public string this[string key] => Strings.ContainsKey(key) ? Strings[key] : key;
+        public string this[string key] => Strings.ContainsKey(key) ? Strings[key].Trim() : key;
 
         /// <summary>
         /// Get a string, and replace variables
@@ -89,7 +89,7 @@ namespace TcNo_Acc_Switcher_Server.Data
                             if (val is int) val = val.ToString();
                             s = s.Replace($"{{{pi.Name}}}", (string)val);
                         }
-                    return s;
+                    return s.Trim();
                 }
                 catch (NullReferenceException e)
                 {

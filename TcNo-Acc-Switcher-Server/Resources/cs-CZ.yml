@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Zobrazit jméno účtu [ne jméno přítele]
 Steam_CheckVac: Zkontrolovat stav VAC účtu
 Steam_OverrideDefaultState: "Přepsat výchozí stav přihlášení:"
 Steam_StartSilent: "Otevřete páru na přepínač zásobníku úloh (spusťte páru pomocí „- Silent“ (Tichý))"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Použít staré uživatelské rozhraní ve službě Steam (-vgui)"
+Steam_CollectInfo: Sbírejte profilové obrázky a stav zákazu VAC ze služby Steam
 Button_AddNew: Přidat nový
 Button_SaveCurrent: Uložit aktuální
 Button_SaveFile: Uložit soubor
@@ -30,6 +31,7 @@ Button_OpenBackup: Otevřete složku Záloh
 Button_Back: Zpět
 Button_RestartAdmin: Restartovat jako správce
 Button_SetPassword: Nastavit heslo aplikace
+Settings_SteamCollectInfo: Sbírejte profilový obrázek služby Steam a stav VAC ze služby Steam
 Settings_Shortcut: ' Přidat zástupce {platform} přepínače na plochu'
 Settings_Admin: Spustit {platform} jako správce
 Settings_ImageExpiry: 'Dny před vypršením platnosti profilových obrázků:'
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Zakázané platformy. Kliknutím je povolíte.
 Settings_ExtraPlatformsEnabled: Viditelné platformy. Kliknutím je zakážete.
 Settings_RTL: Zobrazit text zprava doleva
 Settings_CollectStats: Shromažďovat statistiky
-Settings_ShareStats: Sdílejte statistiky anonymně (doporučeno)
+Settings_ShareStats: Anonymní sdílení statistik (doporučeno)
 Settings_DiscordRpc: Přítomnost bohatá na diskord (RPC)
 Settings_DiscordRpcShare: Sdílet celkové přepínače
 Settings_ViewStats: Zobrazit statistiky
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Nastavit pozadí]'
 Settings_ThemeOpenFolder: '[Otevřít složku vzhledů]'
 Settings_Protocol: 'Povolit tcno:\\ protokol (doporučeno)'
 Settings_StartCentered: Spustit program ve středu obrazovky
+Settings_OfflineMode: Režim offline (žádná síťová aktivita)
 Settings_WindowsAccent: Použí barvu motivu Windows
 Settings_HelpTranslate: "[Pomozte s překladem]"
 Settings_ViewTranslators: "[Titulky]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Pokročilé) Nastavení vykreslovacího motoru:
 Settings_Header_ClosingMethod: "(Pokročilé) Nastavte metodu na zavření {platform}"
 Settings_Header_StartingMethod: "(Pokročilé) Nastavte metodu na začátek {platform}"
 Settings_AutoStart: "Automaticky spustit {platform} při přepnutí účtu"
+Settings_ShowSteamSwitcher: "Zobrazit přepínač účtů Steamu (NEPOUŽÍVEJTE jej, jinak by mohl přerušit přepínač účtů TcNo)"
 Settings_NoPlatforms: Momentálně nejsou povoleny žádné platformy. Zaškrtněte prosím níže volitelné platformy, abyste je povolili, nebo zrušte zaškrtnutí zakázaných platforem.
 Settings_MinimizeOnSwitch: Minimalizovat přepínač při přepínání účtu
 Settings_ShowShortNotes: Náhled poznámky pod uživatelským jménem
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Zastavte ostatní uživatele pomocí přepínače:
 PreviewCss: Náhled CSS
 Settings_PreviewCss: Toto je stránka s náhledem CSS. Můžete si prohlédnout některé prvky, které se v programu objeví, a zjistit, jak vypadají s vaším motivem. Tato stránka je užitečná pro ty, kteří vytvářejí témata!
 Settings_PreviewCssHeader: Náhledová Stránka CSS
+Settings_AutoUpdatePlatforms: Automaticky aktualizovat seznam platforem
+Settings_CheckForUpdates: Při spuštění zkontrolujte aktualizace
 Stats_Disabled: "Sběr statistik je zakázán."
 Stats_InDepth: Podrobné členění statistik
 Stats_ShareEnabled: "Tyto statistiky jsou sdíleny anonymně a přidá se k celkové <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">zde</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Obnovit vybrané
 Ignored_RemoveAccounts: Odebrat účty ze seznamu ignorovaných
 Ignored_Description: Pokud jste dříve účet „ignorovali“, můžete je zobrazit znovu zde
 Ignored_Stop: Zastavit ignorování vybraných
+Toast_UpdatesDownloading: Aktualizace se stahují na pozadí. Program můžete nadále používat.
+Toast_UpdatesDownloaded: Stahování aktualizací bylo dokončeno. Chcete-li zahájit aktualizaci, zavřete tuto aplikaci.
 Toast_DataLocationCopying: (1/2) Kopírování stávajících souborů do nové složky uživatelských dat!
 Toast_DataLocationNotCopying: (1/2) Složka již obsahuje soubory! Nebudou migrovat uživatelská data.
 Toast_DataLocationSet: (2/2) Chcete-li použít novou složku, restartujte přepínač účtů!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Nelze najít platné ID páry.
 Toast_FailedUpdateCheck: Nepodařilo se zkontrolovat aktualizace
 Toast_UpdateVerifyFail: Nelze ověřit soubory aktualizátoru. Stáhněte si nejnovější verzi a nahraďte soubory ve svém adresáři.
 Toast_StartedGame: Spuštěn {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Nelze získat informace XML pro {steamId}. Další podrobnosti naleznete v protokolu.
 Toast_Steam_VacCleared: Status VAC pro účty byl vymazán
 Toast_Steam_CantDeleteVacCache: Nelze odstranit 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: Nelze najít složku dat služby Steam\\userdata
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Zdá se, že klíč API služby Steam Web je neplatný
 Toast_DownloadingProfileData: Stahování dat profilu
 Toast_PasswordChanged: Heslo změněno
 Toast_JsonFailModify: Nepodařilo se upravit soubor JSON. Viz protokol.
+Toast_DifferentClosingMethod: "'Uzavírací metoda' se liší od výchozího nastavení. Pokud jsou hry zavírány a více zkontrolujte, zda změna této volby pomůže. Výchozí: {defaultMethod}, Aktuální: {currentMethod}"
+Toast_NameEmpty: Uživatelské jméno nesmí být prázdné (a nemůže obsahovat pouze mezery)
+Toast_NewPlatforms: "Aktualizováno! Přidány nové platformy: {listOfNames}. Kliknutím zavřete."
+Toast_FoundExeViaShortcut: "Našli jsme nainstalovanou cestu ze zástupce nabídky Start. Ověřte prosím jeho umístění kliknutím na Nastavení. Kliknutím zavřete."
 Modal_Crowdin_Header: Crowdinští překladatelé
 Modal_Crowdin_Info: "Zde jsou všichni, kteří pomohli přeložit tento software.<br>překladu hodně pomohli uživatelé s jazyky vedle sebe (role korektora)."
-Modal_Info_Creator: Vytvořeno společností TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Vytvořeno společností TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Verze
 Modal_Info_ViewGitHub: Zobrazit na GitHubu
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Podpora přes Patreon
+Modal_Info_ViewKofi: Podpora přes Ko-Fi
 Modal_Info_BugReport: Hlášení chyb/Žádost o funkce
 Modal_Info_VisitSite: Navštivte tcno.co
 Modal_Info_Disclaimer: Prohlášení
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Ověř, zda splňuješ minimální doporučené požadavky
 Installer_VerifyAlready: "Vypadá to, že je všechno nainstalované. Ověř, zda splňuješ minimální doporučené požadavky:"
 Installer_Complete: To by mělo být vše. Hlavní program, TcNo-Acc-Switcher.exe, se spustí automaticky.
 Installer_Complete2: "Pokud to nefunguje, postupujte podle pokynů k instalaci, zde: {link}"
-Global_FatalNext: "Došlo k závažné chybě! Tento protokol selhání bude automaticky odeslán při příštím spuštění."
 Tray_Error: Chyba v systémové liště
 Tray_NoAccs: "Nebyly nalezeny žádné účty.\nZkuste nejprve změnit účty, nebo vyhledejte 'Tray_Users.json'"
 Tray_Switch: "Přepnout na: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Celkem aktualizací nalezeno: {x}"
 Updater_TotalSize: "Celková velikost: {size}"
 Updater_AwaitingUser: Čekání na zadání uživatelem...
 Updater_UpToDate: "Aplikace aktuální.\n:)"
-Updater_FailedDecode: To je nejpravděpodobněji způsobeno mnou (TechNobo) vydáváním aktualizace s chybou, která porušila soubor .json aktualizace. Dejte mi vědět :)
+Updater_FailedDecode: To je nejpravděpodobněji způsobeno mnou (TroubleChute) vydáváním aktualizace s chybou, která porušila soubor .json aktualizace. Dejte mi vědět :)
 Updater_FailedDecodeTitle: Aktualizace seznamu se nezdařila
 Updater_Extracting: Extrahování záplatových souborů
 Updater_Applying: Aplikuje se záplata...
@@ -461,6 +472,7 @@ DeletingFile: "Odstraňuji: {file}"
 DeletingFolder: "Odstraňování složky: "
 CouldntDeleteX: "CHYBA: NELZE SMAZAT: {x}"
 CouldntDeleteUndefined: "CHYBA: NELZE ODSTRANIT NEDEFINOVANÝ SOUBOR"
+CouldntModifyX: "Nelze upravit {file}. Chyba oprávnění k souboru nebo se soubor používá."
 Prompt_RestartAsAdmin: "<h3><bold>Tento program bude restartován jako Správce</bold></h3><p>stiskněte tlačítko \"Ano\" v UAC při výzvě správce.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Chystáte se zapomenout účet!</h3> <h4>Co to znamená?</h4> <p>- Steam již nebude mít účet uvedený v režimu Big Picture a nebude si pamatovat heslo.<br/> – Přepínač účtů TcNo již také nebude zobrazovat účet, dokud se znovu nepřihlásí prostřednictvím služby Steam.</p> <p>Váš účet zůstane nedotčen. V tomto počítači je to prostě zapomenuto.</p><h4>Rozumíte?</h4>

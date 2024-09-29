@@ -30,7 +30,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
         public static void LoadProfiles()
         {
             Globals.DebugWriteLine(@"[Func:Basic\BasicSwitcherFuncs.LoadProfiles] Loading Basic profiles for: " + CurrentPlatform.FullName);
-            _ = GenericFunctions.GenericLoadAccounts(CurrentPlatform.FullName, true);
+            _ = GenericFunctions.GenericLoadAccounts(CurrentPlatform.SafeName, true);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                         return Globals.GetSha256HashString(bytes);
                     default:
                         Globals.WriteToLog($"REG was read, and was returned something that is not a string or byte array! {accFile}.");
-                        Globals.WriteToLog("Check to see what is expected here and report to TechNobo.");
+                        Globals.WriteToLog("Check to see what is expected here and report to TroubleChute.");
                         return res;
                 }
             }
@@ -449,6 +449,13 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
 
                     var regValue = regJson[accFile] ?? "";
 
+                    // If not present, but not required: Skip
+                    if (regValue == "" && !CurrentPlatform.AllFilesRequired)
+                    {
+                        Globals.WriteToLog($"Attempted to copy: {accFile}, but no value was set. Skipping. This may cause an error in switching, but may also not be important!");
+                        continue;
+                    }
+
                     if (!Globals.SetRegistryKey(accFile[4..], regValue)) // Remove "REG:" and read data
                     {
                         _ = GeneralInvocableFuncs.ShowToast("error", Lang["Toast_RegFailWrite"], Lang["Error"], "toastarea");
@@ -504,6 +511,21 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
 
             return true;
         }
+        public static string GetLargestFile(string directory, string extension = "")
+        {
+            if (!Directory.Exists(directory))
+                return "";
+
+            var searchPattern = string.IsNullOrEmpty(extension) ? "*" : $"*{extension}";
+
+            var files = Directory.GetFiles(directory, searchPattern)
+                                 .Select(f => new FileInfo(f))
+                                 .OrderByDescending(f => f.Length)
+                                 .FirstOrDefault();
+
+            return files?.FullName ?? "";
+        }
+
 
         [SupportedOSPlatform("windows")]
         public static bool BasicAddCurrent(string accName)
@@ -566,12 +588,12 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                 {
                     var trimmedName = accFile[4..];
 
-                    if (ReadRegistryKeyWithErrors(trimmedName, out var response)) // Remove "REG:                    " and read data
+                    if (ReadRegistryKeyWithErrors(trimmedName, out var response, CurrentPlatform.AllFilesRequired)) // Remove "REG:                    " and read data
                     {
                         // Write registry value to provided file
                         if (response is string s) regJson[accFile] = s;
                         else if (response is byte[] ba) regJson[accFile] = "(hex) " + Globals.ByteArrayToString(ba);
-                        else Globals.WriteToLog($"Unexpected registry type encountered (2)! Report to TechNobo. {response.GetType()}");
+                        else Globals.WriteToLog($"Unexpected registry type encountered (2)! Report to TroubleChute. {response.GetType()}");
                     }
                     continue;
                 }
@@ -612,8 +634,14 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                 if (HandleFileOrFolder(accFile, savedFile, localCachePath, false)) continue;
 
                 // Could not find file/folder
-                _ = GeneralInvocableFuncs.ShowToast("error", Lang["CouldNotFindX", new { x = accFile }], Lang["DirectoryNotFound"], "toastarea");
-                return false;
+                if (CurrentPlatform.AllFilesRequired)
+                {
+                    _ = GeneralInvocableFuncs.ShowToast("error", Lang["CouldNotFindX", new { x = accFile }], Lang["DirectoryNotFound"], "toastarea");
+                    return false;
+                } else
+                {
+                    Globals.WriteToLog($"[BasicAddCurrent] Attempted to copy ({accFile}, {savedFile}, {localCachePath}), but failed due to file not existing. All files not explicitly required, switching may have worked anyway.");
+                }
 
                 // TODO: Run some action that can be specified in the Platforms.json file
                 // Add for the start, and end of this function -- To allow 'plugins'?
@@ -634,20 +662,46 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
 
                 _ = Directory.CreateDirectory(Path.Join(GeneralFuncs.WwwRoot(), $"\\img\\profiles\\{CurrentPlatform.SafeName}"));
                 var profileImg = Path.Join(GeneralFuncs.WwwRoot(), $"\\img\\profiles\\{CurrentPlatform.SafeName}\\{Globals.GetCleanFilePath(uniqueId)}.jpg");
+
                 if (!File.Exists(profileImg))
                 {
                     var platformImgPath = "\\img\\platform\\" + CurrentPlatform.SafeName + "Default.png";
 
-                    // Copy in profile picture (if found) from Regex search of files (if defined)
+                    // Handle ProfilePicFromFile and ProfilePicRegex
                     if (CurrentPlatform.ProfilePicFromFile != "" && CurrentPlatform.ProfilePicRegex != "")
                     {
                         var res = Globals.GetCleanFilePath(RegexSearchFileOrFolder(CurrentPlatform.ProfilePicFromFile, CurrentPlatform.ProfilePicRegex));
                         var sourcePath = res;
+
                         if (CurrentPlatform.ProfilePicPath != "")
                         {
-                            // The regex result should be considered a filename.
-                            // Sub in %FileName% from res, and %UniqueId% from uniqueId
-                            sourcePath = ExpandEnvironmentVariables(CurrentPlatform.ProfilePicPath.Replace("%FileName%", res).Replace("%UniqueId", uniqueId));
+                            // Check if %LARGEST% is followed by an extension
+                            var largestPlaceholder = "%LARGEST%";
+                            var extension = "";
+                            var path = CurrentPlatform.ProfilePicPath;
+
+                            if (path.Contains(largestPlaceholder))
+                            {
+                                var idx = path.IndexOf(largestPlaceholder) + largestPlaceholder.Length;
+
+                                if (idx < path.Length && path[idx] == '.') // Check if there's an extension after %LARGEST%
+                                {
+                                    extension = Path.GetExtension(path.Substring(idx));
+                                }
+
+                                // Find the largest file with the optional extension in the directory
+                                var largestFile = GetLargestFile(Path.GetDirectoryName(path), extension);
+
+                                // Replace placeholders with actual values
+                                sourcePath = ExpandEnvironmentVariables(path.Replace("%FileName%", res)
+                                                                            .Replace("%UniqueId%", uniqueId)
+                                                                            .Replace(largestPlaceholder + extension, Path.GetFileName(largestFile)));
+                            }
+                            else
+                            {
+                                // If %LARGEST% is not present, perform normal placeholder replacement
+                                sourcePath = ExpandEnvironmentVariables(path.Replace("%FileName%", res).Replace("%UniqueId%", uniqueId));
+                            }
                         }
 
                         if (res != "" && File.Exists(sourcePath))
@@ -656,13 +710,38 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                     }
                     else if (CurrentPlatform.ProfilePicPath != "")
                     {
-                        var sourcePath = ExpandEnvironmentVariables(Globals.GetCleanFilePath(CurrentPlatform.ProfilePicPath.Replace("%UniqueId", uniqueId))) ?? "";
+                        var extension = "";
+                        var path = CurrentPlatform.ProfilePicPath;
+                        var sourcePath = ExpandEnvironmentVariables(path.Replace("%UniqueId%", uniqueId));
+
+                        if (sourcePath.Contains("%LARGEST%"))
+                        {
+                            var largestPlaceholder = "%LARGEST%";
+                            var idx = sourcePath.IndexOf(largestPlaceholder) + largestPlaceholder.Length;
+
+                            // Check if an extension follows %LARGEST%
+                            if (idx < sourcePath.Length && sourcePath[idx] == '.')
+                            {
+                                extension = Path.GetExtension(sourcePath.Substring(idx));
+                            }
+
+                            // Get the directory where to look for the largest file
+                            var directory = Path.GetDirectoryName(sourcePath);
+
+                            // Find the largest file in the directory with the given extension (if any)
+                            var largestFile = GetLargestFile(directory, extension);
+
+                            // Replace %LARGEST% in the source path with the found largest file
+                            sourcePath = sourcePath.Replace(largestPlaceholder + extension, Path.GetFileName(largestFile));
+                        }
+
                         if (sourcePath != "" && File.Exists(sourcePath))
                             if (!Globals.CopyFile(sourcePath, profileImg))
                                 Globals.WriteToLog("Tried to save profile picture from path (ProfilePicPath method)");
                     }
 
-                    // Else (If file couldn't be saved, or not found -> Default.
+
+                    // Fallback to default image if no file was found or copied
                     if (!File.Exists(profileImg))
                     {
                         var currentPlatformImgPath = Path.Join(GeneralFuncs.WwwRoot(), platformImgPath);
@@ -672,6 +751,8 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                     }
                 }
             }
+
+
 
             AppData.ActiveNavMan?.NavigateTo(
                 $"/Basic/?cacheReload&toast_type=success&toast_title={Uri.EscapeDataString(Lang["Success"])}&toast_message={Uri.EscapeDataString(Lang["Toast_SavedItem", new {item = accName}])}", true);
@@ -780,8 +861,11 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                 if (imageIsUrl)
                 {
                     // Is url -> Download
-                    if (Globals.DownloadFile(specialProperties["image"], profileImg))
-                        hadSpecialProperties = "IMAGE|";
+                    if (!AppSettings.OfflineMode)
+                    {
+                        if (Globals.DownloadFile(specialProperties["image"], profileImg))
+                            hadSpecialProperties = "IMAGE|";
+                    }
                 }
                 else
                 {
@@ -798,7 +882,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
         {
             if (OperatingSystem.IsWindows() && CurrentPlatform.UniqueIdMethod is "REGKEY" && !string.IsNullOrEmpty(CurrentPlatform.UniqueIdFile))
             {
-                if (!ReadRegistryKeyWithErrors(CurrentPlatform.UniqueIdFile, out var r))
+                if (!ReadRegistryKeyWithErrors(CurrentPlatform.UniqueIdFile, out var r, true))
                     return "";
 
                 switch (r)
@@ -808,7 +892,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
                     case byte[]:
                         return Globals.GetSha256HashString(r);
                     default:
-                        Globals.WriteToLog($"Unexpected registry type encountered (1)! Report to TechNobo. {r.GetType()}");
+                        Globals.WriteToLog($"Unexpected registry type encountered (1)! Report to TroubleChute. {r.GetType()}");
                         return "";
                 }
             }
@@ -874,16 +958,18 @@ namespace TcNo_Acc_Switcher_Server.Pages.Basic
         }
 
         [SupportedOSPlatform("windows")]
-        private static bool ReadRegistryKeyWithErrors(string key, out dynamic value)
+        private static bool ReadRegistryKeyWithErrors(string key, out dynamic value, bool required = false)
         {
             value = Globals.ReadRegistryKey(key);
             switch (value)
             {
                 case "ERROR-NULL":
-                    _ = GeneralInvocableFuncs.ShowToast("error", Lang["Toast_AccountIdReg"], Lang["Error"], "toastarea");
+                    if (required) _ = GeneralInvocableFuncs.ShowToast("error", Lang["Toast_AccountIdReg"], Lang["Error"], "toastarea");
+                    else Globals.WriteToLog("Error reading registry key (NULL value): " + key + ". This may cause issues switching accounts (but may also not be important)");
                     return false;
                 case "ERROR-READ":
-                    _ = GeneralInvocableFuncs.ShowToast("error", Lang["Toast_RegFailRead"], Lang["Error"], "toastarea");
+                    if (required) _ = GeneralInvocableFuncs.ShowToast("error", Lang["Toast_RegFailRead"], Lang["Error"], "toastarea");
+                    else Globals.WriteToLog("Error reading registry key: " + key + ". This may cause issues switching accounts (but may also not be important)");
                     return false;
             }
 

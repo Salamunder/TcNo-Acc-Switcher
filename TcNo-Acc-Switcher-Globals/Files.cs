@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -93,6 +93,25 @@ namespace TcNo_Acc_Switcher_Globals
         #region FILES
 
         /// <summary>
+        /// Checks if a file is accessable with current permissions
+        /// </summary>
+        public static bool NeedsAdminForFileAccess(string filepath)
+        {
+            try
+            {
+                using FileStream fs = new(filepath, FileMode.Open);
+                return false;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// Expands custom environment variables.
         /// </summary>
         /// <param name="path"></param>
@@ -103,6 +122,7 @@ namespace TcNo_Acc_Switcher_Globals
             {
                 { "%TCNO_UserData%", Globals.UserDataFolder },
                 { "%TCNO_AppData%", Globals.AppDataFolder },
+                { "%Desktop%", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) },
                 { "%Documents%", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) },
                 { "%Music%", Environment.GetFolderPath(Environment.SpecialFolder.MyMusic) },
                 { "%Pictures%", Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) },
@@ -242,14 +262,15 @@ namespace TcNo_Acc_Switcher_Globals
 
             var i = 0;
             var dValue = (decimal)value;
-            while (Math.Round(dValue, decimalPlaces) >= 1000)
+            while (Math.Round(dValue, decimalPlaces) >= 1000 && i < SizeSuffixes.Length - 1)
             {
                 dValue /= 1024;
                 i++;
             }
 
-            return string.Format("{{0:n" + decimalPlaces + "}} {1}", dValue, SizeSuffixes[i]);
+            return string.Format("{0:n" + decimalPlaces + "} {1}", dValue, SizeSuffixes[i]);
         }
+
 
         public static bool IsDirectoryEmpty(string path)
         {
@@ -374,7 +395,7 @@ namespace TcNo_Acc_Switcher_Globals
         }
 
         /// <summary>
-        /// Recursively copy files and directories - With a filter for file  types
+        /// Recursively copy files and directories - With a filter for file types
         /// </summary>
         /// <param name="inputFolder">Folder to copy files recursively from</param>
         /// <param name="outputFolder">Destination folder</param>
@@ -488,6 +509,11 @@ namespace TcNo_Acc_Switcher_Globals
             return result;
         }
 
+        /// <summary>
+        /// Saves icon from specified shortcut.
+        /// </summary>
+        /// <param name="path">Path to icon file (lnk, url or exe)</param>
+        /// <param name="output">Path to save .ico</param>
         [SupportedOSPlatform("windows")]
         public static bool SaveIconFromFile(string path, string output)
         {
@@ -545,6 +571,37 @@ namespace TcNo_Acc_Switcher_Globals
             return true;
         }
 
+        /// <summary>
+        /// Gets and returns shortcut's Target
+        /// </summary>
+        /// <param name="shortcutPath">Path to .lnk shortcut file</param>
+        [SupportedOSPlatform("windows")]
+        public static string GetShortcutTarget(string shortcutPath = null)
+        {
+            if (string.IsNullOrEmpty(shortcutPath) || !File.Exists(shortcutPath))
+                return null;
+
+            if (!shortcutPath.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+                return null;
+
+            try
+            {
+                var shortcutInfo = Shortcut.ReadFromFile(shortcutPath);
+
+                string targetPath = shortcutInfo.LinkTargetIDList.Path;
+
+                if (!string.IsNullOrEmpty(targetPath))
+                    return targetPath;
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving shortcut target (Path: {shortcutPath}): {ex.Message}");
+                return null;
+            }
+        }
+
         // Consider this a fallback for when the image can not be extracted from shortcuts.
         // Will usually be Chrome, IE or any other logo - But could also just be a blank page.
         [SupportedOSPlatform("windows")]
@@ -594,6 +651,19 @@ namespace TcNo_Acc_Switcher_Globals
             }
 
             return true;
+        }
+        /// <summary>
+        /// Removes @import url("http..."); lines from text. For the Offline Mode.
+        /// </summary>
+        public static string RemoveHttpImports(string input)
+        {
+            string pattern = @"^\s*@import\s+url\(""http[^""]*""\);\s*$";
+
+            string result = Regex.Replace(input, pattern, "/* import removed in offline mode */", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+
+            result = Regex.Replace(result, @"^\s*$\n|\r", string.Empty, RegexOptions.Multiline);
+
+            return result;
         }
 
         // TODO: Use this newly added library to create shortcuts too

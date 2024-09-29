@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Visa kontonamn [not friend name]
 Steam_CheckVac: Kontrollera VAC status för kontot
 Steam_OverrideDefaultState: "Åsidosätt standardinloggningstillstånd:"
 Steam_StartSilent: "Öppna Ånga till aktivitetsfacket på strömbrytaren (Starta Ånga med \"-silent\")"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Använd det gamla användargränssnittet i Steam (-vgui)"
+Steam_CollectInfo: Samla profilbilder och VAC-förbudsstatus från Steam
 Button_AddNew: Lägg till ny
 Button_SaveCurrent: Spara aktuell
 Button_SaveFile: Spara fil
@@ -30,7 +31,8 @@ Button_OpenBackup: Öppna Säkerhetskopieringsmapp
 Button_Back: Tillbaka
 Button_RestartAdmin: Starta om som administratör
 Button_SetPassword: Ange applösenord
-Settings_Shortcut: ' {platform} Kortkommando för switcherskrivbord'
+Settings_SteamCollectInfo: Samla Steam-profilbild och VAC-status från Steam
+Settings_Shortcut: '{platform} Kortkommando för switcherskrivbord'
 Settings_Admin: Kör {platform} som administratör
 Settings_ImageExpiry: 'Dagar innan profilbilder löper ut:'
 Settings_SteamAPIKey: "Steam Web API-nyckel (tillval)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Inaktiverade plattformar. Klicka för att aktiv
 Settings_ExtraPlatformsEnabled: Synliga plattformar. Klicka för att inaktivera dem.
 Settings_RTL: Visa text som höger till vänster
 Settings_CollectStats: Samla in statistik
-Settings_ShareStats: Dela statistik irriterande (rekommenderas)
+Settings_ShareStats: Dela statistik anonymt (rekommenderas)
 Settings_DiscordRpc: Diskordrik närvaro (RPC)
 Settings_DiscordRpcShare: Andel totalswitchar
 Settings_ViewStats: Visa statistik
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Ange bakgrund]'
 Settings_ThemeOpenFolder: '[Öppna temamapp]'
 Settings_Protocol: 'Aktivera tcno:\\ protokoll (rekommenderas)'
 Settings_StartCentered: Starta programmet centrerat
+Settings_OfflineMode: Offlineläge (ingen nätverksaktivitet)
 Settings_WindowsAccent: Använd Windows accentfärg
 Settings_HelpTranslate: "[Help translate]"
 Settings_ViewTranslators: "[Tack till]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Avancerat) Ställ in återgivningsmotor:"
 Settings_Header_ClosingMethod: "(Avancerat) Ställ in metoden att stänga {platform}"
 Settings_Header_StartingMethod: "(Avancerat) Ställ in metod för att starta {platform}"
 Settings_AutoStart: "Starta automatiskt {platform} på kontoomkopplaren"
+Settings_ShowSteamSwitcher: "Visa Steams kontoväxlare (Använd INTE detta, annars kan det gå sönder TcNo Account Switcher)"
 Settings_NoPlatforms: Det finns för närvarande inga plattformar aktiverade. Vänligen kryssa för valfria plattformar nedan för att aktivera dem, eller avmarkera inaktiverade plattformar.
 Settings_MinimizeOnSwitch: Minimera omkopplaren på kontoomkopplaren
 Settings_ShowShortNotes: Notera förhandsgranskning under användarnamn
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Stoppa andra från att använda omkopplaren:"
 PreviewCss: Förhandsgranska CSS
 Settings_PreviewCss: Detta är CSS förhandsgranskningssidan. Du kan se några element som dyker upp i programmet och se hur de ser ut med ditt tema. Den här sidan är användbar för dem som skapar teman!
 Settings_PreviewCssHeader: CSS förhandsgranskningssida
+Settings_AutoUpdatePlatforms: Uppdatera plattformslistan automatiskt
+Settings_CheckForUpdates: Sök efter uppdateringar vid lansering
 Stats_Disabled: "Statistikinsamlingen är inaktiverad."
 Stats_InDepth: Fördelning av fördjupad statistik
 Stats_ShareEnabled: "Denna statistik delas anonymt och kommer att lägga till den totala <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">här</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Återställ vald
 Ignored_RemoveAccounts: Ta bort konton från ignoreringslistan
 Ignored_Description: Om du tidigare "ignorerat" ett konto kan du visa dem igen här
 Ignored_Stop: Sluta ignorera valda
+Toast_UpdatesDownloading: Uppdateringar laddas ner i bakgrunden. Du kan fortsätta att använda programmet.
+Toast_UpdatesDownloaded: Uppdateringar har laddats ned. Stäng den här appen för att börja uppdatera.
 Toast_DataLocationCopying: (1/2) Kopierar befintliga filer till den nya användardatamappen!
 Toast_DataLocationNotCopying: (1/2) Mappen har redan filer! Kommer inte att migrera användardata.
 Toast_DataLocationSet: (2/2) Starta om kontoväxlaren för att använda den nya mappen!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Det gick inte att hitta ett giltigt ång-ID.
 Toast_FailedUpdateCheck: Det gick inte att söka efter uppdateringar
 Toast_UpdateVerifyFail: Kan inte verifiera uppdateringsfiler. Ladda ner den senaste versionen och ersätt filer i din katalog.
 Toast_StartedGame: Startade {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Det gick inte att hämta XML-information för {steamId}. Se logg för mer information.
 Toast_Steam_VacCleared: VAC-status för konton har rensats
 Toast_Steam_CantDeleteVacCache: Kunde inte ta bort 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: Kunde inte hitta mappen Steam\\ userdata
@@ -241,9 +249,13 @@ Toast_SteamWebKeyInvalid: Steam Web API-nyckel verkar vara ogiltig. Ställ in en
 Toast_DownloadingProfileData: Hämtar profildata
 Toast_PasswordChanged: Lösenordet har ändrats
 Toast_JsonFailModify: Det gick inte att ändra JSON-filen. Se logg.
+Toast_DifferentClosingMethod: "'Avslutningsmetod' är annorlunda än standard. Om spelen stängs och fler kontrollera om ändringen av detta alternativ hjälper. Standard: {defaultMethod}, Aktuellt: {currentMethod}"
+Toast_NameEmpty: Användarnamnet får inte vara tomt (och får inte bara innehålla mellanslag)
+Toast_NewPlatforms: "Uppdaterad! Nya plattformar tillagda: {listOfNames}. Klicka för att avvisa."
+Toast_FoundExeViaShortcut: "Vi hittade den installerade sökvägen från en genväg på startmenyn. Vänligen verifiera dess plats genom att klicka på Inställningar nu. Klicka för att avvisa."
 Modal_Crowdin_Header: Crowdin-översättare
 Modal_Crowdin_Info: "Här är alla som hjälpte till att översätta denna programvara.<br>Användare med språk bredvid sig hjälpte mycket vid översättningen (korrekturläsarroll)."
-Modal_Info_Creator: Skapad av TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Skapad av TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Version
 Modal_Info_ViewGitHub: Visa på GitHub
 Modal_Info_ViewPatreon: Support via Patreon
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Kontrollera att du uppfyller de rekommenderade minimikrave
 Installer_VerifyAlready: "Det ser ut som att allt är installerat. Kontrollera att du uppfyller de rekommenderade minimikraven:"
 Installer_Complete: Det borde vara allt. Huvudprogrammet, TcNo-Acc-Switcher.exe, körs automatiskt.
 Installer_Complete2: "Om det inte fungerar, se installationsanvisningarna, här: {link}"
-Global_FatalNext: "Ett fatalt fel uppstod! Denna kraschlogg skickas automatiskt in nästa gång den startas."
 Tray_Error: Brickfel
 Tray_NoAccs: "Inga konton hittades.\nFörsök att byta konton först, eller leta reda på \"Tray_Users.json\""
 Tray_Switch: "Växla till: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Totalt antal uppdateringar hittades: {x}"
 Updater_TotalSize: "Total storlek: {size}"
 Updater_AwaitingUser: Väntar på användarinmatning...
 Updater_UpToDate: "Du är uppdaterad.\n:)"
-Updater_FailedDecode: Detta beror troligen på att jag (TechNobo) trycker på en uppdatering och gör ett skrivfel som bröt .json uppdateringsfilen. Tveka inte att kontakta mig :)
+Updater_FailedDecode: Detta beror troligen på att jag (TroubleChute) trycker på en uppdatering och gör ett skrivfel som bröt .json uppdateringsfilen. Tveka inte att kontakta mig :)
 Updater_FailedDecodeTitle: Det gick inte att avkoda uppdateringslistan
 Updater_Extracting: Extrahera patchfiler
 Updater_Applying: Använder programfix...
@@ -461,6 +472,7 @@ DeletingFile: "Raderar: {file}"
 DeletingFolder: "Ta bort mapp: "
 CouldntDeleteX: "FEL: KUNDE INTE RADERA: {x}"
 CouldntDeleteUndefined: "FEL: KUNDE INTE TA BORT ODEFINIERAD FIL"
+CouldntModifyX: "Kunde inte ändra {file}. Filbehörighetsfel, eller filen används."
 Prompt_RestartAsAdmin: "<h3><bold>Detta program kommer att starta om som Admin</bold></h3><p>Tryck på \"Ja\" i UAC när du uppmanas till admin.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Du håller på att glömma ett konto!</h3> <h4>Vad betyder detta?</h4> <p>- Steam kommer inte längre att ha kontot listat i Big Picture Mode och kommer inte ihåg lösenordet.<br/> - TcNo Account Switcher kommer inte längre att visa kontot förrän det har loggats in igen via Steam.</p> <p>Ditt konto kommer att förbli orört. Det är bara glömt på den här datorn.</p><h4>Förstår du?</h4>

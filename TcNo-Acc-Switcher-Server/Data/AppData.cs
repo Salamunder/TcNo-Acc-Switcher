@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -80,6 +80,11 @@ namespace TcNo_Acc_Switcher_Server.Data
             //DiscordClient.OnPresenceUpdate += (sender, e) => { Console.WriteLine("Received Update! {0}", e.Presence); };
         }
 
+        public static void OfflineMode_Toggle()
+        {
+            RefreshDiscordPresenceAsync();
+        }
+
         public static void RefreshDiscordPresenceAsync()
         {
             var dThread = new Thread(RefreshDiscordPresence);
@@ -90,7 +95,7 @@ namespace TcNo_Acc_Switcher_Server.Data
         {
             Thread.Sleep(1000);
 
-            if (!AppSettings.DiscordRpc)
+            if (AppSettings.OfflineMode || !AppSettings.DiscordRpc)
             {
                 if (DiscordClient != null)
                 {
@@ -241,6 +246,9 @@ namespace TcNo_Acc_Switcher_Server.Data
         /// </summary>
         private bool _tcNoClientApp;
         [JsonIgnore] public static bool TcNoClientApp { get => Instance._tcNoClientApp; set => Instance._tcNoClientApp = value; }
+
+        private bool _updatePending = false;
+        [JsonIgnore] public static bool UpdatePending { get => Instance._updatePending; set => Instance._updatePending = value; }
 
         #region JS_INTEROP
         public static bool InvokeVoidAsync(string func)

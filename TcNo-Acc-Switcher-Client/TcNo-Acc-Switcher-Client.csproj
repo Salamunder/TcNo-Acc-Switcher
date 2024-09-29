@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <RootNamespace>TcNo_Acc_Switcher_Client</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <Version>4.1.0</Version>
-    <Authors>TechNobo (Wesley Pyburn)</Authors>
+    <Version>2024.08.30.01</Version>
+    <Authors>TroubleChute (Wesley Pyburn)</Authors>
     <Product>TcNo Account Switcher</Product>
-    <Copyright>Copyright © TechNobo (Wesley Pyburn) 2019-2023</Copyright>
+    <Copyright>Copyright © TroubleChute (Wesley Pyburn) 2019-2024</Copyright>
     <PackageProjectUrl>https://github.com/TcNobo/TcNo-Acc-Switcher</PackageProjectUrl>
     <PackageIcon>TcNoAccSw-Icon-100x100.png</PackageIcon>
     <RepositoryUrl>https://github.com/TcNobo/TcNo-Acc-Switcher</RepositoryUrl>
     <AssemblyName>TcNo-Acc-Switcher</AssemblyName>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>2024.08.30.01</AssemblyVersion>
     <Platforms>x64</Platforms>
     <SignAssembly>false</SignAssembly>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,10 +24,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefSharp.Common" Version="117.2.20" />
-    <PackageReference Include="CefSharp.Wpf.NETCore" Version="114.2.100" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
-    <PackageReference Include="vcpkg.C.vcpkg" Version="1.0.0" />
+    <PackageReference Include="CefSharp.Common" Version="127.3.50" />
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="127.3.50">
+     <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2651.64" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,7 +58,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release (&#xD;&#xA; call &quot;$(ProjectDir)\PostBuild.bat&quot;&#xD;&#xA;) else (&#xD;&#xA; call &quot;$(ProjectDir)\PostBuild-Debug.bat&quot;&#xD;&#xA;)" IgnoreExitCode="true" />
+    <Exec Command="PostBuild.bat $(Configuration) $(ProjectDir)" IgnoreExitCode="true" />
   </Target>
 
   <ItemGroup>
@@ -67,15 +68,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="114.2.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-arm64" Version="127.3.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="114.2.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x64" Version="127.3.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="114.2.10" />
+    <PackageReference Update="chromiumembeddedframework.runtime.win-x86" Version="127.3.5" />
   </ItemGroup>
 
 </Project>

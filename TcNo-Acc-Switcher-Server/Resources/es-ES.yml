@@ -7,10 +7,11 @@ Steam_ShowLastLogin: Última hora de inicio de sesión
 Steam_ShowLimited: Estado Limitado
 Steam_ShowAccUsername: Usuario de la cuenta
 Steam_Tray_AccountName: Mostrar nombre de la cuenta [no nombre de amigo]
-Steam_CheckVac: Estado de VAC de cuenta de cheques
+Steam_CheckVac: Compruebe el estado VAC de la cuenta
 Steam_OverrideDefaultState: "Sobrescribir estado de inicio de sesión predeterminado:"
 Steam_StartSilent: "Abra Steam en la bandeja de tareas al cambiar (Inicia Steam con '-silencio')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Usar la interfaz de usuario antigua en Steam (-vgui)"
+Steam_CollectInfo: Recopila imágenes de perfil y estados de prohibición de VAC de Steam
 Button_AddNew: Añadir Nuevo
 Button_SaveCurrent: Guardar actual
 Button_SaveFile: Guardar archivo
@@ -30,7 +31,8 @@ Button_OpenBackup: Abrir carpeta de copia de seguridad
 Button_Back: Atrás
 Button_RestartAdmin: Reiniciar como administrador
 Button_SetPassword: Establecer contraseña de aplicación
-Settings_Shortcut: ' {platform} Switcher acceso directo a escritorio'
+Settings_SteamCollectInfo: Recopila la imagen de perfil de Steam y el estado de VAC desde Steam
+Settings_Shortcut: '{platform} Switcher acceso directo a escritorio'
 Settings_Admin: Ejecutar {platform} como administrador
 Settings_ImageExpiry: 'Días antes de que caduquen las imágenes de perfil:'
 Settings_SteamAPIKey: "Clave API de Steam Web (opcional)"
@@ -47,7 +49,7 @@ Settings_Header_BackupRestore: Configuración de la plataforma de copia de segur
 Settings_Header_Language: Lenguaje
 Settings_Header_System: Sistema
 Settings_Header_Theme: Tema
-Settings_Header_Program: Programar
+Settings_Header_Program: Programa
 Settings_Header_StatsSharing: Estadísticas y uso compartido
 Settings_Header_Platform: "{platformName} ajustes"
 Settings_Header_GameStats: Configuración de estadísticas globales del juego
@@ -57,8 +59,8 @@ Settings_ExtraPlatformsDisabled: Plataformas desactivadas. Haga clic para habili
 Settings_ExtraPlatformsEnabled: Plataformas visibles. Haga clic para desactivarlas.
 Settings_RTL: Mostrar texto de derecha a izquierda
 Settings_CollectStats: Recopilar estadísticas
-Settings_ShareStats: Comparte las estadísticas de forma molesta (recomendado)
-Settings_DiscordRpc: Presencia rica en discordia (RPC)
+Settings_ShareStats: Compartir estadísticas de forma anónima (recomendado)
+Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Compartir interruptores totales
 Settings_ViewStats: Ver estadísticas
 Preview: Vista previa
@@ -71,7 +73,7 @@ Settings_OpenFolder: Abrir carpeta {platform}
 Settings_ClearForgotten: Borrar olvidado
 Settings_ClearAccounts: Borrar cuentas
 Settings_StreamerMode: Habilitar modo streamer
-Settings_ExitToTray: La salida minimiza la bandeja
+Settings_ExitToTray: Cerrar minimiza a la bandeja
 Settings_DesktopShortcut: Atajo de escritorio
 Settings_StartMenu_ProgramTray: Programa y bandeja
 Settings_StartMenu_Platform: Plataforma
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Definir fondo]'
 Settings_ThemeOpenFolder: '[Abrir carpeta de temas]'
 Settings_Protocol: 'Habilitar tcno:\\ protocol (recomendado)'
 Settings_StartCentered: Iniciar el programa centrado
+Settings_OfflineMode: Modo sin conexión (sin actividad de red)
 Settings_WindowsAccent: Usar el color de acento de Windows
 Settings_HelpTranslate: "[Ayuda a traducir]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Avanzado) Configurar motor de renderizado:"
 Settings_Header_ClosingMethod: "(Avanzado) Establecer método para cerrar {platform}"
 Settings_Header_StartingMethod: "(Avanzado) Establecer método para iniciar {platform}"
 Settings_AutoStart: "Iniciar automáticamente {platform} en el interruptor de cuenta"
+Settings_ShowSteamSwitcher: "Mostrar el selector de cuenta de Steam (NO use esto o puede dañar el selector de cuenta de TcNo)"
 Settings_NoPlatforms: Actualmente no hay plataformas habilitadas. Marque las plataformas opcionales a continuación para habilitarlas o desmarque las plataformas deshabilitadas.
 Settings_MinimizeOnSwitch: Minimizar el conmutador en el conmutador de cuenta
 Settings_ShowShortNotes: Vista previa de la nota bajo el nombre de usuario
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Detenga a otros usando el conmutador:"
 PreviewCss: Previsualizar CSS
 Settings_PreviewCss: Esta es la página de vista previa de CSS. Puedes ver algunos elementos que aparecen en el programa y ver cómo se ven con tu tema. ¡Esta página es útil para aquellos que crean temas!
 Settings_PreviewCssHeader: Página de vista previa de CSS
+Settings_AutoUpdatePlatforms: Lista de plataformas con actualización automática
+Settings_CheckForUpdates: Comprobar actualizaciones sobre el lanzamiento
 Stats_Disabled: "La recopilación de estadísticas está desactivada."
 Stats_InDepth: Desglose de las estadísticas en profundidad
 Stats_ShareEnabled: "Estas estadísticas se comparten de forma anónima y se sumarán al total de <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">aquí</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Restaurar seleccionado
 Ignored_RemoveAccounts: Eliminar cuentas de la lista de ignorados
 Ignored_Description: Si previamente has "ignorado" una cuenta, puedes volver a mostrarla aquí
 Ignored_Stop: Dejar de ignorar los seleccionados
+Toast_UpdatesDownloading: Las actualizaciones se están descargando en segundo plano. Puedes seguir usando el programa.
+Toast_UpdatesDownloaded: Las actualizaciones terminaron de descargarse. Cierre esta aplicación para comenzar a actualizar.
 Toast_DataLocationCopying: (1/2) ¡Copiando archivos existentes en la nueva carpeta de datos de usuario!
 Toast_DataLocationNotCopying: (1/2) ¡La carpeta ya tiene archivos! No migrará los datos del usuario.
 Toast_DataLocationSet: (2/2) ¡Reinicia el selector de cuentas para usar la nueva carpeta!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: No se ha podido encontrar un ID de Steam válido.
 Toast_FailedUpdateCheck: No se han podido comprobar las actualizaciones
 Toast_UpdateVerifyFail: No se pueden verificar los archivos de actualización. Descargue la última versión y reemplace los archivos de su directorio.
 Toast_StartedGame: Iniciado {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: No se pudo obtener información XML para {steamId}. Ver registro para más detalles.
 Toast_Steam_VacCleared: El estado del VAC para las cuentas se ha compensado
 Toast_Steam_CantDeleteVacCache: No se pudo eliminar 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: No se ha podido encontrar la carpeta de datos de usuario de Steam\\
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: La clave de la API de Steam Web parece no ser válida.
 Toast_DownloadingProfileData: Descarga de datos de perfil
 Toast_PasswordChanged: Contraseña cambiada
 Toast_JsonFailModify: Error al modificar el archivo JSON. Consulte el registro.
+Toast_DifferentClosingMethod: "El 'Método de cierre' es diferente al predeterminado. Si se están cerrando juegos y más, verifique si cambiar esta opción ayuda. Predeterminado: {defaultMethod}, Actual: {currentMethod}"
+Toast_NameEmpty: El nombre de usuario no puede estar vacío (y solo puede contener espacios)
+Toast_NewPlatforms: "¡Actualizado! Nuevas plataformas agregadas: {listOfNames}. Haz clic para descartar."
+Toast_FoundExeViaShortcut: "Encontramos la ruta de instalación desde un acceso directo del menú Inicio. Verifique su ubicación haciendo clic en Configuración ahora. Haga clic para descartar."
 Modal_Crowdin_Header: Traductores de Crowdin
 Modal_Crowdin_Info: "Aquí están todos los que ayudaron a traducir este software.<br>Los usuarios con idiomas a su lado ayudaron mucho en la traducción (función de corrector de pruebas)."
-Modal_Info_Creator: Creado por TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Creado por TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versión
 Modal_Info_ViewGitHub: Ver en GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Soporte a través de Patreon
+Modal_Info_ViewKofi: Soporte a través de Ko-Fi
 Modal_Info_BugReport: Informe de errores/solicitud de características
 Modal_Info_VisitSite: Visite tcno.co
 Modal_Info_Disclaimer: Descargo de responsabilidad
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Verifica que cumples con los requisitos mínimos recomenda
 Installer_VerifyAlready: "Parece que todo está instalado. Verifica que cumples con los requisitos mínimos recomendados:"
 Installer_Complete: Eso debería ser todo. El programa principal, TcNo-Acc-Switcher.exe, se ejecutará automáticamente.
 Installer_Complete2: "Si no funciona, consulte las instrucciones de instalación, aquí: {link}"
-Global_FatalNext: "¡Se ha producido un error fatal! Este registro de fallos se enviará automáticamente el próximo lanzamiento."
 Tray_Error: Error de bandeja
 Tray_NoAccs: "No se encontraron cuentas.\nIntenta cambiar de cuenta primero, o localiza 'Tray_Users.json'"
 Tray_Switch: "Cambiar a: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Total de actualizaciones encontradas: {x}"
 Updater_TotalSize: "Tamaño total: {size}"
 Updater_AwaitingUser: Esperando la entrada del usuario...
 Updater_UpToDate: "Estás al día.\n:)"
-Updater_FailedDecode: Esto es muy probablemente debido a mí (TechNobo) empujando una actualización, y haciendo un error tipográfico que rompió el archivo de actualización .json. Házmelo saber :)
+Updater_FailedDecode: Esto es muy probablemente debido a mí (TroubleChute) empujando una actualización, y haciendo un error tipográfico que rompió el archivo de actualización .json. Házmelo saber :)
 Updater_FailedDecodeTitle: Error al descodificar la lista de actualizaciones
 Updater_Extracting: Extracción de archivos de parche
 Updater_Applying: Aplicando parche...
@@ -461,6 +472,7 @@ DeletingFile: "Eliminando: {file}"
 DeletingFolder: "Eliminando carpeta: "
 CouldntDeleteX: "ERROR: NO SE PUDO ELIMINAR: {x}"
 CouldntDeleteUndefined: "ERROR: NO SE PUDO ELIMINAR EL ARCHIVO INDEFINIDO"
+CouldntModifyX: "No se pudo modificar {file}. Error de permiso de archivo o el archivo está en uso."
 Prompt_RestartAsAdmin: "<h3><bold>Este programa se reiniciará como Admin</bold></h3><p>Pulse \"Sí\" en UAC cuando se le solicite admin.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>¡Estás a punto de olvidar una cuenta!</h3> <h4>¿Qué significa esto?</h4> <p>- Steam ya no tendrá la cuenta listada en el modo de imagen grande y no recordará la contraseña.<br/> - TcNo Account Switcher ya no mostrará la cuenta, hasta que se inicie sesión nuevamente a través de Steam.</p> <p>Su cuenta permanecerá intacta. Simplemente está olvidado en esta computadora.</p><h4>¿Entiendes?</h4>

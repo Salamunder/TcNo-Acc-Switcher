@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -17,6 +17,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using Newtonsoft.Json.Linq;
 
@@ -57,15 +58,24 @@ namespace TcNo_Acc_Switcher_Updater
         {
             // Crash handler
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+            TaskScheduler.UnobservedTaskException += (sender, e) =>
+            {
+                Logger.WriteLine("Unobserved task exception:");
+                Logger.WriteLine(e.Exception.ToString());
+                e.SetObserved(); // Prevents the exception from being escalated to a crash
+            };
+
             // Single instance:
             IsRunningAlready();
 
             base.OnStartup(e);
+            Logger.WriteLine($"Updater started with: {e.Args}");
             for (var i = 0; i != e.Args.Length; ++i)
             {
-                switch (e.Args[i])
+                switch (e.Args[i].ToLowerInvariant())
                 {
-                    case "downloadCEF":
+                    case "downloadcef":
                         TcNo_Acc_Switcher_Updater.MainWindow.DownloadCef = true;
                         break;
                     case "verify":
@@ -94,8 +104,10 @@ namespace TcNo_Acc_Switcher_Updater
             var filePath = $"UpdaterErrorLogs\\AccSwitcher-Updater-{DateTime.Now:dd-MM-yy_hh-mm-ss.fff}.txt";
             using var sw = File.AppendText(filePath);
             sw.WriteLine($"{DateTime.Now.ToString(CultureInfo.InvariantCulture)}({GetVersion()}){Environment.NewLine}{log}");
-        }
 
+            Logger.WriteLine($"\nUpdater encountered an error!\n: {DateTime.Now.ToString(CultureInfo.InvariantCulture)}({GetVersion()}){Environment.NewLine}{log}\n\n");
+        }
+        
         private static string GetVersion()
         {
             try
@@ -129,13 +141,14 @@ namespace TcNo_Acc_Switcher_Updater
             var filePath = $"CrashLogs\\AccSwitcher-Updater-Crashlog-{DateTime.Now:dd-MM-yy_hh-mm-ss.fff}.txt";
             using var sw = File.AppendText(filePath);
             sw.WriteLine($"{DateTime.Now.ToString(CultureInfo.InvariantCulture)}({GetVersion()})\tUNHANDLED CRASH: {exceptionStr}{Environment.NewLine}{Environment.NewLine}");
+            Logger.WriteLine($"{DateTime.Now.ToString(CultureInfo.InvariantCulture)}({GetVersion()})\tUNHANDLED CRASH: {exceptionStr}{Environment.NewLine}{Environment.NewLine}");
 
             if (e.ExceptionObject is FileNotFoundException && (exceptionStr?.Contains("SevenZipExtractor") ?? false))
             {
                 _ = MessageBox.Show($"A fatal error was hit. A required file was not found. Please make sure the x64 and x86 folders exist in the install directory AND the updater folder. If one has files, and the other not: Copy so they are the same and try again.{Environment.NewLine}Currently installed to: {AppDataFolder}", "Fatal error occurred!", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
             }
             else
-                _ = MessageBox.Show("This crashlog will be automatically submitted next launch." + Environment.NewLine + Environment.NewLine + "Error: " + e.ExceptionObject, "Fatal error occurred!", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+                _ = MessageBox.Show("Error: " + e.ExceptionObject, "Fatal error occurred!", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
 
 
             // Throw for bad image errors (bad dlls in computer):
@@ -157,5 +170,12 @@ namespace TcNo_Acc_Switcher_Updater
             //  throw;
             //})
         }
+        public static void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            Logger.WriteLine("Application is exiting...");
+            Logger.WriteLine((new System.Diagnostics.StackTrace()).ToString());
+            // Perform cleanup or logging here
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -65,10 +65,12 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
 
             AppData.SteamUsers = GetSteamUsers(SteamSettings.LoginUsersVdf());
 
+            var orderFilePath = Path.Join(Globals.UserDataFolder, "LoginCache\\Steam\\order.json");
+
             // Order
-            if (File.Exists("LoginCache\\Steam\\order.json"))
+            if (File.Exists(orderFilePath))
             {
-                var savedOrder = JsonConvert.DeserializeObject<List<string>>(await File.ReadAllTextAsync("LoginCache\\Steam\\order.json").ConfigureAwait(false));
+                var savedOrder = JsonConvert.DeserializeObject<List<string>>(await File.ReadAllTextAsync(orderFilePath).ConfigureAwait(false));
                 if (savedOrder != null)
                 {
                     var index = 0;
@@ -83,7 +85,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
             }
 
             // If Steam Web API key to be used instead
-            if (SteamSettings.SteamWebApiKey != "")
+            if (!AppSettings.OfflineMode && SteamSettings.SteamWebApiKey != "")
             {
                 // Handle all image downloads
                 await WebApiPrepareImages();
@@ -217,6 +219,11 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
 
         public static void DownloadSteamAppsData()
         {
+            if (AppSettings.OfflineMode) {
+                Globals.DebugWriteLine($@"Error downloading Steam app list: OFFLINE MODE");
+                return;
+            }
+
             _ = GeneralInvocableFuncs.ShowToast("info", Lang["Toast_Steam_DownloadingAppIds"], renderTo: "toastarea");
 
             try
@@ -403,7 +410,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
                         }
                         catch (Exception)
                         {
-                            Globals.WriteToLog("Could not import Steam user. Please send your loginusers.vdf file to TechNobo for analysis.");
+                            Globals.WriteToLog("Could not import Steam user. Please send your loginusers.vdf file to TroubleChute for analysis.");
                         }
                     }
                 }
@@ -530,6 +537,8 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
                 $@"[Func:Steam\SteamSwitcherFuncs.PrepareProfile] Preparing image and ban info for: {su.SteamId.Substring(su.SteamId.Length - 4, 4)}");
             _ = Directory.CreateDirectory(SteamSettings.SteamImagePath);
 
+            if (!SteamSettings.CollectInfo) su.ImgUrl = "img/QuestionMark.jpg";
+
             var dlDir = $"{SteamSettings.SteamImagePath}{su.SteamId}.jpg";
             var cachedFile = $"LoginCache/Steam/VACCache/{su.SteamId}.xml";
 
@@ -587,10 +596,8 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
 
             if (!File.Exists(cachedFile)) profileXml.Save(cachedFile);
 
-
             if (profileXml.DocumentElement == null ||
                 profileXml.DocumentElement.SelectNodes("/profile/privacyMessage")?.Count != 0) return;
-
 
             // 3. Set ban info in SteamUsers
             ProcessSteamUserXml(profileXml);
@@ -600,8 +607,13 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
             {
                 try
                 {
-                    Globals.DownloadFile(su.ImageDownloadUrl, dlDir);
-                    su.ImgUrl = $"{SteamSettings.SteamImagePathHtml}{su.SteamId}.jpg";
+                    if (!AppSettings.OfflineMode)
+                    {
+                        Globals.DownloadFile(su.ImageDownloadUrl, dlDir);
+                        su.ImgUrl = $"{SteamSettings.SteamImagePathHtml}{su.SteamId}.jpg";
+                    }
+                    else
+                        su.ImgUrl = "img/QuestionMark.jpg";
                     return;
                 }
                 catch (WebException ex)
@@ -935,6 +947,18 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
             // -----------------------------------
             if (pS != -1) SetPersonaState(selectedSteamId, pS); // Update persona state, if defined above.
 
+            // -----------------------------------
+            // - Update config.vdf for new Steam Switcher
+            // -----------------------------------
+            try
+            {
+                SetShowSteamSwitcher();
+            }
+            catch (Exception)
+            {
+                GeneralInvocableFuncs.ShowToast("error", Lang["CouldntModifyX", new { file = Path.Join(SteamSettings.FolderPath, "config", "config.vdf") }]);
+            }
+
             Index.Steamuser user = new() { AccName = "" };
             try
             {
@@ -1002,7 +1026,7 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
             }
             catch (Exception ex)
             {
-                Globals.WriteToLog("Failed to swap Steam users! Could not create temp loginusers.vdf file, and replace original using workaround! Contact TechNobo.", ex);
+                Globals.WriteToLog("Failed to swap Steam users! Could not create temp loginusers.vdf file, and replace original using workaround! Contact TroubleChute.", ex);
                 GeneralInvocableFuncs.ShowToast("error", Lang["CouldNotFindX", new { x = tempFile }]);
             }
         }
@@ -1053,6 +1077,28 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
 
             // Output
             File.WriteAllText(localConfigFilePath, localConfigText);
+        }
+
+        public static void SetShowSteamSwitcher()
+        {
+            Globals.DebugWriteLine($@"[Func:Steam\SteamSwitcherFuncs.SetShowSteamSwitcher] Setting ShowSteamSwitcher to: {SteamSettings.ShowSteamSwitcher}");
+            var localConfigFilePath = Path.Join(SteamSettings.FolderPath, "config", "config.vdf");
+            if (!File.Exists(localConfigFilePath)) return;
+            var localConfigText = Globals.ReadAllText(localConfigFilePath); // Read relevant config.vdf
+
+            // Replace entire line that contains "AlwaysShowUserChooser"
+            var lines = localConfigText.Split('\n');
+            for (var i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains("AlwaysShowUserChooser"))
+                {
+                    lines[i] = $"\"AlwaysShowUserChooser\" \"{(SteamSettings.ShowSteamSwitcher ? "1" : "0")}\"";
+                    break;
+                }
+            }
+
+            // Output
+            File.WriteAllText(localConfigFilePath, string.Join('\n', lines));
         }
 
         /// <summary>

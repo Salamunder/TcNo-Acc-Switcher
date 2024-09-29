@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -27,10 +27,11 @@ namespace TcNo_Acc_Switcher_Server.Pages.Steam
             [JsonProperty("AccountName", Order = 0)] public string AccName { get; set; }
             [JsonProperty("PersonaName", Order = 1)] public string Name { get; set; }
             [JsonProperty("RememberPassword", Order = 2)] public string RememberPass = "1"; // Should always be 1
-            [JsonProperty("mostrecent", Order = 3)] public string MostRec = "0";
+            [JsonProperty("MostRecent", Order = 3)] public string MostRec = "0";
             [JsonProperty("Timestamp", Order = 4)] public string LastLogin { get; set; }
             [JsonProperty("WantsOfflineMode", Order = 5)] public string OfflineMode = "0";
             [JsonProperty("SkipOfflineModeWarning", Order = 6)] public string SkipOfflineModeWarning { get; set; } = "0";
+            [JsonProperty("AllowAutoLogin", Order = 7)] public string AutoLogin = "1"; // New(ish) setting from Steam. Not too sure what this does.
 
             [JsonIgnore] public string ImageDownloadUrl { get; set; }
             [JsonIgnore] public string ImgUrl { get; set; }

@@ -1,5 +1,5 @@
 // TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -179,7 +179,7 @@ inline void find_installed_net_runtimes(const bool x32, bool &min_webview_met, b
 					if (output) wprintf(L" - %s\n", s_display_name);
 				}
 
-				if (wcsstr(s_display_name, L"ASP.NET Core 6") != nullptr && wcsstr(s_display_name, L"x64") != nullptr)
+				if (wcsstr(s_display_name, L"ASP.NET Core 8") != nullptr && wcsstr(s_display_name, L"x64") != nullptr)
 				{
 					min_aspcore_met = min_aspcore_met || compare_versions(required_min_aspcore, std::string(s_version), '.');
 					if (output) wprintf(L" - %s\n", s_display_name);

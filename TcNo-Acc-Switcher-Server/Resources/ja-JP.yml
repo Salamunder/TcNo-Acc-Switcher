@@ -10,7 +10,8 @@ Steam_Tray_AccountName: アカウント名を表示 [友達名ではありませ
 Steam_CheckVac: アカウントVACの状態を確認
 Steam_OverrideDefaultState: "デフォルトのログイン状態を上書き:"
 Steam_StartSilent: "スイッチでスチームをタスクトレイに開きます（'- silent 'でスチームを開始します）"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Steam で古い UI を使用する (-vgui)"
+Steam_CollectInfo: Steamからプロフィール画像とVAC禁止ステータスを収集する
 Button_AddNew: 新規追加
 Button_SaveCurrent: 現在の保存
 Button_SaveFile: ファイルを保存
@@ -30,7 +31,8 @@ Button_OpenBackup: バックアップフォルダを開く
 Button_Back: 戻る
 Button_RestartAdmin: 管理者として再起動
 Button_SetPassword: アプリのパスワードを設定
-Settings_Shortcut: ' {platform} スイッチャーデスクトップのショートカット'
+Settings_SteamCollectInfo: Steam から Steam プロフィール写真と VAC ステータスを収集する
+Settings_Shortcut: '{platform} スイッチャーデスクトップのショートカット'
 Settings_Admin: '{platform} を管理者として実行'
 Settings_ImageExpiry: 'プロフィール画像が期限切れになるまでの日数:'
 Settings_SteamAPIKey: "Steam Web APIキー(オプション)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: 無効なプラットフォーム。クリッ�
 Settings_ExtraPlatformsEnabled: 表示されているプラットフォーム。クリックして無効にします。
 Settings_RTL: テキストを右から左に表示
 Settings_CollectStats: 統計を収集する
-Settings_ShareStats: 統計情報を不快に共有する(推奨)
+Settings_ShareStats: 統計情報を匿名で共有する（推奨）
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: 合計スイッチを共有
 Settings_ViewStats: 統計情報を表示
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '【背景設定】'
 Settings_ThemeOpenFolder: '[テーマフォルダを開く]'
 Settings_Protocol: 'tcno:\\プロトコルを有効にする (推奨)'
 Settings_StartCentered: プログラムを中心に開始
+Settings_OfflineMode: オフラインモード（ネットワークアクティビティなし）
 Settings_WindowsAccent: Windowsアクセントカラーを使用する
 Settings_HelpTranslate: "[ヘルプ翻訳]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(詳細)レンダリングエンジンの設定:
 Settings_Header_ClosingMethod: "(Advanced)メソッドを閉じる {platform}に設定する"
 Settings_Header_StartingMethod: "(Advanced)メソッドを {platform}から始めるように設定します。"
 Settings_AutoStart: "アカウント切り替え時に自動的に {platform} を開始"
+Settings_ShowSteamSwitcher: "Steam のアカウントスイッチャーを表示します (これを使用しないでください。TcNo アカウントスイッチャーが壊れる可能性があります)"
 Settings_NoPlatforms: 現在、有効になっているプラットフォームはありません。以下のオプションのプラットフォームにチェックマークを付けて有効にするか、無効になっているプラットフォームのチェックを外してください。
 Settings_MinimizeOnSwitch: アカウントスイッチの切り替えを最小限に抑える
 Settings_ShowShortNotes: ユーザー名の下にメモプレビュー
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "他のユーザーがスイッチャーを使用�
 PreviewCss: CSSをプレビュー
 Settings_PreviewCss: これはCSSプレビューページです。プログラムに表示されるいくつかの要素を表示して、テーマの外観を確認できます。このページはテーマの作成に便利です。
 Settings_PreviewCssHeader: CSSプレビューページ
+Settings_AutoUpdatePlatforms: プラットフォームリストの自動更新
+Settings_CheckForUpdates: 起動時にアップデートを確認する
 Stats_Disabled: "統計収集が無効になっています。"
 Stats_InDepth: 詳細な統計の内訳
 Stats_ShareEnabled: "これらの統計は匿名で共有され、ここでは合計 <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">に加算されます</a>。"
@@ -143,6 +149,8 @@ Restore_Button_Restore: 選択したものを復元
 Ignored_RemoveAccounts: 無視リストからアカウントを削除
 Ignored_Description: 以前にアカウントを「無視」した場合は、ここで再度表示することができます
 Ignored_Stop: 選択された無視を停止
+Toast_UpdatesDownloading: アップデートはバックグラウンドでダウンロード中です。プログラムは引き続き使用できます。
+Toast_UpdatesDownloaded: アップデートのダウンロードが完了しました。アップデートを開始するには、このアプリを閉じてください。
 Toast_DataLocationCopying: '（1/2）既存のファイルを新しいユーザーデータフォルダにコピーします！'
 Toast_DataLocationNotCopying: '（1/2）フォルダにはすでにファイルがあります！ユーザーデータを移行しません。'
 Toast_DataLocationSet: '（2/2）アカウントスイッチャーを再起動して、新しいフォルダーを使用します。'
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: 有効なSteam IDが見つかりません。
 Toast_FailedUpdateCheck: 更新の確認に失敗しました
 Toast_UpdateVerifyFail: アップデータファイルを確認できません。最新バージョンをダウンロードし、ディレクトリ内のファイルを置き換えてください。
 Toast_StartedGame: '{program} を開始'
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: '{steamId}の XML 情報を取得できませんでした。詳細についてはログを参照してください。'
 Toast_Steam_VacCleared: アカウントのVACステータスをクリアしました
 Toast_Steam_CantDeleteVacCache: '''LoginCache/Steam/VACCache/SteamVACCache.json'' を削除できませんでした'
 Toast_NoFindSteamUserdata: Steam\\userdata フォルダが見つかりませんでした
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web APIキーが無効なようです。新し�
 Toast_DownloadingProfileData: プロファイルデータをダウンロードしています
 Toast_PasswordChanged: パスワードが変更されました
 Toast_JsonFailModify: JSONファイルの変更に失敗しました。ログを参照してください。
+Toast_DifferentClosingMethod: "'Closing Method' is different to the default. If games are closing and more check if changing this option helps. Default: {defaultMethod}, Current: {currentMethod}"
+Toast_NameEmpty: ユーザー名は空にできません（スペースのみを含めることはできません）
+Toast_NewPlatforms: "更新されました! 新しいプラットフォームが追加されました: {listOfNames}。クリックして閉じます。"
+Toast_FoundExeViaShortcut: "スタート メニューのショートカットからインストールされたパスが見つかりました。今すぐ [設定] をクリックして、その場所を確認してください。クリックすると閉じます。"
 Modal_Crowdin_Header: Crowdinの翻訳者
 Modal_Crowdin_Info: "このソフトウェアの翻訳を手伝ってくれた皆さんです。<br>隣に言語があるユーザーは、翻訳に大いに役立ちました（校正者の役割）。"
-Modal_Info_Creator: TechNoboによって作成されました [Wesley Pyburn]
+Modal_Info_Creator: TroubleChuteによって作成されました [Wesley Pyburn]
 Modal_Info_Version: バージョン
 Modal_Info_ViewGitHub: GitHubで見る
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Patreonによるサポート
+Modal_Info_ViewKofi: Ko-Fi によるサポート
 Modal_Info_BugReport: バグレポート/機能のリクエスト
 Modal_Info_VisitSite: 訪問tcno.co
 Modal_Info_Disclaimer: 免責事項
@@ -362,7 +374,6 @@ Installer_VerifyMin: "推奨される最低要件を満たしていることを�
 Installer_VerifyAlready: "すべてがインストールされているようです。推奨される最低要件を満たしていることを確認してください。"
 Installer_Complete: それがすべてでなければなりません。メインプログラムのTcNo-Acc-Switcher.exeが自動実行されます。
 Installer_Complete2: "動作しない場合は、インストール手順を参照してください： {link}"
-Global_FatalNext: "致命的なエラーが発生しました！このクラッシュログは次回の起動時に自動的に送信されます。"
 Tray_Error: トレイエラー
 Tray_NoAccs: "アカウントが見つかりませんでした。\n最初にアカウントを切り替えるか、'Tray_Users.json'を見つけてください"
 Tray_Switch: "切り替え: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "合計更新が見つかりました: {x}"
 Updater_TotalSize: "合計サイズ： {size}"
 Updater_AwaitingUser: ユーザーの入力を待っています...
 Updater_UpToDate: "最新の状態です。\n:)"
-Updater_FailedDecode: これは、私(TechNobo)がアップデートをプッシュし、.jsonアップデートファイルを破損したタイプを作成したことが原因である可能性が高いです。お知らせください:)
+Updater_FailedDecode: これは、私(TroubleChute)がアップデートをプッシュし、.jsonアップデートファイルを破損したタイプを作成したことが原因である可能性が高いです。お知らせください:)
 Updater_FailedDecodeTitle: 更新リストのデコードに失敗しました
 Updater_Extracting: パッチファイルの抽出
 Updater_Applying: パッチを適用しています...
@@ -461,6 +472,7 @@ DeletingFile: "削除中: {file}"
 DeletingFolder: "フォルダの削除: "
 CouldntDeleteX: "エラー:削除できませんでした: {x}"
 CouldntDeleteUndefined: "エラー:未定義のファイルを削除できませんでした"
+CouldntModifyX: "{file}を変更できませんでした。ファイルの権限エラーか、ファイルが使用中です。"
 Prompt_RestartAsAdmin: "<h3><bold>このプログラムは管理者として再起動します。</bold></h3><p>管理者にプロンプトが表示されたら、UACで「はい」を押してください。</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>アカウントを忘れようとしています！</h3> <h4>これはどういう意味ですか？</h4> <p>-SteamのアカウントはBigPictureモードで表示されなくなり、パスワードを記憶しなくなります。<br/> -TcNo Account Switcherは、Steamを介して再度サインインするまで、アカウントを表示しなくなります。</p> <p>は変更されません。このコンピューターでは忘れられています。</p><h4>分かりますか？</h4>

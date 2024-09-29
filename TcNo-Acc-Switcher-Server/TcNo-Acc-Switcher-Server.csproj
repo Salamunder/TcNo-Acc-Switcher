@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>TcNo_Acc_Switcher_Server</RootNamespace>
     <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
-    <Version>4.0.0</Version>
-    <Authors>TechNobo (Wesley Pyburn)</Authors>
+    <Version>2024.08.30.01</Version>
+    <Authors>TroubleChute (Wesley Pyburn)</Authors>
     <Product>TcNo Account Switcher - Server</Product>
-    <Copyright>Copyright © TechNobo (Wesley Pyburn) 2022</Copyright>
+    <Copyright>Copyright © TroubleChute (Wesley Pyburn) 2022</Copyright>
     <PackageProjectUrl>https://github.com/TcNobo/TcNo-Acc-Switcher</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TcNobo/TcNo-Acc-Switcher</RepositoryUrl>
     <AssemblyName>TcNo-Acc-Switcher-Server</AssemblyName>
-    <Company>TechNobo (Wesley Pyburn)</Company>
+    <Company>TroubleChute (Wesley Pyburn)</Company>
     <Description>Server for the TcNo Account Switcher (Blazor backend)</Description>
     <Platforms>x64</Platforms>
   </PropertyGroup>
@@ -70,19 +70,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.10" />
-    <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="Gameloop.Vdf" Version="0.6.2" />
     <PackageReference Include="Gameloop.Vdf.JsonConverter" Version="0.2.1" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.48" />
-    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="13.1.3" />
-    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.8" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1823.32" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.64" />
+    <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="13.10.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2651.64" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpScss" Version="2.0.0" />
-    <PackageReference Include="SteamKit2" Version="2.4.1" />
-    <PackageReference Include="Svg.Skia" Version="0.5.18" />
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-    <PackageReference Include="YamlDotNet" Version="13.1.1" />
+    <PackageReference Include="SteamKit2" Version="2.5.0" />
+    <PackageReference Include="Svg.Skia" Version="2.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
+    <PackageReference Include="YamlDotNet" Version="16.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TcNo-Acc-Switcher-Globals\TcNo-Acc-Switcher-Globals.csproj" />
@@ -107,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="Additional Licenses.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Disclaimer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Privacy Policy.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\af-ZA.yml">

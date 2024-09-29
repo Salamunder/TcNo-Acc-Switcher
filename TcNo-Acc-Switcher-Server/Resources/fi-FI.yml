@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Näytä tilin nimi [ei ystävän nimi]
 Steam_CheckVac: Tarkista tilin VAC-tila
 Steam_OverrideDefaultState: "Ohita oletuskirjautumistila:"
 Steam_StartSilent: "Avaa Steam to Task -alusta kytkimellä (Käynnistä Steam '-hiljaisella')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Käytä vanhaa käyttöliittymää Steamissä (-vgui)"
+Steam_CollectInfo: Kerää profiilikuvat ja VAC-kieltotila Steamista
 Button_AddNew: Lisää uusi
 Button_SaveCurrent: Tallenna nykyinen
 Button_SaveFile: Tallenna tiedosto
@@ -30,7 +31,8 @@ Button_OpenBackup: Avaa varmuuskopiokansio
 Button_Back: Takaisin
 Button_RestartAdmin: Aloita uudelleen järjestelmänvalvojana
 Button_SetPassword: Aseta sovelluksen salasana
-Settings_Shortcut: ' {platform} Vaihtajan työpöydän pikakuvake'
+Settings_SteamCollectInfo: Kerää Steam-profiilikuva ja VAC-tila Steamista
+Settings_Shortcut: '{platform} Vaihtajan työpöydän pikakuvake'
 Settings_Admin: Suorita {platform} ylläpitäjänä
 Settings_ImageExpiry: 'Päivää ennen profiilikuvien vanhentumista:'
 Settings_SteamAPIKey: "Steam Web API avain (valinnainen)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Käytöstä poistetut alustat. Ota ne käyttö�
 Settings_ExtraPlatformsEnabled: Näkyvät alustat. Poista ne käytöstä napsauttamalla.
 Settings_RTL: Näytä teksti oikealta vasemmalle
 Settings_CollectStats: Kerää tilastoja
-Settings_ShareStats: Jaa tilastot ärsyttävästi (suositus)
+Settings_ShareStats: Jaa tilastot anonyymisti (suositus)
 Settings_DiscordRpc: Poikkeamarikas läsnäolo (RPC)
 Settings_DiscordRpcShare: Jaa kokonaiskytkimet
 Settings_ViewStats: Näytä tilastot
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Aseta tausta]'
 Settings_ThemeOpenFolder: '[Avaa teemakansio]'
 Settings_Protocol: 'Ota käyttöön tcno:\\ protocol (Suositeltava)'
 Settings_StartCentered: Käynnistä ohjelma keskitetysti
+Settings_OfflineMode: Offline-tila (ei verkkotoimintaa)
 Settings_WindowsAccent: Käytä Windowsin korostusväriä
 Settings_HelpTranslate: "[Apua kääntämään]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Advanced) Aseta renderöintimoottori:"
 Settings_Header_ClosingMethod: "(Advanced) Aseta menetelmä sulkemaan {platform}"
 Settings_Header_StartingMethod: "(Lisäasetukset) Määritä tapa aloittaa {platform}"
 Settings_AutoStart: "Käynnistä {platform} automaattisesti tilikytkimessä"
+Settings_ShowSteamSwitcher: "Näytä Steamin tilin vaihtaja (ÄLÄ käytä tätä tai se voi rikkoa TcNo-tilin vaihtajan)"
 Settings_NoPlatforms: Tällä hetkellä ei ole käytössä alustoja. Ota ne käyttöön valitsemalla valinnaiset alustat alta tai poista käytöstä poistettujen alustojen valinta.
 Settings_MinimizeOnSwitch: Minimoi tilikytkimen kytkin
 Settings_ShowShortNotes: Muistiinpanon esikatselu käyttäjänimellä
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Estä muita käyttämästä kytkintä:"
 PreviewCss: 'Esikatsele CSS: ää'
 Settings_PreviewCss: Tämä on CSS-esikatselusivu. Voit tarkastella joitakin elementtejä, jotka ponnahtavat ohjelmaan ja nähdä, miltä ne näyttävät teeman kanssa. Tämä sivu on hyödyllinen niille, jotka luovat teemoja!
 Settings_PreviewCssHeader: CSS-esikatselusivu
+Settings_AutoUpdatePlatforms: Päivitä alustaluettelo automaattisesti
+Settings_CheckForUpdates: Tarkista päivitykset käynnistyksen yhteydessä
 Stats_Disabled: "Tilastojen kerääminen on poistettu käytöstä."
 Stats_InDepth: Perusteellinen tilastoerittely
 Stats_ShareEnabled: "Nämä tilastot jaetaan nimettöminä, ja ne lisätään kokonaissummaan <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">tässä</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Palauta valitut
 Ignored_RemoveAccounts: Poista tilit ohitusluettelosta
 Ignored_Description: Jos olet aiemmin "ohittanut" tilin, voit näyttää sen uudelleen täällä
 Ignored_Stop: Lopeta valittujen jättäminen huomiotta
+Toast_UpdatesDownloading: Päivitykset latautuvat taustalla. Voit jatkaa ohjelman käyttöä.
+Toast_UpdatesDownloaded: Päivitysten lataus on valmis. Sulje tämä sovellus aloittaaksesi päivityksen.
 Toast_DataLocationCopying: (1/2) Kopioidaan olemassa olevia tiedostoja uuteen käyttäjätietokansioon!
 Toast_DataLocationNotCopying: (1/2) Kansiolla on jo tiedostoja! Ei siirrä käyttäjätietoja.
 Toast_DataLocationSet: (2/2) Käynnistä tilin vaihtaja uudelleen käyttääksesi uutta kansiota!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Voimassa olevaa Steam-tunnusta ei löydy.
 Toast_FailedUpdateCheck: Päivitysten tarkistaminen epäonnistui
 Toast_UpdateVerifyFail: Päivitystiedostoja ei voida vahvistaa. Lataa uusin versio ja korvaa hakemistosi tiedostot.
 Toast_StartedGame: Aloitettu {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Ei saatu XML-tietoja kohteelle {steamId}. Katso lisätiedot lokista.
 Toast_Steam_VacCleared: Tilien VAC-tila tyhjennettiin
 Toast_Steam_CantDeleteVacCache: '''LoginCache/Steam/VACCache/SteamVACCache.json'' ei voitu poistaa'
 Toast_NoFindSteamUserdata: Steam\\ userdata -kansiota ei löytynyt
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web API avain näyttää olevan virheellinen. Ol
 Toast_DownloadingProfileData: Profiilitietojen lataaminen
 Toast_PasswordChanged: Salasana vaihdettu
 Toast_JsonFailModify: JSON-tiedoston muokkaaminen epäonnistui. Katso lokia.
+Toast_DifferentClosingMethod: "Sulkemismenetelmä on eri kuin oletusasetus. Jos pelit sulkeutuvat ja lisää, tarkista, auttaako tämän vaihtoehdon muuttaminen. Oletus: {defaultMethod}, Nykyinen: {currentMethod}"
+Toast_NameEmpty: Käyttäjätunnus ei voi olla tyhjä (eikä saa sisältää vain välilyöntejä)
+Toast_NewPlatforms: "Päivitetty! Uusia alustoja lisätty: {listOfNames}. Hylkää napsauttamalla."
+Toast_FoundExeViaShortcut: "Löysimme asennetun polun Käynnistä-valikon pikakuvakkeesta. Vahvista sen sijainti napsauttamalla Asetukset nyt. Hylkää napsauttamalla."
 Modal_Crowdin_Header: Crowdinin kääntäjät
 Modal_Crowdin_Info: "Tässä ovat kaikki, jotka auttoivat kääntämään tämän ohjelmiston.<br>Käyttäjät, joiden kieli on vieressä, auttoivat paljon kääntämisessä (oikolukijan rooli)."
-Modal_Info_Creator: Luonut TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Luonut TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versio
 Modal_Info_ViewGitHub: Näytä GitHubissa
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Tuki Patreonin kautta
+Modal_Info_ViewKofi: Tuki Ko-Fin kautta
 Modal_Info_BugReport: Vikailmoitus/Ominaisuuspyyntö
 Modal_Info_VisitSite: Käy osoitteessa tcno.co
 Modal_Info_Disclaimer: Vastuuvapauslauseke
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Varmista, että täytät suositellut vähimmäisvaatimukse
 Installer_VerifyAlready: "Näyttää siltä, että kaikki on asennettu. Varmista, että täytät suositellut vähimmäisvaatimukset:"
 Installer_Complete: Siinä pitäisi olla kaikki. Pääohjelma, TcNo-Acc-Switcher.exe, käynnistyy automaattisesti.
 Installer_Complete2: "Jos se ei toimi, katso asennusohjeet täältä: {link}"
-Global_FatalNext: "Tapahtui kohtalokas virhe! Tämä kaatumisloki lähetetään automaattisesti seuraavalle käynnistykselle."
 Tray_Error: Pakkausvirhe
 Tray_NoAccs: "Tiliä ei löytynyt.\nYritä vaihtaa tiliä ensin tai etsi 'Tray_Users.json'"
 Tray_Switch: "Vaihda: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Löytyneitä päivityksiä: {x}"
 Updater_TotalSize: "Kokonaiskoko: {size}"
 Updater_AwaitingUser: Odotetaan käyttäjän syöttöä...
 Updater_UpToDate: "Olet ajan tasalla.\n:)"
-Updater_FailedDecode: Tämä johtuu todennäköisesti siitä, että minä (TechNobo) työntää päivityksen, ja tehdä kirjoitusvirhe, joka rikkoi .json päivitystiedoston. Ilmoitathan minulle:)
+Updater_FailedDecode: Tämä johtuu todennäköisesti siitä, että minä (TroubleChute) työntää päivityksen, ja tehdä kirjoitusvirhe, joka rikkoi .json päivitystiedoston. Ilmoitathan minulle:)
 Updater_FailedDecodeTitle: Päivitysluettelon purkaminen epäonnistui
 Updater_Extracting: Puretaan Patch-tiedostoja
 Updater_Applying: Asennetaan korjausta...
@@ -461,6 +472,7 @@ DeletingFile: "Poistetaan: {file}"
 DeletingFolder: "Poistetaan kansiota: "
 CouldntDeleteX: "VIRHE: EI VOITU POISTAA: {x}"
 CouldntDeleteUndefined: "VIRHE: MÄÄRITTELEMÄTÖNTÄ TIEDOSTOA EI VOITU POISTAA"
+CouldntModifyX: "Ei voitu muokata {file}. Tiedoston käyttöoikeusvirhe tai tiedosto on käytössä."
 Prompt_RestartAsAdmin: "<h3><bold>Tämä ohjelma käynnistyy uudelleen järjestelmänvalvojana</bold></h3><p>Paina \"Yes\" UAC: ssä, kun sitä pyydetään ylläpitäjälle.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Olet unohtamassa tilin!</h3> <h4>Mitä tämä tarkoittaa?</h4> <p>- Steamilla ei ole enää Big Picture Mode -tilassa olevaa tiliä, eikä se muista salasanaa.<br/> - TcNo Account Switcher ei myöskään enää näytä tiliä, ennen kuin se kirjataan uudelleen sisään Steamin kautta.</p> <p>Tilisi pysyy ennallaan. Se on vain unohdettu tälle tietokoneelle.</p><h4>Ymmärrätkö?</h4>

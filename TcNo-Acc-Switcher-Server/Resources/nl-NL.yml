@@ -10,7 +10,8 @@ Steam_Tray_AccountName: Accountnaam tonen [not friend name]
 Steam_CheckVac: Controleer de VAC-status van de rekening
 Steam_OverrideDefaultState: "Standaard aanmeldstatus overschrijven:"
 Steam_StartSilent: "Open Stoom naar taakvak op schakelaar (Start Stoom met '-silent')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "Oude gebruikersinterface gebruiken in Steam (-vgui)"
+Steam_CollectInfo: Verzamel profielafbeeldingen en VAC-banstatus van Steam
 Button_AddNew: Nieuwe toevoegen
 Button_SaveCurrent: Huidige opslaan
 Button_SaveFile: Bestand opslaan
@@ -30,7 +31,8 @@ Button_OpenBackup: Back-upmap openen
 Button_Back: Terug
 Button_RestartAdmin: Opnieuw opstarten als beheerder
 Button_SetPassword: App-wachtwoord instellen
-Settings_Shortcut: ' {platform} Switcher Bureaublad snelkoppeling'
+Settings_SteamCollectInfo: Verzamel Steam-profielfoto en VAC-status van Steam
+Settings_Shortcut: '{platform} Switcher Bureaublad snelkoppeling'
 Settings_Admin: '{platform} uitvoeren als Beheerder'
 Settings_ImageExpiry: 'Dagen voordat profielfoto ''s verlopen:'
 Settings_SteamAPIKey: "Steam Web API-sleutel (optioneel)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: Uitgeschakelde platforms. Klik om ze in te scha
 Settings_ExtraPlatformsEnabled: Zichtbare platforms. Klik om ze uit te schakelen.
 Settings_RTL: Toon tekst van rechts naar links
 Settings_CollectStats: Verzamel statistieken
-Settings_ShareStats: Deel statistieken vervelend (aanbevolen)
+Settings_ShareStats: Statistieken anoniem delen (aanbevolen)
 Settings_DiscordRpc: Discord Rich Presence (RPC)
 Settings_DiscordRpcShare: Totaal aantal schakelaars delen
 Settings_ViewStats: Bekijk statistieken
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[Achtergrond instellen]'
 Settings_ThemeOpenFolder: '[Themamap openen]'
 Settings_Protocol: 'tcno:\\ protocol (Aanbevolen) inschakelen'
 Settings_StartCentered: Start programma gecentreerd
+Settings_OfflineMode: Offline-modus (geen netwerkactiviteit)
 Settings_WindowsAccent: De Windows Accentkleur gebruiken
 Settings_HelpTranslate: "[Help vertalen]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(Advanced) Set rendering engine:"
 Settings_Header_ClosingMethod: "(Geavanceerd) Stel methode in op sluiten {platform}"
 Settings_Header_StartingMethod: "(Geavanceerd) Stel methode in op start {platform}"
 Settings_AutoStart: "{platform} automatisch starten bij accountwissel"
+Settings_ShowSteamSwitcher: "Toon de accountswitcher van Steam (Gebruik dit NIET, anders kan de accountswitcher van TcNo kapotgaan)"
 Settings_NoPlatforms: Er zijn momenteel geen platforms ingeschakeld. Vink hieronder optionele platforms aan om ze in te schakelen, of schakel uitgeschakelde platforms uit.
 Settings_MinimizeOnSwitch: Minimaliseer switcher op account switch
 Settings_ShowShortNotes: Notitievoorbeeld onder gebruikersnaam
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "Anderen stoppen met het gebruik van de switcher:"
 PreviewCss: Voorbeeld CSS
 Settings_PreviewCss: Dit is de CSS voorbeeldpagina. U kunt een aantal elementen bekijken die in het programma opduiken en zien hoe ze eruit zien met uw thema. Deze pagina is handig voor degenen die thema 's maken!
 Settings_PreviewCssHeader: CSS Preview Pagina
+Settings_AutoUpdatePlatforms: Lijst met automatisch bijgewerkte platforms
+Settings_CheckForUpdates: Controleer op updates bij de lancering
 Stats_Disabled: "Statistiekenverzameling is uitgeschakeld."
 Stats_InDepth: Uitsplitsing naar diepgaande statistiek
 Stats_ShareEnabled: "Deze statistieken worden anoniem gedeeld en worden opgeteld bij het totaal van <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">hier</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: Geselecteerde herstellen
 Ignored_RemoveAccounts: Accounts verwijderen uit negeerlijst
 Ignored_Description: Als u eerder een account "negeerde", kunt u deze hier opnieuw weergeven
 Ignored_Stop: Stop met het negeren van geselecteerde
+Toast_UpdatesDownloading: Updates worden op de achtergrond gedownload. U kunt het programma blijven gebruiken.
+Toast_UpdatesDownloaded: Updates zijn gedownload. Sluit deze app om te beginnen met updaten.
 Toast_DataLocationCopying: (1/2) Bestaande bestanden naar de nieuwe gebruikersgegevensmap kopiëren!
 Toast_DataLocationNotCopying: (1/2) Map heeft al bestanden! Migreert geen gebruikersgegevens.
 Toast_DataLocationSet: (2/2) Start de accountwisselaar opnieuw om de nieuwe map te gebruiken!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: Kan geen geldige Steam-ID vinden.
 Toast_FailedUpdateCheck: Controleren op updates mislukt
 Toast_UpdateVerifyFail: Kan updatebestand niet verifiëren. Download de nieuwste versie en vervang bestanden in uw map.
 Toast_StartedGame: Gestart {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: Kan geen XML-informatie ophalen voor {steamId}. Zie logboek voor meer details.
 Toast_Steam_VacCleared: VAC-status voor accounts is gewist
 Toast_Steam_CantDeleteVacCache: Kon 'LoginCache/Steam/VACCache/SteamVACCache.json' niet verwijderen
 Toast_NoFindSteamUserdata: Kon de map Steam\\userdata niet vinden
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: Steam Web API-sleutel lijkt ongeldig te zijn. Stel een
 Toast_DownloadingProfileData: Profielgegevens downloaden
 Toast_PasswordChanged: Wachtwoord gewijzigd
 Toast_JsonFailModify: Kan JSON-bestand niet wijzigen. Zie logboek.
+Toast_DifferentClosingMethod: "'Afsluitingsmethode' is anders dan de standaard. Als je een partij sluit en meer controle dan het wijzigen van deze optie helpt. Standaard: {defaultMethod}, Huidig: {currentMethod}"
+Toast_NameEmpty: Gebruikersnaam mag niet leeg zijn (en mag alleen spaties bevatten)
+Toast_NewPlatforms: "Bijgewerkt! Nieuwe platforms toegevoegd: {listOfNames}. Klik om te sluiten."
+Toast_FoundExeViaShortcut: "We hebben het geïnstalleerde pad gevonden via een snelkoppeling in het Startmenu. Controleer de locatie door nu op Instellingen te klikken. Klik om te sluiten."
 Modal_Crowdin_Header: Crowdin-vertalers
 Modal_Crowdin_Info: "Hier is iedereen die heeft geholpen met het vertalen van deze software.<br>Gebruikers met talen naast zich hebben veel geholpen bij het vertalen (rol van proeflezer)."
-Modal_Info_Creator: Gemaakt door TechNobo [Wesley Pyburn]
+Modal_Info_Creator: Gemaakt door TroubleChute [Wesley Pyburn]
 Modal_Info_Version: Versie
 Modal_Info_ViewGitHub: Bekijk op GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: Ondersteuning via Patreon
+Modal_Info_ViewKofi: Ondersteuning via Ko-Fi
 Modal_Info_BugReport: Bugrapport/Feature request
 Modal_Info_VisitSite: Bezoek tcno.co
 Modal_Info_Disclaimer: Disclaimer
@@ -362,7 +374,6 @@ Installer_VerifyMin: "Controleer of u voldoet aan de minimaal aanbevolen vereist
 Installer_VerifyAlready: "Het lijkt erop dat alles is geïnstalleerd. Controleer of u voldoet aan de minimaal aanbevolen vereisten:"
 Installer_Complete: Dat zou alles moeten zijn. Het hoofdprogramma, TcNo-Acc-Switcher.exe, wordt automatisch gestart.
 Installer_Complete2: "Als het niet werkt, raadpleeg dan de installatie-instructies, hier: {link}"
-Global_FatalNext: "Fatale fout opgetreden! Deze crashlog wordt automatisch verzonden volgende lancering."
 Tray_Error: Trayfout
 Tray_NoAccs: "Er zijn geen accounts gevonden.\nProbeer eerst van account te wisselen of zoek 'Tray_Users.json'"
 Tray_Switch: "Overschakelen naar: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "Totaal aantal gevonden updates: {x}"
 Updater_TotalSize: "Totale grootte: {size}"
 Updater_AwaitingUser: Wachten op invoer van gebruiker...
 Updater_UpToDate: "Je bent up-to-date.\n:)"
-Updater_FailedDecode: Dit is waarschijnlijk te wijten aan mij (TechNobo) duwen van een update, en het maken van een typfout dat de .json update-bestand brak. Laat het me weten :)
+Updater_FailedDecode: Dit is waarschijnlijk te wijten aan mij (TroubleChute) duwen van een update, en het maken van een typfout dat de .json update-bestand brak. Laat het me weten :)
 Updater_FailedDecodeTitle: Kon update lijst niet decoderen
 Updater_Extracting: Patchbestanden uitpakken
 Updater_Applying: Patch wordt toegepast...
@@ -461,6 +472,7 @@ DeletingFile: "Verwijderen: {file}"
 DeletingFolder: "Map verwijderen: "
 CouldntDeleteX: "FOUT: KAN NIET VERWIJDEREN: {x}"
 CouldntDeleteUndefined: "FOUT: KAN ONGEDEFINIEERD BESTAND NIET VERWIJDEREN"
+CouldntModifyX: "Kan {file}niet wijzigen. Fout met bestandsmachtiging of het bestand is in gebruik."
 Prompt_RestartAsAdmin: "<h3><bold>Dit programma zal opnieuw starten als Admin</bold></h3><p>Druk op \"Yes\" in UAC wanneer gevraagd voor admin.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>Je staat op het punt een account te vergeten!</h3> <h4>Wat betekent dit?</h4> <p>- Steam heeft niet langer het account in de Big Picture-modus en onthoudt het wachtwoord niet.<br/> - TcNo Account Switcher zal het account ook niet langer tonen, totdat het opnieuw is aangemeld via Steam.</p> <p>Uw account blijft ongewijzigd. Het is gewoon vergeten op deze computer.</p><h4>Begrijp je het?</h4>

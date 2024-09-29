@@ -1,5 +1,5 @@
 ﻿// TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -271,6 +271,8 @@ namespace TcNo_Acc_Switcher_Server.Data.Settings
         [JsonProperty("SteamWebApiKey", Order = 19)] private string _steamWebApiKey = "";
         [JsonProperty("StartSilent", Order = 20)] private bool _startSilent;
         [JsonProperty("OldUi", Order = 21)] private bool _oldUi;
+        [JsonProperty("ShowSteamSwitcher", Order = 22)] private bool _showSteamSwitcher = false;
+        [JsonProperty("CollectInfo", Order = 23)] private bool _collectInfo = true;
         [JsonIgnore] private bool _desktopShortcut;
         [JsonIgnore] private int _lastAccTimestamp = 0;
         [JsonIgnore] private string _lastAccName = "";
@@ -287,6 +289,8 @@ namespace TcNo_Acc_Switcher_Server.Data.Settings
         public static string FolderPath { get => Instance._folderPath; set => Instance._folderPath = value; }
 
         public static bool Admin { get => Instance._admin; set => Instance._admin = value; }
+        public static bool ShowSteamSwitcher { get => Instance._showSteamSwitcher; set => Instance._showSteamSwitcher = value; }
+        public static bool CollectInfo { get => Instance._collectInfo; set => Instance._collectInfo = value; }
 
         public static bool AutoStart { get => Instance._autoStart; set => Instance._autoStart = value; }
 

@@ -1,3 +1,4 @@
+
 <p align="center">
   <a href="https://tcno.co/">
     <img src="/other/img/Banner.png"></a>
@@ -41,35 +42,35 @@
 # How does it work?
 Simple. It swaps out files and registry values, pointing to your last logged in account while the program is closed. Think of it as freezing a platform like Steam in time, and replacing the "account block" with a previously frozen "account block", then unfreezing it. To Steam and your Steam account, it "looks" like you pulled your plug out and put it back in a week or so later, meanwhile you were playing on other accounts. Swapping the account block lets the program: Not interact with passwords, and not interact with 2-factor, so you can "Skip" both of those in the login process.
 
-### Things not working? See the [FAQ](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki/Frequently-Asked-Questions)
+You can see (and edit) how account switching works by checking [Platforms.json](https://github.com/TCNOco/TcNo-Acc-Switcher/blob/ad1a0907f09d6a625b11e06bbb4947566e6be6b2/TcNo-Acc-Switcher-Server/Platforms.json).
 
-## Consider supporting
+This software values your privacy. Please see the [Privacy Policy](https://github.com/TCNOco/TcNo-Acc-Switcher/blob/master/PRIVACY.md).
 
-This project is a massive time sink. For something completely open-source and free, I find myself with little time to develop. Consider supporting development on [Patreon](https://www.patreon.com/TroubleChute) or [Ko-Fi](https://ko-fi.com/tcnoco).
+## HELP  WANTED
 
-## Where I've been
-I was pursuing a complete overhaul of this software, but due to Micrisoft not fixing a breaking bug with drag and drop everything has halted. (https://github.com/TCNOco/TcNo-Acc-Switcher/tree/JsToRazor-DI-MAUI). In the meanwhile I've been putting off this project, but now am back to continuing incremental development here.
+This project is a massive time sink. For something completely open-source and free, I find myself with little time to develop. Consider supporting development on [Patreon](https://www.patreon.com/TroubleChute), [Ko-Fi](https://ko-fi.com/tcnoco) or preferrably YouTube as a Member on [TroubleChute](https://youtube.com/TroubleChute).
+
+Speak another language? [Help Translate this on Crowdin](https://crowdin.com/project/tcno-account-switcher).
+Code? Any and all help is appreciated. Specifically, currently the [build process for AppVeyor](https://github.com/TCNOco/TcNo-Acc-Switcher/tree/appveyor). Otherwise, [adding platforms](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki/Help-code-a-platform) - No coding required!
+
+Please report any and all bugs, as well as steps to recreate them into the Issues section, or the `#bug-report` channel under `TCNO ACCOUNT SWITCHER` section on the [Community Discord](https://s.tcno.co/AccSwitcherDiscord).
 
 <h2><img alt="Youtube" src="/other/img/youtube.svg" height=18"> List of all platforms (Click for video guides):</h2>
 
-**Discord (+ PTB & Canary)**, **[Epic Games](https://www.youtube.com/watch?v=gd9oS6wiKmU&list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6&index=7&t=26s)**, **[EA Desktop](https://youtu.be/BxUL27qVgaU?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **Escape from Tarkov**, **GeForce Now**, **[Genshin Impact](https://youtu.be/WFt5DvKQ7pc?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **[Origin](https://youtu.be/qRYra_fQt0I?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **OBS Studio**, **Riot Games** ([Valorant](https://youtu.be/QyRwR7DbjQs?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6), League...), **[Steam](https://youtu.be/rLXGs1Yr3m8?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **[Ubisoft Connect](https://youtu.be/XKBkIQaJzOA?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)** and **[Battle.net](https://youtu.be/cvbo_VY05bo?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)** Thank's to [iR3turnZ](https://github.com/HoeblingerDaniel) :) - [YouTube Playlist](https://www.youtube.com/playlist?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)
+Albion Online, **[Battle.net](https://youtu.be/cvbo_VY05bo?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **Discord (+ PTB & Canary)**, **[Epic Games](https://www.youtube.com/watch?v=gd9oS6wiKmU&list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6&index=7&t=26s)**, **[EA Desktop](https://youtu.be/BxUL27qVgaU?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **Escape from Tarkov**, **GeForce Now**, GOG Galaxy, **[Genshin Impact](https://youtu.be/WFt5DvKQ7pc?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**,  GeForce Now, Honkai StarRail, Magic Arena,  **[Origin](https://youtu.be/qRYra_fQt0I?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, **OBS Studio**, Oculus, PS Remote Play, **Riot Games** ([Valorant](https://youtu.be/QyRwR7DbjQs?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6), League...), Rockstar, **[Steam](https://youtu.be/rLXGs1Yr3m8?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)**, and **[Ubisoft Connect](https://youtu.be/XKBkIQaJzOA?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)** - [YouTube Playlist](https://www.youtube.com/playlist?list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6)
 	
-*This list may not be up-to-date as platforms can now be added a lot faster.
+*This list may not be up-to-date as platforms can now be added a lot faster. The new version adds the ability to easily create and maintain platforms by editing a simple text file `Platforms.json`. If you'd like to learn more, see this [Wiki page](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki/Help-code-a-platform).
 
 [TcNo Account Switcher Install Guide](https://www.youtube.com/watch?v=sjJ8OZ_urJY&list=PLsSFD61FiOVmAwChPSrIFkjDLoLsyqcU6&index=1&t=27s)
 
-# What's new
-
-Version 5.0 is released (Jan 2022)! Please report any and all bugs, as well as steps to recreate them into the Issues section, or the `#bug-report` channel under `TCNO ACCOUNT SWITCHER` section on the [Community Discord](https://s.tcno.co/AccSwitcherDiscord).
-
-The new version adds the ability to easily create and maintain platforms by editing a simple text file `Platforms.json`. If you'd like to learn more, see this [Wiki page](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki/Help-code-a-platform).
-
 **Featuring**
--  **Better UI**, with animations. Fully user/community customisable **theme system**. 2 Themes built in (so far).
+-  **Better UI**, with animations. Fully user/community customisable **theme system**. 5 Themes built in (so far).
 -   **Streamer mode** to hide SteamIDs and more while Stream software is running (ie OBS, XSplit...)
 -   **Automatic updates** WAY smaller updates, due to using a new Patch system. No more redownloading the entire app. Only a few KB/MB at a time.
--  **Steam: Log in as Invisible, Offline and more!** Copy profile links, SteamID and create quick-switch desktop shortcuts!
-- **Easily add new platforms** since version 5.0 (Jan 2022).
+-  **Steam: Log in as Invisible, Offline and more!** Copy profile links, SteamID, VAC info and create quick-switch desktop shortcuts!
+- **Easily add & customize new platforms** since version 5.0 (Jan 2022).
+- **Control via Tray** for quick-switching without keeping it all open.
+- **Protocol support** to easily build access via other tools (`tcno:\\\<command>`) [CLI & Protocol Wiki](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki/CLI-&-Protocol)
 
 \[For info on how any of these work, see the [Wiki](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki)]
 
@@ -93,7 +94,7 @@ The new version adds the ability to easily create and maintain platforms by edit
 2. Run the installer, and the application should launch when done. If not:
 Head into the folder where you installed the program and run `_FIRST_RUN.exe` to make sure required runtimes are installed, and then run `TcNo-Acc-Switcher.exe` to run the main program. The second is what shortcuts to the program should point to.
 
-**For a portable installation (eg. on a USB) see [THIS](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki#portable-eg-for-usb)** for steps on using the `.zip` or `.7z` below.
+**For a portable installation (eg. on a USB) see [THIS](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki#portable-eg-for-usb)** for steps on using the `.zip` or `.7z`.
 
 [See more info HERE](https://github.com/TCNOco/TcNo-Acc-Switcher/wiki#2-running-the-tcno-account-switcher)
 
@@ -134,6 +135,8 @@ For the rest of the disclaimer, refer to the License (GNU General Public License
 https://github.com/TcNobo/TcNo-Acc-Switcher/blob/master/LICENSE - See sections like 15, 16 and 17, as well as GitHub's
 'simplification' at the top of the above website.
 ```
+
+#### [Privacy Policy](https://github.com/TCNOco/TcNo-Acc-Switcher/blob/master/PRIVACY.md)
 
 Additional license information for included NuGet packages and other parts of code can be found in: [HERE](https://github.com/TCNOco/TcNo-Acc-Switcher/blob/master/TcNo-Acc-Switcher-Server/Additional%20Licenses.txt) `TcNo-Acc-Switcher-Server/Additional Licenses.txt`, and are copied to the build directory, as well as distributed with release versions of this software.
 

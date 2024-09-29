@@ -1,5 +1,5 @@
 // TcNo Account Switcher - A Super fast account switcher
-// Copyright (C) 2019-2023 TechNobo (Wesley Pyburn)
+// Copyright (C) 2019-2024 TroubleChute (Wesley Pyburn)
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -14,6 +14,10 @@
 
 using System;
 using System.IO;
+using System.Net.Http;
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,9 +25,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Win32;
 using TcNo_Acc_Switcher_Globals;
 using TcNo_Acc_Switcher_Server.Data;
 using TcNo_Acc_Switcher_Server.Data.Settings;
+using TcNo_Acc_Switcher_Server.Pages.General;
 
 namespace TcNo_Acc_Switcher_Server
 {
@@ -112,13 +118,70 @@ namespace TcNo_Acc_Switcher_Server
 
             // Increment launch count. I don't know if this should be here, but it is.
             AppStats.LaunchCount++;
+
+            // Update installed version number, if uninstaller preset.
+            if (OperatingSystem.IsWindows()) UpdateRegistryVersion(Globals.Version);
+
+            // Handle option files from installer
+            CheckInstallerOptions();
+
+            AppSettings.Version = Globals.Version;
+            AppSettings.SaveSettings();
+
+            try
+            {
+                if (Directory.Exists(Path.Join(Globals.AppDataFolder, "temp_update"))) Directory.Delete(Path.Join(Globals.AppDataFolder, "temp_update"), true);
+            } catch (Exception) { /* Do nothing */ }
         }
 
+        private static void CheckInstallerOptions()
+        {
+            try
+            {
+                if (File.Exists(Path.Join(Globals.UserDataFolder, "SendAnonymousStats.yes")))
+                {
+                    AppSettings.StatsShare = true;
+                    AppSettings.SaveSettings();
+                    File.Delete(Path.Join(Globals.UserDataFolder, "SendAnonymousStats.yes"));
+                }
+                else if (File.Exists(Path.Join(Globals.UserDataFolder, "SendAnonymousStats.no")))
+                {
+                    AppSettings.StatsShare = false;
+                    AppSettings.SaveSettings();
+                    File.Delete(Path.Join(Globals.UserDataFolder, "SendAnonymousStats.no"));
+                }
+            }
+            catch (Exception  e)
+            {
+                Globals.WriteToLog("Failed to delete SendAnonymousStats.yes or SendAnonymousStats.no. This option will continuously be set from this files existance.", e);
+            }
+
+            try
+            {
+                if (File.Exists(Path.Join(Globals.UserDataFolder, "OfflineMode.yes")))
+                {
+                    AppSettings.OfflineMode = true;
+                    AppSettings.SaveSettings();
+                    File.Delete(Path.Join(Globals.UserDataFolder, "OfflineMode.yes"));
+                }
+                else if (File.Exists(Path.Join(Globals.UserDataFolder, "OfflineMode.no")))
+                {
+                    AppSettings.OfflineMode = false;
+                    AppSettings.SaveSettings();
+                    File.Delete(Path.Join(Globals.UserDataFolder, "OfflineMode.no"));
+                }
+            }
+            catch (Exception e)
+            {
+                Globals.WriteToLog("Failed to delete OfflineMode.yes or OfflineMode.no. This option will continuously be set from this files existance.", e);
+            }
+        }
         public static void CurrentDomain_OnProcessExit(object sender, EventArgs e)
         {
             try
             {
                 AppStats.SaveSettings();
+                if (AppData.UpdatePending) AppSettings.AutoStartUpdaterAsAdmin();
             }
             catch (Exception)
             {
@@ -131,5 +194,42 @@ namespace TcNo_Acc_Switcher_Server
             Globals.CopyFile(Path.Join(Globals.AppDataFolder, f), Path.Join(Globals.UserDataFolder, f));
             Globals.DeleteFile(Path.Join(Globals.AppDataFolder, f));
         }
+
+        private static readonly string[] RegistryKeys =
+        [
+            @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\TcNo-Acc-Switcher",
+            @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TcNo-Acc-Switcher"
+        ];
+
+        [SupportedOSPlatform("windows")]
+        public static void UpdateRegistryVersion(string version)
+        {
+            var dotVersion = version.Replace("-", ".").Replace("_", ".");
+
+            string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string uninstallExePath = Path.Combine(exeDirectory, "Uninstall TcNo Account Switcher.exe");
+
+            // Check if uninstaller exists. If not, this copy isn't installed. Portable, or otherwise.
+            if (!File.Exists(uninstallExePath)) return;
+
+            foreach (var key in RegistryKeys)
+            {
+                try
+                {
+                    using var registryKey = Registry.LocalMachine.OpenSubKey(key, writable: true);
+                    if (registryKey == null) continue;
+
+                    registryKey.SetValue("DisplayVersion", version, RegistryValueKind.String);
+                    registryKey.SetValue("ProductVersion", dotVersion, RegistryValueKind.String);
+                    registryKey.SetValue("FileVersion", dotVersion, RegistryValueKind.String);
+                    Globals.WriteToLog($"Updated registry key: {key}");
+                }
+                catch (Exception ex)
+                {
+                    Globals.WriteToLog($"Failed to update registry key {key}: {ex.Message}");
+                }
+            }
+        }
+
     }
 }

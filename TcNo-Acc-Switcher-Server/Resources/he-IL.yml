@@ -10,7 +10,8 @@ Steam_Tray_AccountName: הצג את שם המשתמש [לא את שם הכינו
 Steam_CheckVac: בדוק את מצב ה- VAC של החשבון
 Steam_OverrideDefaultState: "עקוף את דרך ברירת המחדל לכניסה:"
 Steam_StartSilent: "פתח את Steam למגש המשימות על מתג (התחל את Steam עם '- שקט ')"
-Steam_OldUi: "Use Old UI in Steam (-vgui)"
+Steam_OldUi: "השתמש בממשק המשתמש הישן ב-Steam (-vgui)"
+Steam_CollectInfo: אסוף תמונות פרופיל וסטטוס איסור VAC מ-Steam
 Button_AddNew: הוסף
 Button_SaveCurrent: שמור נוכחי
 Button_SaveFile: שמור קובץ
@@ -30,7 +31,8 @@ Button_OpenBackup: פתח את תיקיית הגיבוי
 Button_Back: חזרה
 Button_RestartAdmin: התחל מחדש כמנהל המערכת
 Button_SetPassword: הגדר סיסמה לאפליקציה
-Settings_Shortcut: ' {platform} מחלף קיצור שולחן עבודה'
+Settings_SteamCollectInfo: אסוף תמונת פרופיל Steam וסטטוס VAC מ-Steam
+Settings_Shortcut: '{platform} מחלף קיצור שולחן עבודה'
 Settings_Admin: הפעל {platform} כמנהל
 Settings_ImageExpiry: 'ימים לפני פקיעת תוקף תמונות הפרופיל:'
 Settings_SteamAPIKey: "מפתח Steam Web API (אופציונלי)"
@@ -57,7 +59,7 @@ Settings_ExtraPlatformsDisabled: פלטפורמות מושבתות. לחץ כד�
 Settings_ExtraPlatformsEnabled: פלטפורמות גלויות. לחץ כדי להשבית אותן.
 Settings_RTL: הצג טקסט בתור מימין לשמאל
 Settings_CollectStats: איסוף נתונים סטטיסטיים
-Settings_ShareStats: שתף נתונים סטטיסטיים בצורה מעצבנת (מומלץ)
+Settings_ShareStats: שתף נתונים סטטיסטיים באופן אנונימי (מומלץ)
 Settings_DiscordRpc: נוכחות עשירה בדיסקורד (RPC)
 Settings_DiscordRpcShare: שתף את סך המתגים
 Settings_ViewStats: הצג נתונים סטטיסטיים
@@ -82,6 +84,7 @@ Settings_ThemeBackground: '[הגדר רקע]'
 Settings_ThemeOpenFolder: '[פתח את תיקיית הנושא]'
 Settings_Protocol: 'אפשר TcNo: \\ פרוטוקול (מומלץ)'
 Settings_StartCentered: התחל תוכנית ממורכזת
+Settings_OfflineMode: מצב לא מקוון (ללא פעילות ברשת)
 Settings_WindowsAccent: השתמש בצבע הדגשה של Windows
 Settings_HelpTranslate: "[עזרה לתרגם]"
 Settings_ViewTranslators: "[Credits]"
@@ -89,6 +92,7 @@ Settings_Header_ActiveBrowser: "(מתקדם) הגדרת מנוע עיבוד:"
 Settings_Header_ClosingMethod: "(מתקדם) הגדר שיטה לסגירת {platform}"
 Settings_Header_StartingMethod: "(מתקדם) הגדר שיטה להתחלה {platform}"
 Settings_AutoStart: "התחל {platform} באופן אוטומטי במעבר החשבון"
+Settings_ShowSteamSwitcher: "הצג את מחליף החשבונות של Steam (אל תשתמש בזה או שהוא עלול לשבור את מחליף החשבונות של TcNo)"
 Settings_NoPlatforms: כרגע אין פלטפורמות מופעלות. אנא סמן פלטפורמות אופציונליות למטה כדי להפעיל אותן, או בטל את הסימון של פלטפורמות מושבתות.
 Settings_MinimizeOnSwitch: מזער את המחלף בעת החלפת החשבון
 Settings_ShowShortNotes: 'הערה: תצוגה מקדימה תחת שם משתמש'
@@ -96,6 +100,8 @@ Settings_Header_AppPassword: "הפסק את השימוש באחרים באמצע
 PreviewCss: תצוגה מקדימה של CSS
 Settings_PreviewCss: זהו דף התצוגה המקדימה של CSS. תוכל להציג כמה אלמנטים שצצים בתוכנית ולראות איך הם נראים עם ערכת העיצוב שלך. דף זה שימושי עבור אלה שיוצרים ערכות עיצוב!
 Settings_PreviewCssHeader: דף תצוגה מקדימה של CSS
+Settings_AutoUpdatePlatforms: עדכון אוטומטי של רשימת הפלטפורמות
+Settings_CheckForUpdates: בדוק אם יש עדכונים בעת ההשקה
 Stats_Disabled: "איסוף הנתונים הסטטיסטיים מושבת."
 Stats_InDepth: פירוט סטטיסטיקה מעמיקה
 Stats_ShareEnabled: "נתונים סטטיסטיים אלה משותפים באופן אנונימי ויוסיפו לסכום הכולל <a onclick=\"{WebsiteLink}\" class=\"fancyLink\">כאן</a>."
@@ -143,6 +149,8 @@ Restore_Button_Restore: שחזר את הנבחר
 Ignored_RemoveAccounts: הסרת חשבונות מרשימת ההתעלמות
 Ignored_Description: אם בעבר "התעלמת" מחשבון, תוכל להציג אותו שוב כאן
 Ignored_Stop: הפסק להתעלם מהבחירה
+Toast_UpdatesDownloading: עדכונים יורדים ברקע. אתה יכול להמשיך להשתמש בתוכנית.
+Toast_UpdatesDownloaded: הורדת העדכונים הסתיימה. סגור את האפליקציה הזו כדי להתחיל לעדכן.
 Toast_DataLocationCopying: (1/2) העתקת קבצים קיימים לתיקיית נתוני המשתמש החדשה!
 Toast_DataLocationNotCopying: (1/2) בתיקייה כבר יש קבצים! לא יעביר נתוני משתמש.
 Toast_DataLocationSet: (2/2) הפעל מחדש את מחליף החשבונות כדי להשתמש בתיקייה החדשה!
@@ -192,7 +200,7 @@ Toast_NoValidSteamId: לא ניתן למצוא מזהה קיטור חוקי.
 Toast_FailedUpdateCheck: בדיקת העדכונים נכשלה
 Toast_UpdateVerifyFail: לא ניתן לאמת קבצי עדכון. הורד את הגירסה האחרונה והחלף קבצים בספריה שלך.
 Toast_StartedGame: התחיל {program}
-Toast_SteamCantLoadXml: Couldn't get XML info for {steamId}. See log for more details.
+Toast_SteamCantLoadXml: לא ניתן היה לקבל מידע XML עבור {steamId}. ראה יומן לפרטים נוספים.
 Toast_Steam_VacCleared: סטטוס VAC עבור חשבונות נוקה
 Toast_Steam_CantDeleteVacCache: לא ניתן למחוק את 'LoginCache/Steam/VACCache/SteamVACCache.json'
 Toast_NoFindSteamUserdata: לא ניתן למצוא תיקיית Steam\\ userdata
@@ -241,13 +249,17 @@ Toast_SteamWebKeyInvalid: מפתח ה - API של Steam Web לא חוקי. אנא
 Toast_DownloadingProfileData: מוריד נתוני פרופיל
 Toast_PasswordChanged: הסיסמה שונתה
 Toast_JsonFailModify: שינוי קובץ JSON נכשל. ראה יומן רישום.
+Toast_DifferentClosingMethod: "'שיטת סגירה' שונה מברירת המחדל. אם משחקים נסגרים ועוד בדוק אם שינוי אפשרות זו עוזרת. ברירת מחדל: {defaultMethod}, נוכחי: {currentMethod}"
+Toast_NameEmpty: שם משתמש לא יכול להיות ריק (ולא יכול להכיל רק רווחים)
+Toast_NewPlatforms: "מְעוּדכָּן! פלטפורמות חדשות שנוספו: {listOfNames}. לחץ כדי לסגור."
+Toast_FoundExeViaShortcut: "מצאנו את הנתיב המותקן מקיצור דרך תפריט התחל. אנא אמת את מיקומו על ידי לחיצה על הגדרות כעת. לחץ כדי לסגור."
 Modal_Crowdin_Header: מתרגמי Crowdin
 Modal_Crowdin_Info: "הנה כל מי שעזר לתרגם את התוכנה הזו.<br>משתמשים עם שפות לידם עזרו רבות בתרגום (תפקיד הגהה)."
-Modal_Info_Creator: נוצר על ידי TechNobo [ווסלי Pyburn]
+Modal_Info_Creator: נוצר על ידי TroubleChute [ווסלי Pyburn]
 Modal_Info_Version: גרסה
 Modal_Info_ViewGitHub: הצג ב - GitHub
-Modal_Info_ViewPatreon: Support via Patreon
-Modal_Info_ViewKofi: Support via Ko-Fi
+Modal_Info_ViewPatreon: תמיכה באמצעות Patreon
+Modal_Info_ViewKofi: תמיכה באמצעות Ko-Fi
 Modal_Info_BugReport: דיווח באגים/בקשה לתכונה
 Modal_Info_VisitSite: בקר בכתובת tcno.co
 Modal_Info_Disclaimer: כתב ויתור
@@ -362,7 +374,6 @@ Installer_VerifyMin: "ודא שאתה עומד בדרישות המינימליו
 Installer_VerifyAlready: "זה נראה כאילו הכל מותקן. ודא שאתה עומד בדרישות המינימליות המומלצות:"
 Installer_Complete: זה צריך להיות הכל. התוכנית הראשית, TcNo-Acc-Switcher.exe, תפעל אוטומטית.
 Installer_Complete2: "אם זה לא עובד, אנא עיין בהוראות ההתקנה, כאן: {link}"
-Global_FatalNext: "אירעה שגיאה חמורה! יומן קריסה זה יישלח באופן אוטומטי בהשקה הבאה."
 Tray_Error: שגיאת מגש
 Tray_NoAccs: "לא נמצאו חשבונות.\nנסה קודם להחליף חשבונות, או אתר את 'Tray_Users.json'"
 Tray_Switch: "עבור ל: {account}"
@@ -402,7 +413,7 @@ Updater_TotalFound: "סך כל העדכונים שנמצאו: {x}"
 Updater_TotalSize: "גודל כולל: {size}"
 Updater_AwaitingUser: ממתין לקלט המשתמש...
 Updater_UpToDate: "אתה מעודכן.\n:)"
-Updater_FailedDecode: סביר להניח שזה נובע מכך שאני (TechNobo) דחפתי עדכון, וביצעתי שגיאת הקלדה ששברה את קובץ העדכון של json. תודיע לי:)
+Updater_FailedDecode: סביר להניח שזה נובע מכך שאני (TroubleChute) דחפתי עדכון, וביצעתי שגיאת הקלדה ששברה את קובץ העדכון של json. תודיע לי:)
 Updater_FailedDecodeTitle: פענוח רשימת העדכונים נכשל
 Updater_Extracting: מחלץ קבצי תיקון
 Updater_Applying: מחיל טלאי...
@@ -461,6 +472,7 @@ DeletingFile: "מחיקה: {file}"
 DeletingFolder: "מחיקת תיקייה: "
 CouldntDeleteX: "שגיאה: לא ניתן למחוק: {x}"
 CouldntDeleteUndefined: "שגיאה: לא ניתן למחוק קובץ לא מוגדר"
+CouldntModifyX: "לא ניתן לשנות את {file}. שגיאה בהרשאת קובץ, או שהקובץ נמצא בשימוש."
 Prompt_RestartAsAdmin: "<h3><bold>תוכנית זו תתחיל מחדש כמנהל מערכת</bold></h3><p>לחץ על \"כן\" ב - UAC כאשר תתבקש לנהל.</p>"
 Prompt_ForgetSteam: >
   <h3 style='color:red'>אתה עומד לשכוח חשבון!</h3> <h4>מה זה אומר?</h4> <p>- ל-Steam כבר לא יהיה החשבון הרשום במצב Big Picture ולא יזכור את הסיסמה.<br/> - TcNo Account Switcher גם לא יציג יותר את החשבון, עד שייכנס שוב דרך Steam.</p> <p>החשבון שלך לא ייפגע. זה פשוט נשכח במחשב הזה.</p><h4>אתה מבין?</h4>
